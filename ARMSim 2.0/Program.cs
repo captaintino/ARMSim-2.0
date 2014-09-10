@@ -46,8 +46,8 @@ namespace ARMSim_2._0
                     // Convert to struct
                     elfHeader = ByteArrayToStructure<ELF>(data);
 
-                    Console.WriteLine("Entry point: " + elfHeader.e_entry.ToString("X4"));
-                    Console.WriteLine("Number of program header entries: " + elfHeader.e_phnum);
+                    Debug.WriteLine("Loader: FileRead: Entry point: " + elfHeader.e_entry.ToString("X4"));
+                    Debug.WriteLine("Loader: FileRead: Number of program header entries: " + elfHeader.e_phnum);
 
                     // Read first program header entry
                     strm.Seek(elfHeader.e_phoff, SeekOrigin.Begin);

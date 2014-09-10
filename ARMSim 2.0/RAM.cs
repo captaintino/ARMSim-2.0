@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Diagnostics;
 
 namespace ARMSim_2._0
 {
@@ -14,13 +15,17 @@ namespace ARMSim_2._0
         public RAM(uint memSize)
         {
             memory = new byte[memSize];
+            Debug.WriteLine("Loader: RAM: Instantiating memory of " + memSize.ToString() + " bytes");
         }
 
         public void WriteWord(uint address, uint data)
         {
             if ((address % 4) == 0)
             {
-
+                memory[address] = Convert.ToByte(data & 255u);
+                memory[address + 1] = Convert.ToByte((data >> 8) & 255u);
+                memory[address + 2] = Convert.ToByte((data >> 16) & 255u);
+                memory[address + 3] = Convert.ToByte((data >> 24) & 255u);
             }
         }
 
@@ -28,7 +33,7 @@ namespace ARMSim_2._0
         {
             if ((address % 4) == 0)
             {
-                return memory[address];
+                return BitConverter.ToUInt32(memory, Convert.ToInt32(address));
             }
             return 0;
         }
@@ -37,7 +42,8 @@ namespace ARMSim_2._0
         {
             if ((address % 2) == 0)
             {
-
+                memory[address] = Convert.ToByte(data & 255u);
+                memory[address + 1] = Convert.ToByte((data >> 8) & 255u);
             }
         }
 
@@ -45,14 +51,14 @@ namespace ARMSim_2._0
         {
             if ((address % 2) == 0)
             {
-                return memory[address];
+                return BitConverter.ToUInt16(memory, Convert.ToInt32(address));
             }
             return 0;
         }
 
         public void WriteByte(uint address, byte data)
         {
-
+            memory[address] = data;
         }
 
         public byte ReadByte(uint address)
