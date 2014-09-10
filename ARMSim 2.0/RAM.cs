@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.Diagnostics;
+using System.Security.Cryptography;
 
 namespace ARMSim_2._0
 {
@@ -93,9 +94,9 @@ namespace ARMSim_2._0
             stream.Write(load, Convert.ToInt32(address), load.Length);
         }
 
-        public int ComputeMD5()
+        public string ComputeMD5()
         {
-            return 0;
+            return MD5.Create().ComputeHash(memory).ToString();
         }
     }
 }

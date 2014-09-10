@@ -17,7 +17,7 @@ namespace ARMSim_2._0
         [STAThread]
         static void Main(string[] args)
         {
-            if (args.Length != 1)
+            if (args.Length < 1)
             {
                 QuitProgram();
             }
@@ -35,7 +35,9 @@ namespace ARMSim_2._0
 
             if (!arguments.testMode)
             {
+                RAM ram = new RAM(arguments.memorySize);
                 string elfFilename = arguments.fileName;
+
                 using (FileStream strm = new FileStream(elfFilename, FileMode.Open))
                 {
                     ELF elfHeader = new ELF();
@@ -77,10 +79,16 @@ namespace ARMSim_2._0
             return stuff;
         }
 
+        public static void readSegment(RAM ram, uint addressFile, uint addressRam, uint size)
+        {
+
+        }
+
         public static void QuitProgram()
         {
             Console.WriteLine("Usage: armsim [ --load elf-file ] [ --mem memory-size ] [ --test]");
-            Application.Exit();
+            Environment.Exit(1);
+            
         }
 
         public static void TestStuff()
