@@ -9,7 +9,8 @@ namespace ARMSim_2._0
 {
     class TestRAM
     {
-        public TestRAM()
+        // Runs Unit Tests for RAM Class
+        public void RunTests ()
         {
             Debug.WriteLine("Loader: Tests: RAM: Testing RAM");
             RAM ram = new RAM();

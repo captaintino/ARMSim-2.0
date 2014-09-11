@@ -9,7 +9,8 @@ namespace ARMSim_2._0
 {
     class TestOptions
     {
-        public TestOptions()
+        // Runs Unit Tests for Options Class
+        public void RunTests ()
         {
             Debug.WriteLine("Loader: Tests: Options: Testing Options");
             Options op = new Options(new[] {"--load", "test1.exe", "--mem", "100000", "--test"});

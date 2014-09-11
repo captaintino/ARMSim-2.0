@@ -19,6 +19,7 @@ namespace ARMSim_2._0
             Debug.WriteLine("Loader: RAM: Instantiating memory of " + memSize.ToString() + " bytes");
         }
 
+        // Write 32bits of <data> to <address> 
         public void WriteWord(uint address, uint data)
         {
             if ((address % 4) == 0)
@@ -30,6 +31,7 @@ namespace ARMSim_2._0
             }
         }
 
+        // Read 32bits of data from <address> 
         public uint ReadWord(uint address)
         {
             if ((address % 4) == 0)
@@ -39,6 +41,7 @@ namespace ARMSim_2._0
             return 0;
         }
 
+        // Write 16bits of <data> to <address> 
         public void WriteHalfWord(uint address, uint data)
         {
             if ((address % 2) == 0)
@@ -48,6 +51,7 @@ namespace ARMSim_2._0
             }
         }
 
+        // Read 16bits of data from <address> 
         public ushort ReadHalfWord(uint address)
         {
             if ((address % 2) == 0)
@@ -57,16 +61,19 @@ namespace ARMSim_2._0
             return 0;
         }
 
+        // Write 8bits of <data> to <address> 
         public void WriteByte(uint address, byte data)
         {
             memory[address] = data;
         }
 
+        // Read 8bits of data from <address> 
         public byte ReadByte(uint address)
         {
             return memory[address];
         }
 
+        // Check if <bit> of <address> is set
         public bool TestFlag(uint address, int bit)
         {
             if (bit < 32 && bit >= 0)
@@ -76,6 +83,7 @@ namespace ARMSim_2._0
             return false;
         }
 
+        // Set <bit> of <address> to <flag>
         public void SetFlag(uint address, int bit, bool flag)
         {
             if (bit < 32 && bit >= 0)
@@ -92,6 +100,7 @@ namespace ARMSim_2._0
             }
         }
 
+        // Load chunk of memory contained in <load> into simulated memory at <address>
         public void LoadRam(uint address, byte[] load)
         {
             MemoryStream stream = new MemoryStream(memory);
@@ -99,9 +108,16 @@ namespace ARMSim_2._0
             stream.Write(load, 0, load.Length);
         }
 
-        public byte[] ComputeMD5()
+        // Computer MD5 value of simulated RAM
+        public string ComputeMD5()
         {
-            return MD5.Create().ComputeHash(memory);
+            StringBuilder sBuilder = new StringBuilder();
+            byte[] md5 = MD5.Create().ComputeHash(memory);
+            for (int i = 0; i < md5.Length; i++)
+            {
+                sBuilder.Append(md5[i].ToString("x2"));
+            }
+            return sBuilder.ToString();
         }
     }
 }
