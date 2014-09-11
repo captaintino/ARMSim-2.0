@@ -13,7 +13,7 @@ namespace ARMSim_2._0
     {
         private Byte[] memory;
 
-        public RAM(uint memSize)
+        public RAM(uint memSize = 32768u)
         {
             memory = new byte[memSize];
             Debug.WriteLine("Loader: RAM: Instantiating memory of " + memSize.ToString() + " bytes");
@@ -71,7 +71,7 @@ namespace ARMSim_2._0
         {
             if (bit < 32 && bit >= 0)
             {
-                return (ReadWord(address) & (1 << (bit - 1))) != 0;
+                return (ReadWord(address) & (1 << bit)) != 0;
             }
             return false;
         }

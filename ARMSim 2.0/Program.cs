@@ -36,34 +36,7 @@ namespace ARMSim_2._0
 
             if (!arguments.testMode)
             {
-                RAM ram = new RAM(arguments.memorySize);
-                string elfFilename = arguments.fileName;
-
-                using (FileStream strm = new FileStream(elfFilename, FileMode.Open))
-                {
-                    ELF elfHeader = ExtractELFHeader(strm);
-
-                    // Read first program header entry
-                    List<SegmentHeader> segmentHeaders = ExtractSegmentHeader(strm, elfHeader);
-                    byte[] data;
-                    foreach (SegmentHeader seg in segmentHeaders)
-                    {
-                        strm.Seek(seg.p_offset, SeekOrigin.Begin);
-                        data = new byte[seg.p_filesz];
-                        strm.Read(data, 0, (int)seg.p_filesz); 
-                        ram.LoadRam(seg.p_vaddr, data);
-                    }
-
-                    StringBuilder sBuilder = new StringBuilder();
-                    byte[] md5 = ram.ComputeMD5();
-                    for (int i = 0; i < md5.Length; i++)
-                    {
-                        sBuilder.Append(md5[i].ToString("x2"));
-                    }
-
-                    Debug.WriteLine("Loader: Compute MD5: " + sBuilder.ToString());
-
-                }
+                RAM ram = PreloadRAM(arguments);
 
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
@@ -73,6 +46,39 @@ namespace ARMSim_2._0
             {
                 TestStuff();
             }
+        }
+
+        public static RAM PreloadRAM(Options arguments)
+        {
+            RAM ram = new RAM(arguments.memorySize);
+            string elfFilename = arguments.fileName;
+
+            using (FileStream strm = new FileStream(elfFilename, FileMode.Open))
+            {
+                ELF elfHeader = ExtractELFHeader(strm);
+
+                // Read first program header entry
+                List<SegmentHeader> segmentHeaders = ExtractSegmentHeader(strm, elfHeader);
+                byte[] data;
+                foreach (SegmentHeader seg in segmentHeaders)
+                {
+                    strm.Seek(seg.p_offset, SeekOrigin.Begin);
+                    data = new byte[seg.p_filesz];
+                    strm.Read(data, 0, (int)seg.p_filesz);
+                    ram.LoadRam(seg.p_vaddr, data);
+                }
+
+                StringBuilder sBuilder = new StringBuilder();
+                byte[] md5 = ram.ComputeMD5();
+                for (int i = 0; i < md5.Length; i++)
+                {
+                    sBuilder.Append(md5[i].ToString("x2"));
+                }
+
+                Debug.WriteLine("Loader: Compute MD5: " + sBuilder.ToString());
+
+            }
+            return ram;
         }
 
         public static ELF ExtractELFHeader(FileStream strm)
@@ -116,11 +122,6 @@ namespace ARMSim_2._0
             return stuff;
         }
 
-        public static void readSegment(RAM ram, uint addressFile, uint addressRam, uint size)
-        {
-
-        }
-
         public static void QuitProgram()
         {
             Console.WriteLine("Usage: armsim [ --load elf-file ] [ --mem memory-size ] [ --test]");
@@ -130,7 +131,8 @@ namespace ARMSim_2._0
 
         public static void TestStuff()
         {
-            //CALL TEST CODE ON ALL MODULES
+            TestOptions to = new TestOptions();
+            TestRAM tr = new TestRAM();
         }
     }
 
