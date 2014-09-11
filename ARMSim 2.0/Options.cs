@@ -10,7 +10,7 @@ namespace ARMSim_2._0
     class Options
     {
         public string fileName = "";
-        public int memorySize = 32768;
+        public uint memorySize = 32768;
         public bool testMode = false;
 
         public Options(string[] arguments)
@@ -25,7 +25,7 @@ namespace ARMSim_2._0
                             fileName = arguments[++i];
                             break;
                         case "--mem":
-                            memorySize = Convert.ToInt32(arguments[++i]);
+                            memorySize = Convert.ToUInt32(arguments[++i]);
                             if (memorySize > 104857600) // 100 Megabytes of memory maximum
                                 throw new Exception();
                             break;

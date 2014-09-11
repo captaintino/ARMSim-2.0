@@ -11,7 +11,7 @@ namespace ARMSim_2._0
 {
     class RAM
     {
-        Byte[] memory;
+        private Byte[] memory;
 
         public RAM(uint memSize)
         {
@@ -83,7 +83,11 @@ namespace ARMSim_2._0
                 uint word = ReadWord(address);
                 if (flag)
                 {
-                    WriteWord(address, word | (1u << (bit - 1)));
+                    WriteWord(address, word | (1u << bit));
+                }
+                else
+                {
+                    WriteWord(address, word & (~ (1u << bit)));
                 }
             }
         }
@@ -91,12 +95,13 @@ namespace ARMSim_2._0
         public void LoadRam(uint address, byte[] load)
         {
             MemoryStream stream = new MemoryStream(memory);
-            stream.Write(load, Convert.ToInt32(address), load.Length);
+            stream.Seek((long)address, SeekOrigin.Begin);
+            stream.Write(load, 0, load.Length);
         }
 
-        public string ComputeMD5()
+        public byte[] ComputeMD5()
         {
-            return MD5.Create().ComputeHash(memory).ToString();
+            return MD5.Create().ComputeHash(memory);
         }
     }
 }
