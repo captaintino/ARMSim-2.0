@@ -37,6 +37,7 @@ namespace ARMSim_2._0
             }
             catch
             {
+                Console.WriteLine("Loader: USAGE ERROR");
                 fileName = "";
             }
         }

@@ -11,10 +11,12 @@ namespace ARMSim_2._0
     {
         public TestOptions()
         {
+            Debug.WriteLine("Loader: Tests: Options: Testing Options");
             Options op = new Options(new[] {"--load", "test1.exe", "--mem", "100000", "--test"});
             Debug.Assert(op.fileName == "test1.exe" && op.memorySize == 100000 && op.testMode == true);
             op = new Options(new[] {"--load", "test1.exe", "--mem", "100000", "--mem", "crash"});
             Debug.Assert(op.fileName == "");
+            Debug.WriteLine("Loader: Tests: Options: All Tests Passed");
         }
     }
 }
