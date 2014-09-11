@@ -55,6 +55,7 @@ namespace ARMSim_2._0
                 RAM ram = new RAM(arguments.memorySize);
                 string elfFilename = arguments.fileName;
 
+                Debug.WriteLine("Loader: Opening " + elfFilename);
                 using (FileStream strm = new FileStream(elfFilename, FileMode.Open))
                 {
                     ELF elfHeader = ExtractELFHeader(strm);
@@ -64,6 +65,7 @@ namespace ARMSim_2._0
                     byte[] data;
                     foreach (SegmentHeader seg in segmentHeaders)
                     {
+                        Debug.WriteLine("Loader: Segment: Address = " + seg.p_paddr.ToString() + " Offset = " + seg.p_offset.ToString() + " Size = " + seg.p_memsz.ToString());
                         strm.Seek(seg.p_offset, SeekOrigin.Begin);
                         data = new byte[seg.p_filesz];
                         strm.Read(data, 0, (int)seg.p_filesz);
