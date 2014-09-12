@@ -12,12 +12,12 @@ namespace ARMSim_2._0
         // Runs Unit Tests for Loader Class
         public void RunTests()
         {
-            Debug.WriteLine("Loader: Testing: Preloading RAM");
-            Debug.WriteLine("Loader: Testing: Using file = test1.exe");
+            Console.WriteLine("Loader: Testing: Preloading RAM");
+            Console.WriteLine("Loader: Testing: Using file = test1.exe");
             Options arguments = new Options(new[] { "--load", "test1.exe" });
             RAM ram = Loader.PreloadRAM(arguments);
             Debug.Assert(ram.ComputeMD5() == "3500a8bef72dfed358b25b61b7602cf1");
-            Debug.WriteLine("Loader: Testing: All Loader Tests Passed!");
+            Console.WriteLine("Loader: Testing: All Loader Tests Passed!");
         }
     }
 }

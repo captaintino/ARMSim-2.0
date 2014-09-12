@@ -12,7 +12,7 @@ namespace ARMSim_2._0
         // Runs Unit Tests for RAM Class
         public void RunTests ()
         {
-            Debug.WriteLine("Loader: Tests: RAM: Testing RAM");
+            Console.WriteLine("Loader: Tests: RAM: Testing RAM");
             RAM ram = new RAM();
             ram.WriteWord(1000u, 1111u);
             Debug.Assert(ram.ReadWord(1000u) == 1111u);
@@ -23,7 +23,7 @@ namespace ARMSim_2._0
             ram.WriteByte(500u, (byte)23u);
             Debug.Assert(ram.ReadByte(500u) == (byte)23u);
             ram.WriteWord(0, uint.MaxValue);
-            Debug.WriteLine("Loader: Tests: RAM: Read/Write Passed");
+            Console.WriteLine("Loader: Tests: RAM: Read/Write Passed");
             for (int i = 0; i < 32; ++i)
             {
                 Debug.Assert(ram.TestFlag(0, i) == true);
@@ -32,8 +32,8 @@ namespace ARMSim_2._0
             Debug.Assert(ram.TestFlag(20u, 2) == true);
             ram.SetFlag(20u, 2, false);
             Debug.Assert(ram.TestFlag(20u, 2) == false);
-            Debug.WriteLine("Loader: Tests: RAM: Test/SetFlag Passed");
-            Debug.WriteLine("Loader: Tests: RAM: All tests Passed");
+            Console.WriteLine("Loader: Tests: RAM: Test/SetFlag Passed");
+            Console.WriteLine("Loader: Tests: RAM: All tests Passed");
         }
     }
 }

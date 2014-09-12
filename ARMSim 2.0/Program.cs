@@ -29,7 +29,7 @@ namespace ARMSim_2._0
             Debug.WriteLine("Loader: Options: memSize: " + arguments.memorySize.ToString());
             Debug.WriteLine("Loader: Options: testMode: " + (arguments.testMode ? "True" : "False"));
 
-            if (arguments.fileName == "")
+            if (arguments.fileName == "" && !arguments.testMode)
             {
                 QuitProgram();
             }
@@ -44,7 +44,7 @@ namespace ARMSim_2._0
             }
             else
             {
-                TestStuff();
+                TestApp();
             }
         }
 
@@ -57,7 +57,7 @@ namespace ARMSim_2._0
         }
 
         // Run All Unit Test Classes
-        public static void TestStuff()
+        public static void TestApp()
         {
             TestOptions to = new TestOptions();
             to.RunTests();

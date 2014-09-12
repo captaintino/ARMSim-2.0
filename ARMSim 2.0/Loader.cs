@@ -37,7 +37,7 @@ namespace ARMSim_2._0
                         ram.LoadRam(seg.p_vaddr, data);
                     }
 
-                    Debug.WriteLine("Loader: Compute MD5: " + ram.ComputeMD5());
+                    Console.WriteLine("Loader: Compute MD5: " + ram.ComputeMD5());
 
                 }
                 return ram;
