@@ -18,34 +18,27 @@ namespace ARMSim_2._0
         [STAThread]
         static void Main(string[] args)
         {
-            if (args.Length < 1)
+            Options arguments = new Options(new string[0]);
+            if (args.Length > 0)
             {
-                QuitProgram();
+                arguments = new Options(args);
+
+                Debug.WriteLine("Loader: Options: filename: " + arguments.fileName);
+                Debug.WriteLine("Loader: Options: memSize: " + arguments.memorySize.ToString());
+                Debug.WriteLine("Loader: Options: testMode: " + (arguments.testMode ? "True" : "False"));
+
+                if (arguments.fileName == "" && !arguments.testMode)
+                {
+                    QuitProgram();
+                }
+                else if(arguments.testMode)
+                {
+                    TestApp();
+                }
             }
-
-            Options arguments = new Options(args);
-
-            Debug.WriteLine("Loader: Options: filename: " + arguments.fileName);
-            Debug.WriteLine("Loader: Options: memSize: " + arguments.memorySize.ToString());
-            Debug.WriteLine("Loader: Options: testMode: " + (arguments.testMode ? "True" : "False"));
-
-            if (arguments.fileName == "" && !arguments.testMode)
-            {
-                QuitProgram();
-            }
-
-            if (!arguments.testMode)
-            {
-                RAM ram = Loader.PreloadRAM(arguments);
-
-                Application.EnableVisualStyles();
-                Application.SetCompatibleTextRenderingDefault(false);
-                Application.Run(new Form1());
-            }
-            else
-            {
-                TestApp();
-            }
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new Form1(arguments));
         }
 
         // Write Usage Statement and end program

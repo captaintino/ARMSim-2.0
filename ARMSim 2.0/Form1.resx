@@ -117,20 +117,43 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="folder_search" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\folder_search.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Reset" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\sub_black_rotate_cw.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Run" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\button_black_play.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Step" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\button_black_last.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Stop" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\button_black_stop.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <metadata name="Register.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="Value.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="DValue.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="Register.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="Value.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="DValue.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="runbtn.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAM0SURBVDhPXZNLTBNRFIYvGVcWFwIGYQqlbcRggFaE0iKPFgpRSkFebVmgJkYBFwrRxDTpxgUb
+        RRMgGJWE8myFFstCDSWIvEqiECjqQoiJSiWUR0xgOe3M8d5BK7j4bjJ3/v+/d86cgziOQyzLIoZhQgSC
+        QRQMsmGBQOAIAe+FHXxPIB7ixcIgWl1dRXa7HVmtVtTb10+99bynPyx/Uno8c6aZmVnT2NiYcnh4mO7p
+        6aEwvHZlZYX38mlkIzk5GUVHR6NctcbQZLYM3DVblhqb7vhu3W7yXb9+Y6mqqtqWqVQaJBIJr7XZbLyX
+        X8jJxCyTyc31DTf9l8ormZKSUu4vOp2eKy4uYbTaQn9i4mkz0XZ1df0LeOEcprQXdYbaK1c3CrSFUHap
+        nEdbWATk+SDZ2bl+fJCxu7ub4gOCuBjTn1dj6+5Z+tX5WkatKYCWR49hcMgBdfUNoNUWERNk5+yTdT6b
+        0elKBtxuN40LjBBZ3FMeZXm1aVGhyGSxADo7O2F7Zwe8Xi+0trZBRUUlKDKVkKHIhIwMBVtaWrY0OTmp
+        4gPwNSiXa8Sk0eT7UlJlXNq5dHj69Bns7e3B7u4u+P1+mJiYgNrayyCTn4XklFQuT63xuVyuGuLlAxwO
+        h0mlyvLhAnEpKanQ0dERCtjY2IDx8XEwGo2QlHQGiIZonU5nKADZB4eUaemKRVGCmMUCaG9vh62tLZif
+        n4fm5mbIzVODWCKFhAQxEE26KmfJ+cqtYvhPwItjbDr2XH5x/8lYmhGJRGCxWOA5roNerweJVAoxMbH/
+        wJoCfcXA1MJHGncrDsDLS+8apai7b4iIifNHREaCFJvEEglERkXB8YiIQ8THi/wPWh4Zt3d+USyLW5kE
+        OLzrSNk2i05cuGYOP35iUyAIZwQCAXeI8GPMUYFgM0+tNr9+8wZ9+/7jTyvjgJHldZT/xINkD98haVWj
+        UXjqjI2mhV6MTyiM8wnFid74tBxbTILUKJfLkcFgQKOjo3wL8I30dWsPf8ZPZFtYQ31zXyjroIvG7a3C
+        1BC6h0ayet1ztHXATuEO5OcgNEz748zxNwnBBMjfISNMRvkILnTY/v7/48yh3zPXHwW1n7dNAAAAAElF
+        TkSuQmCC
+</value>
   </data>
 </root>

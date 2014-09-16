@@ -13,40 +13,47 @@ namespace ARMSim_2._0
     class Loader
     {
         // Extract pertinent data from file requested in <arguments> and load into return RAM
-        public static RAM PreloadRAM(Options arguments)
+        public static Memory PreloadRAM(Options arguments)
         {
-            try
+            if (arguments.fileName != "")
             {
-                RAM ram = new RAM(arguments.memorySize);
-                string elfFilename = arguments.fileName;
-
-                Debug.WriteLine("Loader: Opening " + elfFilename);
-                using (FileStream strm = new FileStream(elfFilename, FileMode.Open))
+                try
                 {
-                    ELF elfHeader = ExtractELFHeader(strm);
+                    Memory ram = new Memory(arguments.memorySize);
+                    string elfFilename = arguments.fileName;
 
-                    // Read first program header entry
-                    List<SegmentHeader> segmentHeaders = ExtractSegmentHeader(strm, elfHeader);
-                    byte[] data;
-                    foreach (SegmentHeader seg in segmentHeaders)
+                    Debug.WriteLine("Loader: Opening " + elfFilename);
+                    using (FileStream strm = new FileStream(elfFilename, FileMode.Open))
                     {
-                        Debug.WriteLine("Loader: Segment: Address = " + seg.p_paddr.ToString() + " Offset = " + seg.p_offset.ToString() + " Size = " + seg.p_memsz.ToString());
-                        strm.Seek(seg.p_offset, SeekOrigin.Begin);
-                        data = new byte[seg.p_filesz];
-                        strm.Read(data, 0, (int)seg.p_filesz);
-                        ram.LoadRam(seg.p_vaddr, data);
+                        ELF elfHeader = ExtractELFHeader(strm);
+
+                        // Read first program header entry
+                        List<SegmentHeader> segmentHeaders = ExtractSegmentHeader(strm, elfHeader);
+                        byte[] data;
+                        foreach (SegmentHeader seg in segmentHeaders)
+                        {
+                            Debug.WriteLine("Loader: Segment: Address = " + seg.p_paddr.ToString() + " Offset = " + seg.p_offset.ToString() + " Size = " + seg.p_memsz.ToString());
+                            strm.Seek(seg.p_offset, SeekOrigin.Begin);
+                            data = new byte[seg.p_filesz];
+                            strm.Read(data, 0, (int)seg.p_filesz);
+                            ram.LoadRam(seg.p_vaddr, data);
+                        }
+
+                        Console.WriteLine("Loader: Compute MD5: " + ram.ComputeMD5());
+
                     }
-
-                    Console.WriteLine("Loader: Compute MD5: " + ram.ComputeMD5());
-
+                    return ram;
                 }
-                return ram;
+                catch
+                {
+                    Console.WriteLine("Loader: ERROR OCCURRED DURING RAM LOADING");
+                    Program.QuitProgram();
+                    return null; // Not all code paths returned a value
+                }
             }
-            catch
+            else
             {
-                Console.WriteLine("Loader: ERROR OCCURRED DURING RAM LOADING");
-                Program.QuitProgram();
-                return null; // Not all code paths returned a value
+                return new Memory(arguments.memorySize);
             }
         }
 

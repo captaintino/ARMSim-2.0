@@ -13,7 +13,7 @@ namespace ARMSim_2._0
         public void RunTests ()
         {
             Console.WriteLine("Loader: Tests: RAM: Testing RAM");
-            RAM ram = new RAM();
+            Memory ram = new Memory();
             ram.WriteWord(1000u, 1111u);
             Debug.Assert(ram.ReadWord(1000u) == 1111u);
             ram.WriteHalfWord(1020u, 11u);

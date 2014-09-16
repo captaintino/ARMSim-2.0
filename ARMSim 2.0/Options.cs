@@ -7,7 +7,7 @@ using System.Diagnostics;
 
 namespace ARMSim_2._0
 {
-    class Options
+    public class Options
     {
         public string fileName = "";
         public uint memorySize = 32768;

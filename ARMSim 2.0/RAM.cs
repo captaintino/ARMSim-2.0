@@ -9,14 +9,16 @@ using System.Security.Cryptography;
 
 namespace ARMSim_2._0
 {
-    class RAM
+    class Memory
     {
         private Byte[] memory;
+        public uint memorySize;
 
-        public RAM(uint memSize = 32768u)
+        public Memory(uint memSize = 32768u)
         {
             memory = new byte[memSize];
-            Debug.WriteLine("Loader: RAM: Instantiating memory of " + memSize.ToString() + " bytes");
+            memorySize = memSize;
+            Debug.WriteLine("Loader: Memory: Instantiating memory of " + memSize.ToString() + " bytes");
         }
 
         // Write 32bits of <data> to <address> 
