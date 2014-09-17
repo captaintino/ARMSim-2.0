@@ -33,19 +33,19 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
-            this.registersgrid = new System.Windows.Forms.DataGridView();
-            this.Register = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Value = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.deconstructedInstruction = new System.Windows.Forms.TabControl();
-            this.openbtn = new System.Windows.Forms.Button();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.runbtn = new System.Windows.Forms.Button();
             this.stepbtn = new System.Windows.Forms.Button();
             this.breakbtn = new System.Windows.Forms.Button();
             this.resetbtn = new System.Windows.Forms.Button();
+            this.openbtn = new System.Windows.Forms.Button();
+            this.deconstructedInstruction = new System.Windows.Forms.TabControl();
+            this.registersgrid = new System.Windows.Forms.DataGridView();
+            this.Register = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Value = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.splitContainer4 = new System.Windows.Forms.SplitContainer();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.md5label = new System.Windows.Forms.Label();
@@ -56,7 +56,6 @@
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
@@ -65,6 +64,7 @@
             this.splitContainer3.Panel1.SuspendLayout();
             this.splitContainer3.Panel2.SuspendLayout();
             this.splitContainer3.SuspendLayout();
+            this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.registersgrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).BeginInit();
             this.splitContainer4.Panel1.SuspendLayout();
@@ -90,7 +90,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(816, 141);
+            this.tabPage1.Size = new System.Drawing.Size(816, 163);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -116,7 +116,6 @@
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel1_Paint);
             // 
             // splitContainer1.Panel2
             // 
@@ -124,20 +123,6 @@
             this.splitContainer1.Size = new System.Drawing.Size(824, 450);
             this.splitContainer1.SplitterDistance = 228;
             this.splitContainer1.TabIndex = 5;
-            // 
-            // flowLayoutPanel1
-            // 
-            this.flowLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.flowLayoutPanel1.Controls.Add(this.runbtn);
-            this.flowLayoutPanel1.Controls.Add(this.stepbtn);
-            this.flowLayoutPanel1.Controls.Add(this.breakbtn);
-            this.flowLayoutPanel1.Controls.Add(this.resetbtn);
-            this.flowLayoutPanel1.Controls.Add(this.openbtn);
-            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(538, 25);
-            this.flowLayoutPanel1.TabIndex = 4;
             // 
             // splitContainer2
             // 
@@ -174,66 +159,19 @@
             this.splitContainer3.SplitterDistance = 25;
             this.splitContainer3.TabIndex = 5;
             // 
-            // registersgrid
+            // flowLayoutPanel1
             // 
-            this.registersgrid.AllowUserToAddRows = false;
-            this.registersgrid.AllowUserToDeleteRows = false;
-            this.registersgrid.AllowUserToResizeRows = false;
-            this.registersgrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
-            this.registersgrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Register,
-            this.Value,
-            this.DValue});
-            this.registersgrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.registersgrid.Location = new System.Drawing.Point(0, 0);
-            this.registersgrid.Name = "registersgrid";
-            this.registersgrid.ReadOnly = true;
-            this.registersgrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToDisplayedHeaders;
-            this.registersgrid.Size = new System.Drawing.Size(282, 228);
-            this.registersgrid.TabIndex = 0;
-            this.registersgrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.registersgrid_CellContentClick);
-            // 
-            // Register
-            // 
-            this.Register.HeaderText = "Register";
-            this.Register.Name = "Register";
-            this.Register.ReadOnly = true;
-            this.Register.Width = 71;
-            // 
-            // Value
-            // 
-            this.Value.HeaderText = "Value";
-            this.Value.Name = "Value";
-            this.Value.ReadOnly = true;
-            this.Value.Width = 59;
-            // 
-            // DValue
-            // 
-            this.DValue.HeaderText = "Decoded Value";
-            this.DValue.Name = "DValue";
-            this.DValue.ReadOnly = true;
-            this.DValue.Width = 106;
-            // 
-            // deconstructedInstruction
-            // 
-            this.deconstructedInstruction.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.deconstructedInstruction.Location = new System.Drawing.Point(0, 0);
-            this.deconstructedInstruction.Name = "deconstructedInstruction";
-            this.deconstructedInstruction.SelectedIndex = 0;
-            this.deconstructedInstruction.Size = new System.Drawing.Size(538, 199);
-            this.deconstructedInstruction.TabIndex = 0;
-            // 
-            // openbtn
-            // 
-            this.openbtn.Image = global::ARMSim_2._0.Properties.Resources.folder_search;
-            this.openbtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.openbtn.Location = new System.Drawing.Point(327, 3);
-            this.openbtn.Name = "openbtn";
-            this.openbtn.Size = new System.Drawing.Size(75, 23);
-            this.openbtn.TabIndex = 4;
-            this.openbtn.Text = "Open";
-            this.openbtn.UseVisualStyleBackColor = true;
-            this.openbtn.Click += new System.EventHandler(this.openbtn_Click);
+            this.flowLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.flowLayoutPanel1.Controls.Add(this.runbtn);
+            this.flowLayoutPanel1.Controls.Add(this.stepbtn);
+            this.flowLayoutPanel1.Controls.Add(this.breakbtn);
+            this.flowLayoutPanel1.Controls.Add(this.resetbtn);
+            this.flowLayoutPanel1.Controls.Add(this.openbtn);
+            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(538, 25);
+            this.flowLayoutPanel1.TabIndex = 4;
             // 
             // runbtn
             // 
@@ -283,7 +221,66 @@
             this.resetbtn.TabIndex = 3;
             this.resetbtn.Text = "Reset";
             this.resetbtn.UseVisualStyleBackColor = true;
-            this.resetbtn.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // openbtn
+            // 
+            this.openbtn.Image = global::ARMSim_2._0.Properties.Resources.folder_search;
+            this.openbtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.openbtn.Location = new System.Drawing.Point(327, 3);
+            this.openbtn.Name = "openbtn";
+            this.openbtn.Size = new System.Drawing.Size(75, 23);
+            this.openbtn.TabIndex = 4;
+            this.openbtn.Text = "Open";
+            this.openbtn.UseVisualStyleBackColor = true;
+            this.openbtn.Click += new System.EventHandler(this.openbtn_Click);
+            // 
+            // deconstructedInstruction
+            // 
+            this.deconstructedInstruction.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.deconstructedInstruction.Location = new System.Drawing.Point(0, 0);
+            this.deconstructedInstruction.Name = "deconstructedInstruction";
+            this.deconstructedInstruction.SelectedIndex = 0;
+            this.deconstructedInstruction.Size = new System.Drawing.Size(538, 199);
+            this.deconstructedInstruction.TabIndex = 0;
+            // 
+            // registersgrid
+            // 
+            this.registersgrid.AllowUserToAddRows = false;
+            this.registersgrid.AllowUserToDeleteRows = false;
+            this.registersgrid.AllowUserToResizeRows = false;
+            this.registersgrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
+            this.registersgrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Register,
+            this.Value,
+            this.DValue});
+            this.registersgrid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.registersgrid.Location = new System.Drawing.Point(0, 0);
+            this.registersgrid.Name = "registersgrid";
+            this.registersgrid.ReadOnly = true;
+            this.registersgrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToDisplayedHeaders;
+            this.registersgrid.Size = new System.Drawing.Size(282, 228);
+            this.registersgrid.TabIndex = 0;
+            // 
+            // Register
+            // 
+            this.Register.HeaderText = "Register";
+            this.Register.Name = "Register";
+            this.Register.ReadOnly = true;
+            this.Register.Width = 71;
+            // 
+            // Value
+            // 
+            this.Value.HeaderText = "Value";
+            this.Value.Name = "Value";
+            this.Value.ReadOnly = true;
+            this.Value.Width = 59;
+            // 
+            // DValue
+            // 
+            this.DValue.HeaderText = "Decoded Value";
+            this.DValue.Name = "DValue";
+            this.DValue.ReadOnly = true;
+            this.DValue.Width = 106;
             // 
             // splitContainer4
             // 
@@ -347,15 +344,16 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(824, 450);
             this.Controls.Add(this.splitContainer1);
+            this.KeyPreview = true;
             this.Name = "Form1";
             this.ShowInTaskbar = false;
             this.Text = "armsim";
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.KeyEvent);
             this.tabControl1.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            this.flowLayoutPanel1.ResumeLayout(false);
             this.splitContainer2.Panel1.ResumeLayout(false);
             this.splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
@@ -364,6 +362,7 @@
             this.splitContainer3.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).EndInit();
             this.splitContainer3.ResumeLayout(false);
+            this.flowLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.registersgrid)).EndInit();
             this.splitContainer4.Panel1.ResumeLayout(false);
             this.splitContainer4.Panel2.ResumeLayout(false);
