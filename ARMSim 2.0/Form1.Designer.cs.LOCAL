@@ -143,6 +143,7 @@
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.Controls.Add(this.splitContainer2);
+            this.splitContainer1.Panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel1_Paint);
             // 
             // splitContainer1.Panel2
             // 
@@ -248,66 +249,7 @@
             this.resetbtn.TabIndex = 3;
             this.resetbtn.Text = "Reset";
             this.resetbtn.UseVisualStyleBackColor = true;
-            // 
-            // openbtn
-            // 
-            this.openbtn.Image = global::ARMSim_2._0.Properties.Resources.folder_search;
-            this.openbtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.openbtn.Location = new System.Drawing.Point(327, 3);
-            this.openbtn.Name = "openbtn";
-            this.openbtn.Size = new System.Drawing.Size(75, 23);
-            this.openbtn.TabIndex = 4;
-            this.openbtn.Text = "Open";
-            this.openbtn.UseVisualStyleBackColor = true;
-            this.openbtn.Click += new System.EventHandler(this.openbtn_Click);
-            // 
-            // deconstructedInstruction
-            // 
-            this.deconstructedInstruction.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.deconstructedInstruction.Location = new System.Drawing.Point(0, 0);
-            this.deconstructedInstruction.Name = "deconstructedInstruction";
-            this.deconstructedInstruction.SelectedIndex = 0;
-            this.deconstructedInstruction.Size = new System.Drawing.Size(538, 199);
-            this.deconstructedInstruction.TabIndex = 0;
-            // 
-            // registersgrid
-            // 
-            this.registersgrid.AllowUserToAddRows = false;
-            this.registersgrid.AllowUserToDeleteRows = false;
-            this.registersgrid.AllowUserToResizeRows = false;
-            this.registersgrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
-            this.registersgrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Register,
-            this.Value,
-            this.DValue});
-            this.registersgrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.registersgrid.Location = new System.Drawing.Point(0, 0);
-            this.registersgrid.Name = "registersgrid";
-            this.registersgrid.ReadOnly = true;
-            this.registersgrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToDisplayedHeaders;
-            this.registersgrid.Size = new System.Drawing.Size(282, 228);
-            this.registersgrid.TabIndex = 0;
-            // 
-            // Register
-            // 
-            this.Register.HeaderText = "Register";
-            this.Register.Name = "Register";
-            this.Register.ReadOnly = true;
-            this.Register.Width = 71;
-            // 
-            // Value
-            // 
-            this.Value.HeaderText = "Value";
-            this.Value.Name = "Value";
-            this.Value.ReadOnly = true;
-            this.Value.Width = 59;
-            // 
-            // DValue
-            // 
-            this.DValue.HeaderText = "Decoded Value";
-            this.DValue.Name = "DValue";
-            this.DValue.ReadOnly = true;
-            this.DValue.Width = 106;
+            this.resetbtn.Click += new System.EventHandler(this.button4_Click);
             // 
             // openbtn
             // 
@@ -368,6 +310,10 @@
             this.registersgrid.AllowUserToDeleteRows = false;
             this.registersgrid.AllowUserToResizeRows = false;
             this.registersgrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
+            this.registersgrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Register,
+            this.Value,
+            this.DValue});
             this.registersgrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.registersgrid.Location = new System.Drawing.Point(0, 0);
             this.registersgrid.Name = "registersgrid";
@@ -375,6 +321,7 @@
             this.registersgrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToDisplayedHeaders;
             this.registersgrid.Size = new System.Drawing.Size(282, 190);
             this.registersgrid.TabIndex = 0;
+            this.registersgrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.registersgrid_CellContentClick);
             // 
             // Register
             // 
@@ -511,11 +458,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(824, 450);
             this.Controls.Add(this.splitContainer1);
-            this.KeyPreview = true;
             this.Name = "Form1";
             this.ShowInTaskbar = false;
             this.Text = "armsim";
-            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.KeyEvent);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
