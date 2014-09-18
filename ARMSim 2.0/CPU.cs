@@ -10,11 +10,13 @@ namespace ARMSim_2._0
     {
         public Memory ram;
         public Registers registers;
+        bool n, z, c, f;
 
         public CPU(Options arguments)
         {
             uint entryPoint = Loader.PreloadRAM(arguments, ref ram);
             registers = new Registers(entryPoint);
+            n = z = c = f = false;
         }
 
         public uint fetch(uint address)
@@ -32,6 +34,10 @@ namespace ARMSim_2._0
             System.Threading.Thread.Sleep(250);
         }
 
+        public string FlagsToString()
+        {
+            return (n ? "1" : "0") + (z ? "1" : "0") + (c ? "1" : "0") + (f ? "1" : "0"); 
+        }
 
     }
 }
