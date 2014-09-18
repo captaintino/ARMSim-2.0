@@ -30,16 +30,27 @@ namespace ARMSim_2._0
             {
                 // rewrite
                 num = cpu.fetch(4u);
+                num = 1;
+                if (num == 0)
+                {
+                    break;
+                    // trigger end of program
+                }
                 cpu.decode();
                 cpu.execute();
-                num = 1;
-            } while (num != 0 && !stop);
+            } while (!stop);
         }
 
         public void step()
         {
             // rewrite
             uint num = cpu.fetch(4u);
+            num = 1;
+            if (num == 0)
+            {
+                return;
+                // trigger end of program
+            }
             cpu.decode();
             cpu.execute();
         }

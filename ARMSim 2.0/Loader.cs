@@ -12,20 +12,21 @@ namespace ARMSim_2._0
 {
     class Loader
     {
-        // Extract pertinent data from file requested in <arguments> and load into return RAM
-        public static Memory PreloadRAM(Options arguments)
+        // Extract pertinent data from file requested in <arguments>, load into <ram>, and return the program entrypoint.
+        public static uint PreloadRAM(Options arguments, ref Memory ram)
         {
+            ram = new Memory(arguments.memorySize);
             if (arguments.fileName != "")
             {
                 try
                 {
-                    Memory ram = new Memory(arguments.memorySize);
                     string elfFilename = arguments.fileName;
+                    ELF elfHeader;
 
                     Debug.WriteLine("Loader: Opening " + elfFilename);
                     using (FileStream strm = new FileStream(elfFilename, FileMode.Open))
                     {
-                        ELF elfHeader = ExtractELFHeader(strm);
+                        elfHeader = ExtractELFHeader(strm);
 
                         // Read first program header entry
                         List<SegmentHeader> segmentHeaders = ExtractSegmentHeader(strm, elfHeader);
@@ -42,18 +43,18 @@ namespace ARMSim_2._0
                         Console.WriteLine("Loader: Compute MD5: " + ram.ComputeMD5());
 
                     }
-                    return ram;
+                    return elfHeader.e_entry;
                 }
                 catch
                 {
                     Console.WriteLine("Loader: ERROR OCCURRED DURING RAM LOADING");
                     Program.QuitProgram();
-                    return null; // Not all code paths returned a value
+                    return 0; // Not all code paths returned a value
                 }
             }
             else
             {
-                return new Memory(arguments.memorySize);
+                return 0;
             }
         }
 

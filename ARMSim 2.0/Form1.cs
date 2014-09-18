@@ -15,6 +15,7 @@ namespace ARMSim_2._0
     {
         Computer computer;
         Options arguments;
+        
 
         public Form1(Options args)
         {
@@ -75,6 +76,13 @@ namespace ARMSim_2._0
         private void updateGUI()
         {
             md5label.Text = "MD5: " + computer.getMD5();
+            var j = registertree.TopNode.FirstNode;
+            while (j.NextNode != null)
+            {
+                j.FirstNode.Text = "Value: + NUM";
+                j.LastNode.Text = "Decoded Value: + NUM";
+                j = j.NextNode;
+            }
         }
 
         private void KeyEvent(object sender, KeyEventArgs e) //Keyup Event 
@@ -114,6 +122,22 @@ namespace ARMSim_2._0
                         break;
                 }
             }
+        }
+
+        private void resetbtn_Click(object sender, EventArgs e)
+        {
+            computer = new Computer(arguments);
+            updateGUI();
+        }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
 
     }

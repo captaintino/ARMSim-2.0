@@ -13,8 +13,8 @@ namespace ARMSim_2._0
 
         public CPU(Options arguments)
         {
-            ram = Loader.PreloadRAM(arguments);
-            registers = new Registers();
+            uint entryPoint = Loader.PreloadRAM(arguments, ref ram);
+            registers = new Registers(entryPoint);
         }
 
         public uint fetch(uint address)
