@@ -34,5 +34,10 @@ namespace ARMSim_2._0
                 WriteWord(registerNumber * 4, data);
             }
         }
+
+        public void IncrementProgramCounter()
+        {
+            WriteRegister(15, ReadRegister(15) + 4);
+        }
     }
 }
