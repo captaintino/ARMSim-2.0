@@ -63,12 +63,12 @@
             this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.registertree = new System.Windows.Forms.TreeView();
             this.splitContainer4 = new System.Windows.Forms.SplitContainer();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
-            this.activitylabel = new System.Windows.Forms.Label();
-            this.splitter1 = new System.Windows.Forms.Splitter();
             this.md5label = new System.Windows.Forms.Label();
-            this.registertree = new System.Windows.Forms.TreeView();
+            this.splitter1 = new System.Windows.Forms.Splitter();
+            this.activitylabel = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -389,6 +389,30 @@
             this.checkBox1.Text = "N";
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
+            // registertree
+            // 
+            this.registertree.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.registertree.Location = new System.Drawing.Point(0, 0);
+            this.registertree.Name = "registertree";
+            treeNode1.Name = "Value";
+            treeNode1.Text = "Value:";
+            treeNode2.Name = "Decoded Value";
+            treeNode2.Text = "Decoded Value: ";
+            treeNode3.Name = "1";
+            treeNode3.Text = "1";
+            treeNode4.Name = "Value";
+            treeNode4.Text = "Value";
+            treeNode5.Name = "Decoded Value";
+            treeNode5.Text = "Decoded Value";
+            treeNode6.Name = "2";
+            treeNode6.Text = "2";
+            treeNode7.Name = "Registers";
+            treeNode7.Text = "Registers";
+            this.registertree.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
+            treeNode7});
+            this.registertree.Size = new System.Drawing.Size(280, 187);
+            this.registertree.TabIndex = 1;
+            // 
             // splitContainer4
             // 
             this.splitContainer4.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -419,23 +443,6 @@
             this.flowLayoutPanel2.Size = new System.Drawing.Size(818, 20);
             this.flowLayoutPanel2.TabIndex = 0;
             // 
-            // activitylabel
-            // 
-            this.activitylabel.AutoSize = true;
-            this.activitylabel.Location = new System.Drawing.Point(178, 0);
-            this.activitylabel.Name = "activitylabel";
-            this.activitylabel.Size = new System.Drawing.Size(67, 13);
-            this.activitylabel.TabIndex = 3;
-            this.activitylabel.Text = "Not Running";
-            // 
-            // splitter1
-            // 
-            this.splitter1.Location = new System.Drawing.Point(111, 3);
-            this.splitter1.Name = "splitter1";
-            this.splitter1.Size = new System.Drawing.Size(61, 7);
-            this.splitter1.TabIndex = 2;
-            this.splitter1.TabStop = false;
-            // 
             // md5label
             // 
             this.md5label.AutoSize = true;
@@ -445,29 +452,22 @@
             this.md5label.TabIndex = 1;
             this.md5label.Text = "MD5: BLA BLA BLA";
             // 
-            // registertree
+            // splitter1
             // 
-            this.registertree.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.registertree.Location = new System.Drawing.Point(0, 0);
-            this.registertree.Name = "registertree";
-            treeNode1.Name = "Value";
-            treeNode1.Text = "Value:";
-            treeNode2.Name = "Decoded Value";
-            treeNode2.Text = "Decoded Value: ";
-            treeNode3.Name = "1";
-            treeNode3.Text = "1";
-            treeNode4.Name = "Value";
-            treeNode4.Text = "Value";
-            treeNode5.Name = "Decoded Value";
-            treeNode5.Text = "Decoded Value";
-            treeNode6.Name = "2";
-            treeNode6.Text = "2";
-            treeNode7.Name = "Registers";
-            treeNode7.Text = "Registers";
-            this.registertree.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode7});
-            this.registertree.Size = new System.Drawing.Size(280, 187);
-            this.registertree.TabIndex = 1;
+            this.splitter1.Location = new System.Drawing.Point(111, 3);
+            this.splitter1.Name = "splitter1";
+            this.splitter1.Size = new System.Drawing.Size(61, 7);
+            this.splitter1.TabIndex = 2;
+            this.splitter1.TabStop = false;
+            // 
+            // activitylabel
+            // 
+            this.activitylabel.AutoSize = true;
+            this.activitylabel.Location = new System.Drawing.Point(178, 0);
+            this.activitylabel.Name = "activitylabel";
+            this.activitylabel.Size = new System.Drawing.Size(67, 13);
+            this.activitylabel.TabIndex = 3;
+            this.activitylabel.Text = "Not Running";
             // 
             // Form1
             // 
