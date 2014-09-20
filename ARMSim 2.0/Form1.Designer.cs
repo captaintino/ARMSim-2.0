@@ -29,12 +29,25 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.console = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.splitContainer6 = new System.Windows.Forms.SplitContainer();
             this.memoryaddressentry = new System.Windows.Forms.TextBox();
+            this.memorypanel = new System.Windows.Forms.DataGridView();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.stackpanel = new System.Windows.Forms.DataGridView();
+            this.StackAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.StackValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
@@ -50,28 +63,24 @@
             this.splitContainer5 = new System.Windows.Forms.SplitContainer();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tracecheckbox = new System.Windows.Forms.CheckBox();
-            this.checkBox4 = new System.Windows.Forms.CheckBox();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.fflagcheckbox = new System.Windows.Forms.CheckBox();
+            this.cflagcheckbox = new System.Windows.Forms.CheckBox();
+            this.zflagcheckbox = new System.Windows.Forms.CheckBox();
+            this.nflagcheckbox = new System.Windows.Forms.CheckBox();
             this.registergrid = new System.Windows.Forms.DataGridView();
-            this.Register = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Value = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.splitContainer4 = new System.Windows.Forms.SplitContainer();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.md5label = new System.Windows.Forms.Label();
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.activitylabel = new System.Windows.Forms.Label();
-            this.memorypanel = new System.Windows.Forms.DataGridView();
             this.Address = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.stackpanel = new System.Windows.Forms.DataGridView();
-            this.StackAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.StackValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ASCII = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Register = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Value = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -79,6 +88,9 @@
             this.splitContainer6.Panel1.SuspendLayout();
             this.splitContainer6.Panel2.SuspendLayout();
             this.splitContainer6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.memorypanel)).BeginInit();
+            this.tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.stackpanel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -105,9 +117,6 @@
             this.splitContainer4.Panel2.SuspendLayout();
             this.splitContainer4.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.memorypanel)).BeginInit();
-            this.tabPage3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.stackpanel)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -186,6 +195,65 @@
             this.memoryaddressentry.TabIndex = 1;
             this.memoryaddressentry.Text = "Address:";
             this.memoryaddressentry.TextChanged += new System.EventHandler(this.memoryaddressentry_TextChanged);
+            // 
+            // memorypanel
+            // 
+            this.memorypanel.AllowUserToAddRows = false;
+            this.memorypanel.AllowUserToDeleteRows = false;
+            this.memorypanel.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.memorypanel.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Address,
+            this.Column1,
+            this.Column2,
+            this.Column3,
+            this.Column4,
+            this.ASCII});
+            this.memorypanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.memorypanel.Location = new System.Drawing.Point(0, 0);
+            this.memorypanel.Name = "memorypanel";
+            this.memorypanel.ReadOnly = true;
+            this.memorypanel.Size = new System.Drawing.Size(804, 126);
+            this.memorypanel.TabIndex = 0;
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.stackpanel);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(810, 161);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Stack";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // stackpanel
+            // 
+            this.stackpanel.AllowUserToAddRows = false;
+            this.stackpanel.AllowUserToDeleteRows = false;
+            this.stackpanel.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.stackpanel.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.StackAddress,
+            this.StackValue});
+            this.stackpanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.stackpanel.Location = new System.Drawing.Point(3, 3);
+            this.stackpanel.Name = "stackpanel";
+            this.stackpanel.ReadOnly = true;
+            this.stackpanel.Size = new System.Drawing.Size(804, 155);
+            this.stackpanel.TabIndex = 0;
+            // 
+            // StackAddress
+            // 
+            this.StackAddress.Frozen = true;
+            this.StackAddress.HeaderText = "Address";
+            this.StackAddress.Name = "StackAddress";
+            this.StackAddress.ReadOnly = true;
+            // 
+            // StackValue
+            // 
+            this.StackValue.Frozen = true;
+            this.StackValue.HeaderText = "Value";
+            this.StackValue.Name = "StackValue";
+            this.StackValue.ReadOnly = true;
             // 
             // splitContainer1
             // 
@@ -354,6 +422,7 @@
             // disassembledfile
             // 
             this.disassembledfile.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.disassembledfile.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.disassembledfile.Location = new System.Drawing.Point(3, 3);
             this.disassembledfile.Multiline = true;
             this.disassembledfile.Name = "disassembledfile";
@@ -384,10 +453,10 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.tracecheckbox);
-            this.groupBox1.Controls.Add(this.checkBox4);
-            this.groupBox1.Controls.Add(this.checkBox3);
-            this.groupBox1.Controls.Add(this.checkBox2);
-            this.groupBox1.Controls.Add(this.checkBox1);
+            this.groupBox1.Controls.Add(this.fflagcheckbox);
+            this.groupBox1.Controls.Add(this.cflagcheckbox);
+            this.groupBox1.Controls.Add(this.zflagcheckbox);
+            this.groupBox1.Controls.Add(this.nflagcheckbox);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.MinimumSize = new System.Drawing.Size(0, 34);
@@ -411,57 +480,57 @@
             this.tracecheckbox.UseVisualStyleBackColor = true;
             this.tracecheckbox.CheckedChanged += new System.EventHandler(this.tracecheckbox_CheckedChanged);
             // 
-            // checkBox4
+            // fflagcheckbox
             // 
-            this.checkBox4.AutoSize = true;
-            this.checkBox4.Dock = System.Windows.Forms.DockStyle.Left;
-            this.checkBox4.Enabled = false;
-            this.checkBox4.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.checkBox4.Location = new System.Drawing.Point(103, 16);
-            this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(32, 15);
-            this.checkBox4.TabIndex = 3;
-            this.checkBox4.Text = "F";
-            this.checkBox4.UseVisualStyleBackColor = true;
+            this.fflagcheckbox.AutoSize = true;
+            this.fflagcheckbox.Dock = System.Windows.Forms.DockStyle.Left;
+            this.fflagcheckbox.Enabled = false;
+            this.fflagcheckbox.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.fflagcheckbox.Location = new System.Drawing.Point(103, 16);
+            this.fflagcheckbox.Name = "fflagcheckbox";
+            this.fflagcheckbox.Size = new System.Drawing.Size(32, 15);
+            this.fflagcheckbox.TabIndex = 3;
+            this.fflagcheckbox.Text = "F";
+            this.fflagcheckbox.UseVisualStyleBackColor = true;
             // 
-            // checkBox3
+            // cflagcheckbox
             // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Dock = System.Windows.Forms.DockStyle.Left;
-            this.checkBox3.Enabled = false;
-            this.checkBox3.Location = new System.Drawing.Point(70, 16);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(33, 15);
-            this.checkBox3.TabIndex = 2;
-            this.checkBox3.Text = "C";
-            this.checkBox3.UseVisualStyleBackColor = true;
+            this.cflagcheckbox.AutoSize = true;
+            this.cflagcheckbox.Dock = System.Windows.Forms.DockStyle.Left;
+            this.cflagcheckbox.Enabled = false;
+            this.cflagcheckbox.Location = new System.Drawing.Point(70, 16);
+            this.cflagcheckbox.Name = "cflagcheckbox";
+            this.cflagcheckbox.Size = new System.Drawing.Size(33, 15);
+            this.cflagcheckbox.TabIndex = 2;
+            this.cflagcheckbox.Text = "C";
+            this.cflagcheckbox.UseVisualStyleBackColor = true;
             // 
-            // checkBox2
+            // zflagcheckbox
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.checkBox2.Enabled = false;
-            this.checkBox2.Location = new System.Drawing.Point(37, 16);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(33, 15);
-            this.checkBox2.TabIndex = 1;
-            this.checkBox2.Text = "Z";
-            this.checkBox2.UseVisualStyleBackColor = true;
+            this.zflagcheckbox.AutoSize = true;
+            this.zflagcheckbox.Dock = System.Windows.Forms.DockStyle.Left;
+            this.zflagcheckbox.Enabled = false;
+            this.zflagcheckbox.Location = new System.Drawing.Point(37, 16);
+            this.zflagcheckbox.Name = "zflagcheckbox";
+            this.zflagcheckbox.Size = new System.Drawing.Size(33, 15);
+            this.zflagcheckbox.TabIndex = 1;
+            this.zflagcheckbox.Text = "Z";
+            this.zflagcheckbox.UseVisualStyleBackColor = true;
             // 
-            // checkBox1
+            // nflagcheckbox
             // 
-            this.checkBox1.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Checked = true;
-            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.checkBox1.Enabled = false;
-            this.checkBox1.Location = new System.Drawing.Point(3, 16);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(34, 15);
-            this.checkBox1.TabIndex = 0;
-            this.checkBox1.Text = "N";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.nflagcheckbox.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
+            this.nflagcheckbox.AutoSize = true;
+            this.nflagcheckbox.Checked = true;
+            this.nflagcheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.nflagcheckbox.Dock = System.Windows.Forms.DockStyle.Left;
+            this.nflagcheckbox.Enabled = false;
+            this.nflagcheckbox.Location = new System.Drawing.Point(3, 16);
+            this.nflagcheckbox.Name = "nflagcheckbox";
+            this.nflagcheckbox.Size = new System.Drawing.Size(34, 15);
+            this.nflagcheckbox.TabIndex = 0;
+            this.nflagcheckbox.Text = "N";
+            this.nflagcheckbox.UseVisualStyleBackColor = true;
             // 
             // registergrid
             // 
@@ -479,20 +548,6 @@
             this.registergrid.ReadOnly = true;
             this.registergrid.Size = new System.Drawing.Size(244, 187);
             this.registergrid.TabIndex = 0;
-            // 
-            // Register
-            // 
-            this.Register.Frozen = true;
-            this.Register.HeaderText = "Register";
-            this.Register.Name = "Register";
-            this.Register.ReadOnly = true;
-            // 
-            // Value
-            // 
-            this.Value.Frozen = true;
-            this.Value.HeaderText = "Value";
-            this.Value.Name = "Value";
-            this.Value.ReadOnly = true;
             // 
             // splitContainer4
             // 
@@ -552,26 +607,10 @@
             this.activitylabel.TabIndex = 3;
             this.activitylabel.Text = "Not Running";
             // 
-            // memorypanel
-            // 
-            this.memorypanel.AllowUserToAddRows = false;
-            this.memorypanel.AllowUserToDeleteRows = false;
-            this.memorypanel.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.memorypanel.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Address,
-            this.Column1,
-            this.Column2,
-            this.Column3,
-            this.Column4});
-            this.memorypanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.memorypanel.Location = new System.Drawing.Point(0, 0);
-            this.memorypanel.Name = "memorypanel";
-            this.memorypanel.ReadOnly = true;
-            this.memorypanel.Size = new System.Drawing.Size(804, 126);
-            this.memorypanel.TabIndex = 0;
-            // 
             // Address
             // 
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Address.DefaultCellStyle = dataGridViewCellStyle9;
             this.Address.Frozen = true;
             this.Address.HeaderText = "Address";
             this.Address.Name = "Address";
@@ -579,6 +618,8 @@
             // 
             // Column1
             // 
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Column1.DefaultCellStyle = dataGridViewCellStyle10;
             this.Column1.Frozen = true;
             this.Column1.HeaderText = "";
             this.Column1.Name = "Column1";
@@ -586,6 +627,8 @@
             // 
             // Column2
             // 
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Column2.DefaultCellStyle = dataGridViewCellStyle11;
             this.Column2.Frozen = true;
             this.Column2.HeaderText = "";
             this.Column2.Name = "Column2";
@@ -593,6 +636,8 @@
             // 
             // Column3
             // 
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Column3.DefaultCellStyle = dataGridViewCellStyle12;
             this.Column3.Frozen = true;
             this.Column3.HeaderText = "";
             this.Column3.Name = "Column3";
@@ -600,50 +645,40 @@
             // 
             // Column4
             // 
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Column4.DefaultCellStyle = dataGridViewCellStyle13;
             this.Column4.Frozen = true;
             this.Column4.HeaderText = "";
             this.Column4.Name = "Column4";
             this.Column4.ReadOnly = true;
             // 
-            // tabPage3
+            // ASCII
             // 
-            this.tabPage3.Controls.Add(this.stackpanel);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(810, 161);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Stack";
-            this.tabPage3.UseVisualStyleBackColor = true;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ASCII.DefaultCellStyle = dataGridViewCellStyle14;
+            this.ASCII.Frozen = true;
+            this.ASCII.HeaderText = "ASCII";
+            this.ASCII.Name = "ASCII";
+            this.ASCII.ReadOnly = true;
+            this.ASCII.Width = 110;
             // 
-            // stackpanel
+            // Register
             // 
-            this.stackpanel.AllowUserToAddRows = false;
-            this.stackpanel.AllowUserToDeleteRows = false;
-            this.stackpanel.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.stackpanel.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.StackAddress,
-            this.StackValue});
-            this.stackpanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.stackpanel.Location = new System.Drawing.Point(3, 3);
-            this.stackpanel.Name = "stackpanel";
-            this.stackpanel.ReadOnly = true;
-            this.stackpanel.Size = new System.Drawing.Size(804, 155);
-            this.stackpanel.TabIndex = 0;
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Register.DefaultCellStyle = dataGridViewCellStyle15;
+            this.Register.Frozen = true;
+            this.Register.HeaderText = "Register";
+            this.Register.Name = "Register";
+            this.Register.ReadOnly = true;
             // 
-            // StackAddress
+            // Value
             // 
-            this.StackAddress.Frozen = true;
-            this.StackAddress.HeaderText = "Address";
-            this.StackAddress.Name = "StackAddress";
-            this.StackAddress.ReadOnly = true;
-            // 
-            // StackValue
-            // 
-            this.StackValue.Frozen = true;
-            this.StackValue.HeaderText = "Value";
-            this.StackValue.Name = "StackValue";
-            this.StackValue.ReadOnly = true;
+            dataGridViewCellStyle16.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Value.DefaultCellStyle = dataGridViewCellStyle16;
+            this.Value.Frozen = true;
+            this.Value.HeaderText = "Value";
+            this.Value.Name = "Value";
+            this.Value.ReadOnly = true;
             // 
             // Form1
             // 
@@ -667,6 +702,9 @@
             this.splitContainer6.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer6)).EndInit();
             this.splitContainer6.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.memorypanel)).EndInit();
+            this.tabPage3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.stackpanel)).EndInit();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
@@ -697,9 +735,6 @@
             this.splitContainer4.ResumeLayout(false);
             this.flowLayoutPanel2.ResumeLayout(false);
             this.flowLayoutPanel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.memorypanel)).EndInit();
-            this.tabPage3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.stackpanel)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -718,10 +753,10 @@
         private System.Windows.Forms.TextBox console;
         private System.Windows.Forms.SplitContainer splitContainer5;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.CheckBox checkBox4;
-        private System.Windows.Forms.CheckBox checkBox3;
-        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.CheckBox nflagcheckbox;
+        private System.Windows.Forms.CheckBox fflagcheckbox;
+        private System.Windows.Forms.CheckBox cflagcheckbox;
+        private System.Windows.Forms.CheckBox zflagcheckbox;
         private System.Windows.Forms.CheckBox tracecheckbox;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Button runbtn;
@@ -733,22 +768,23 @@
         private System.Windows.Forms.Splitter splitter1;
         private System.Windows.Forms.Label activitylabel;
         private System.Windows.Forms.DataGridView registergrid;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Register;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Value;
         private System.Windows.Forms.TabPage filetab;
         private System.Windows.Forms.TextBox disassembledfile;
         private System.Windows.Forms.SplitContainer splitContainer6;
         private System.Windows.Forms.TextBox memoryaddressentry;
         private System.Windows.Forms.DataGridView memorypanel;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.DataGridView stackpanel;
+        private System.Windows.Forms.DataGridViewTextBoxColumn StackAddress;
+        private System.Windows.Forms.DataGridViewTextBoxColumn StackValue;
         private System.Windows.Forms.DataGridViewTextBoxColumn Address;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.DataGridView stackpanel;
-        private System.Windows.Forms.DataGridViewTextBoxColumn StackAddress;
-        private System.Windows.Forms.DataGridViewTextBoxColumn StackValue;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ASCII;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Register;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Value;
 
     }
 }

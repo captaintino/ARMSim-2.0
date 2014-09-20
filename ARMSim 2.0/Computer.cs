@@ -29,35 +29,26 @@ namespace ARMSim_2._0
         public void run()
         {
             stop = false;
-            uint num;
-
             do
             {
-                // rewrite
-                uint progc = cpu.registers.ReadRegister(15);
-                num = cpu.fetch(progc);
-                num = 1;
-                if (num == 0)
-                {
-                    break;
-                    // trigger end of program
-                }
-                cpu.decode();
-                cpu.execute();
-                if (trace != null)
-                    WriteLog(progc);
-                stepNumber++;
+                FetchDecodeExecute();
             } while (!stop);
         }
 
         public void step()
         {
+            FetchDecodeExecute();
+        }
+
+        private void FetchDecodeExecute()
+        {
             // rewrite
             uint progc = cpu.registers.ReadRegister(15);
-            uint num = cpu.fetch(progc);
+            uint num = cpu.fetch();
             num = 1;
             if (num == 0)
             {
+                stop = true;
                 return;
                 // trigger end of program
             }
@@ -87,31 +78,40 @@ namespace ARMSim_2._0
 
         public string GetMD5()
         {
-            return cpu.ram.ComputeMD5();
+            return cpu.GetMD5();
         }
 
+        // return register values as uint list
         public List<uint> GetRegisters()
         {
             List<uint> regs = new List<uint>();
             for (uint i = 0; i < 16; ++i)
             {
-                regs.Add(cpu.registers.ReadRegister(i));
+                regs.Add(cpu.GetRegister(i));
             }
             return regs;
         }
 
+        // Get word from memory at <address> if possible
         public uint GetWord(uint address)
         {
-            if (address < cpu.ram.memorySize)
-            {
-                return cpu.ram.ReadWord(address);
-            }
-            return 0;
+            return cpu.GetWord(address);
         }
 
+        // Get stack pointer value from register.
         public uint GetStackPointer()
         {
-            return cpu.registers.ReadRegister(11);
+            return cpu.GetStackPointer();
+        }
+
+        public List<bool> GetFlags()
+        {
+            List<bool> flags = new List<bool>();
+            flags.Add(cpu.GetNFlag());
+            flags.Add(cpu.GetZFlag());
+            flags.Add(cpu.GetCFlag());
+            flags.Add(cpu.GetFFlag());
+            return flags;
         }
 
     }
