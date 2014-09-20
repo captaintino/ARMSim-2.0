@@ -28,13 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -44,6 +44,12 @@
             this.splitContainer6 = new System.Windows.Forms.SplitContainer();
             this.memoryaddressentry = new System.Windows.Forms.TextBox();
             this.memorypanel = new System.Windows.Forms.DataGridView();
+            this.Address = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ASCII = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.stackpanel = new System.Windows.Forms.DataGridView();
             this.StackAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -68,19 +74,13 @@
             this.zflagcheckbox = new System.Windows.Forms.CheckBox();
             this.nflagcheckbox = new System.Windows.Forms.CheckBox();
             this.registergrid = new System.Windows.Forms.DataGridView();
+            this.Register = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Value = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.splitContainer4 = new System.Windows.Forms.SplitContainer();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.md5label = new System.Windows.Forms.Label();
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.activitylabel = new System.Windows.Forms.Label();
-            this.Address = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ASCII = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Register = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Value = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -212,8 +212,64 @@
             this.memorypanel.Location = new System.Drawing.Point(0, 0);
             this.memorypanel.Name = "memorypanel";
             this.memorypanel.ReadOnly = true;
+            this.memorypanel.RowHeadersVisible = false;
             this.memorypanel.Size = new System.Drawing.Size(804, 126);
             this.memorypanel.TabIndex = 0;
+            // 
+            // Address
+            // 
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Address.DefaultCellStyle = dataGridViewCellStyle9;
+            this.Address.Frozen = true;
+            this.Address.HeaderText = "Address";
+            this.Address.Name = "Address";
+            this.Address.ReadOnly = true;
+            // 
+            // Column1
+            // 
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Column1.DefaultCellStyle = dataGridViewCellStyle10;
+            this.Column1.Frozen = true;
+            this.Column1.HeaderText = "";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            // 
+            // Column2
+            // 
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Column2.DefaultCellStyle = dataGridViewCellStyle11;
+            this.Column2.Frozen = true;
+            this.Column2.HeaderText = "";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            // 
+            // Column3
+            // 
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Column3.DefaultCellStyle = dataGridViewCellStyle12;
+            this.Column3.Frozen = true;
+            this.Column3.HeaderText = "";
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            // 
+            // Column4
+            // 
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Column4.DefaultCellStyle = dataGridViewCellStyle13;
+            this.Column4.Frozen = true;
+            this.Column4.HeaderText = "";
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            // 
+            // ASCII
+            // 
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ASCII.DefaultCellStyle = dataGridViewCellStyle14;
+            this.ASCII.Frozen = true;
+            this.ASCII.HeaderText = "ASCII";
+            this.ASCII.Name = "ASCII";
+            this.ASCII.ReadOnly = true;
+            this.ASCII.Width = 110;
             // 
             // tabPage3
             // 
@@ -238,6 +294,7 @@
             this.stackpanel.Location = new System.Drawing.Point(3, 3);
             this.stackpanel.Name = "stackpanel";
             this.stackpanel.ReadOnly = true;
+            this.stackpanel.RowHeadersVisible = false;
             this.stackpanel.Size = new System.Drawing.Size(804, 155);
             this.stackpanel.TabIndex = 0;
             // 
@@ -546,8 +603,28 @@
             this.registergrid.Location = new System.Drawing.Point(0, 0);
             this.registergrid.Name = "registergrid";
             this.registergrid.ReadOnly = true;
+            this.registergrid.RowHeadersVisible = false;
+            this.registergrid.ShowEditingIcon = false;
             this.registergrid.Size = new System.Drawing.Size(244, 187);
             this.registergrid.TabIndex = 0;
+            // 
+            // Register
+            // 
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Register.DefaultCellStyle = dataGridViewCellStyle15;
+            this.Register.Frozen = true;
+            this.Register.HeaderText = "Register";
+            this.Register.Name = "Register";
+            this.Register.ReadOnly = true;
+            // 
+            // Value
+            // 
+            dataGridViewCellStyle16.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Value.DefaultCellStyle = dataGridViewCellStyle16;
+            this.Value.Frozen = true;
+            this.Value.HeaderText = "Value";
+            this.Value.Name = "Value";
+            this.Value.ReadOnly = true;
             // 
             // splitContainer4
             // 
@@ -606,79 +683,6 @@
             this.activitylabel.Size = new System.Drawing.Size(67, 13);
             this.activitylabel.TabIndex = 3;
             this.activitylabel.Text = "Not Running";
-            // 
-            // Address
-            // 
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Address.DefaultCellStyle = dataGridViewCellStyle9;
-            this.Address.Frozen = true;
-            this.Address.HeaderText = "Address";
-            this.Address.Name = "Address";
-            this.Address.ReadOnly = true;
-            // 
-            // Column1
-            // 
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Column1.DefaultCellStyle = dataGridViewCellStyle10;
-            this.Column1.Frozen = true;
-            this.Column1.HeaderText = "";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            // 
-            // Column2
-            // 
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Column2.DefaultCellStyle = dataGridViewCellStyle11;
-            this.Column2.Frozen = true;
-            this.Column2.HeaderText = "";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            // 
-            // Column3
-            // 
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Column3.DefaultCellStyle = dataGridViewCellStyle12;
-            this.Column3.Frozen = true;
-            this.Column3.HeaderText = "";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            // 
-            // Column4
-            // 
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Column4.DefaultCellStyle = dataGridViewCellStyle13;
-            this.Column4.Frozen = true;
-            this.Column4.HeaderText = "";
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            // 
-            // ASCII
-            // 
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ASCII.DefaultCellStyle = dataGridViewCellStyle14;
-            this.ASCII.Frozen = true;
-            this.ASCII.HeaderText = "ASCII";
-            this.ASCII.Name = "ASCII";
-            this.ASCII.ReadOnly = true;
-            this.ASCII.Width = 110;
-            // 
-            // Register
-            // 
-            dataGridViewCellStyle15.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Register.DefaultCellStyle = dataGridViewCellStyle15;
-            this.Register.Frozen = true;
-            this.Register.HeaderText = "Register";
-            this.Register.Name = "Register";
-            this.Register.ReadOnly = true;
-            // 
-            // Value
-            // 
-            dataGridViewCellStyle16.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Value.DefaultCellStyle = dataGridViewCellStyle16;
-            this.Value.Frozen = true;
-            this.Value.HeaderText = "Value";
-            this.Value.Name = "Value";
-            this.Value.ReadOnly = true;
             // 
             // Form1
             // 
