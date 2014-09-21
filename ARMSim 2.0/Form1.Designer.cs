@@ -28,15 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.console = new System.Windows.Forms.TextBox();
@@ -58,6 +58,11 @@
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.runbtn = new System.Windows.Forms.Button();
+            this.resetbtn = new System.Windows.Forms.Button();
+            this.breakbtn = new System.Windows.Forms.Button();
+            this.openbtn = new System.Windows.Forms.Button();
+            this.stepbtn = new System.Windows.Forms.Button();
             this.deconstructedInstruction = new System.Windows.Forms.TabControl();
             this.filetab = new System.Windows.Forms.TabPage();
             this.disassembledfile = new System.Windows.Forms.TextBox();
@@ -76,11 +81,6 @@
             this.md5label = new System.Windows.Forms.Label();
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.activitylabel = new System.Windows.Forms.Label();
-            this.runbtn = new System.Windows.Forms.Button();
-            this.resetbtn = new System.Windows.Forms.Button();
-            this.breakbtn = new System.Windows.Forms.Button();
-            this.openbtn = new System.Windows.Forms.Button();
-            this.stepbtn = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -212,13 +212,14 @@
             this.memorypanel.Location = new System.Drawing.Point(0, 0);
             this.memorypanel.Name = "memorypanel";
             this.memorypanel.ReadOnly = true;
+            this.memorypanel.RowHeadersVisible = false;
             this.memorypanel.Size = new System.Drawing.Size(804, 126);
             this.memorypanel.TabIndex = 0;
             // 
             // Address
             // 
-            dataGridViewCellStyle17.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Address.DefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Address.DefaultCellStyle = dataGridViewCellStyle9;
             this.Address.Frozen = true;
             this.Address.HeaderText = "Address";
             this.Address.Name = "Address";
@@ -226,8 +227,8 @@
             // 
             // Column1
             // 
-            dataGridViewCellStyle18.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Column1.DefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Column1.DefaultCellStyle = dataGridViewCellStyle10;
             this.Column1.Frozen = true;
             this.Column1.HeaderText = "";
             this.Column1.Name = "Column1";
@@ -235,8 +236,8 @@
             // 
             // Column2
             // 
-            dataGridViewCellStyle19.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Column2.DefaultCellStyle = dataGridViewCellStyle19;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Column2.DefaultCellStyle = dataGridViewCellStyle11;
             this.Column2.Frozen = true;
             this.Column2.HeaderText = "";
             this.Column2.Name = "Column2";
@@ -244,8 +245,8 @@
             // 
             // Column3
             // 
-            dataGridViewCellStyle20.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Column3.DefaultCellStyle = dataGridViewCellStyle20;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Column3.DefaultCellStyle = dataGridViewCellStyle12;
             this.Column3.Frozen = true;
             this.Column3.HeaderText = "";
             this.Column3.Name = "Column3";
@@ -253,8 +254,8 @@
             // 
             // Column4
             // 
-            dataGridViewCellStyle21.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Column4.DefaultCellStyle = dataGridViewCellStyle21;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Column4.DefaultCellStyle = dataGridViewCellStyle13;
             this.Column4.Frozen = true;
             this.Column4.HeaderText = "";
             this.Column4.Name = "Column4";
@@ -262,8 +263,8 @@
             // 
             // ASCII
             // 
-            dataGridViewCellStyle22.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ASCII.DefaultCellStyle = dataGridViewCellStyle22;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ASCII.DefaultCellStyle = dataGridViewCellStyle14;
             this.ASCII.Frozen = true;
             this.ASCII.HeaderText = "ASCII";
             this.ASCII.Name = "ASCII";
@@ -293,6 +294,7 @@
             this.stackpanel.Location = new System.Drawing.Point(3, 3);
             this.stackpanel.Name = "stackpanel";
             this.stackpanel.ReadOnly = true;
+            this.stackpanel.RowHeadersVisible = false;
             this.stackpanel.Size = new System.Drawing.Size(804, 155);
             this.stackpanel.TabIndex = 0;
             // 
@@ -392,6 +394,67 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(570, 29);
             this.tableLayoutPanel1.TabIndex = 11;
             // 
+            // runbtn
+            // 
+            this.runbtn.Image = ((System.Drawing.Image)(resources.GetObject("runbtn.Image")));
+            this.runbtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.runbtn.Location = new System.Drawing.Point(3, 3);
+            this.runbtn.Name = "runbtn";
+            this.runbtn.Size = new System.Drawing.Size(75, 23);
+            this.runbtn.TabIndex = 5;
+            this.runbtn.Text = "Run";
+            this.runbtn.UseVisualStyleBackColor = true;
+            this.runbtn.Click += new System.EventHandler(this.runbtn_Click);
+            // 
+            // resetbtn
+            // 
+            this.resetbtn.Image = global::ARMSim_2._0.Properties.Resources.Reset;
+            this.resetbtn.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.resetbtn.Location = new System.Drawing.Point(327, 3);
+            this.resetbtn.Name = "resetbtn";
+            this.resetbtn.Size = new System.Drawing.Size(75, 23);
+            this.resetbtn.TabIndex = 8;
+            this.resetbtn.Text = "Reset";
+            this.resetbtn.UseVisualStyleBackColor = true;
+            this.resetbtn.Click += new System.EventHandler(this.resetbtn_Click);
+            // 
+            // breakbtn
+            // 
+            this.breakbtn.Enabled = false;
+            this.breakbtn.Image = global::ARMSim_2._0.Properties.Resources.Stop;
+            this.breakbtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.breakbtn.Location = new System.Drawing.Point(165, 3);
+            this.breakbtn.Name = "breakbtn";
+            this.breakbtn.Size = new System.Drawing.Size(75, 23);
+            this.breakbtn.TabIndex = 7;
+            this.breakbtn.Text = "Break";
+            this.breakbtn.UseVisualStyleBackColor = true;
+            this.breakbtn.Click += new System.EventHandler(this.breakbtn_Click);
+            // 
+            // openbtn
+            // 
+            this.openbtn.Image = global::ARMSim_2._0.Properties.Resources.folder_search;
+            this.openbtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.openbtn.Location = new System.Drawing.Point(246, 3);
+            this.openbtn.Name = "openbtn";
+            this.openbtn.Size = new System.Drawing.Size(75, 23);
+            this.openbtn.TabIndex = 9;
+            this.openbtn.Text = "Open";
+            this.openbtn.UseVisualStyleBackColor = true;
+            this.openbtn.Click += new System.EventHandler(this.openbtn_Click);
+            // 
+            // stepbtn
+            // 
+            this.stepbtn.Image = global::ARMSim_2._0.Properties.Resources.Step;
+            this.stepbtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.stepbtn.Location = new System.Drawing.Point(84, 3);
+            this.stepbtn.Name = "stepbtn";
+            this.stepbtn.Size = new System.Drawing.Size(75, 23);
+            this.stepbtn.TabIndex = 6;
+            this.stepbtn.Text = "Step";
+            this.stepbtn.UseVisualStyleBackColor = true;
+            this.stepbtn.Click += new System.EventHandler(this.stepbtn_Click);
+            // 
             // deconstructedInstruction
             // 
             this.deconstructedInstruction.Controls.Add(this.filetab);
@@ -440,7 +503,7 @@
             // splitContainer5.Panel2
             // 
             this.splitContainer5.Panel2.Controls.Add(this.registergrid);
-            this.splitContainer5.Size = new System.Drawing.Size(244, 150);
+            this.splitContainer5.Size = new System.Drawing.Size(244, 224);
             this.splitContainer5.SplitterDistance = 33;
             this.splitContainer5.TabIndex = 1;
             // 
@@ -540,13 +603,15 @@
             this.registergrid.Location = new System.Drawing.Point(0, 0);
             this.registergrid.Name = "registergrid";
             this.registergrid.ReadOnly = true;
+            this.registergrid.RowHeadersVisible = false;
+            this.registergrid.ShowEditingIcon = false;
             this.registergrid.Size = new System.Drawing.Size(244, 187);
             this.registergrid.TabIndex = 0;
             // 
             // Register
             // 
-            dataGridViewCellStyle23.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Register.DefaultCellStyle = dataGridViewCellStyle23;
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Register.DefaultCellStyle = dataGridViewCellStyle15;
             this.Register.Frozen = true;
             this.Register.HeaderText = "Register";
             this.Register.Name = "Register";
@@ -554,8 +619,8 @@
             // 
             // Value
             // 
-            dataGridViewCellStyle24.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Value.DefaultCellStyle = dataGridViewCellStyle24;
+            dataGridViewCellStyle16.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Value.DefaultCellStyle = dataGridViewCellStyle16;
             this.Value.Frozen = true;
             this.Value.HeaderText = "Value";
             this.Value.Name = "Value";
@@ -590,7 +655,7 @@
             this.flowLayoutPanel2.Location = new System.Drawing.Point(0, 5);
             this.flowLayoutPanel2.MaximumSize = new System.Drawing.Size(0, 20);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(0, 20);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(818, 20);
             this.flowLayoutPanel2.TabIndex = 0;
             // 
             // md5label
@@ -619,81 +684,18 @@
             this.activitylabel.TabIndex = 3;
             this.activitylabel.Text = "Not Running";
             // 
-            // runbtn
-            // 
-            this.runbtn.Image = ((System.Drawing.Image)(resources.GetObject("runbtn.Image")));
-            this.runbtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.runbtn.Location = new System.Drawing.Point(3, 3);
-            this.runbtn.Name = "runbtn";
-            this.runbtn.Size = new System.Drawing.Size(75, 23);
-            this.runbtn.TabIndex = 5;
-            this.runbtn.Text = "Run";
-            this.runbtn.UseVisualStyleBackColor = true;
-            this.runbtn.Click += new System.EventHandler(this.runbtn_Click);
-            // 
-            // resetbtn
-            // 
-            this.resetbtn.Image = global::ARMSim_2._0.Properties.Resources.Reset;
-            this.resetbtn.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.resetbtn.Location = new System.Drawing.Point(327, 3);
-            this.resetbtn.Name = "resetbtn";
-            this.resetbtn.Size = new System.Drawing.Size(75, 23);
-            this.resetbtn.TabIndex = 8;
-            this.resetbtn.Text = "Reset";
-            this.resetbtn.UseVisualStyleBackColor = true;
-            this.resetbtn.Click += new System.EventHandler(this.resetbtn_Click);
-            // 
-            // breakbtn
-            // 
-            this.breakbtn.Enabled = false;
-            this.breakbtn.Image = global::ARMSim_2._0.Properties.Resources.Stop;
-            this.breakbtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.breakbtn.Location = new System.Drawing.Point(165, 3);
-            this.breakbtn.Name = "breakbtn";
-            this.breakbtn.Size = new System.Drawing.Size(75, 23);
-            this.breakbtn.TabIndex = 7;
-            this.breakbtn.Text = "Break";
-            this.breakbtn.UseVisualStyleBackColor = true;
-            this.breakbtn.Click += new System.EventHandler(this.breakbtn_Click);
-            // 
-            // openbtn
-            // 
-            this.openbtn.Image = global::ARMSim_2._0.Properties.Resources.folder_search;
-            this.openbtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.openbtn.Location = new System.Drawing.Point(246, 3);
-            this.openbtn.Name = "openbtn";
-            this.openbtn.Size = new System.Drawing.Size(75, 23);
-            this.openbtn.TabIndex = 9;
-            this.openbtn.Text = "Open";
-            this.openbtn.UseVisualStyleBackColor = true;
-            this.openbtn.Click += new System.EventHandler(this.openbtn_Click);
-            // 
-            // stepbtn
-            // 
-            this.stepbtn.Image = global::ARMSim_2._0.Properties.Resources.Step;
-            this.stepbtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.stepbtn.Location = new System.Drawing.Point(84, 3);
-            this.stepbtn.Name = "stepbtn";
-            this.stepbtn.Size = new System.Drawing.Size(75, 23);
-            this.stepbtn.TabIndex = 6;
-            this.stepbtn.Text = "Step";
-            this.stepbtn.UseVisualStyleBackColor = true;
-            this.stepbtn.Click += new System.EventHandler(this.stepbtn_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(824, 450);
             this.Controls.Add(this.splitContainer1);
-            this.DoubleBuffered = true;
-            this.HelpButton = true;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.MinimumSize = new System.Drawing.Size(680, 480);
             this.Name = "Form1";
             this.Padding = new System.Windows.Forms.Padding(3);
-            this.Text = "ARMSim";
+            this.ShowInTaskbar = false;
+            this.Text = "armsim";
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.KeyEvent);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
