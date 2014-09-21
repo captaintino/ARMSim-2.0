@@ -12,10 +12,10 @@ namespace ARMSim_2._0
         public Registers registers;
         bool n, z, c, f;
 
-        public CPU(Options arguments)
+        public CPU(Memory newRam, Registers newRegisters)
         {
-            uint entryPoint = Loader.PreloadRAM(arguments, ref ram);
-            registers = new Registers(entryPoint);
+            ram = newRam;
+            registers = newRegisters;
             n = z = c = f = false;
         }
 
@@ -24,6 +24,7 @@ namespace ARMSim_2._0
         {
             uint progC = registers.ReadRegister(15);
             registers.IncrementProgramCounter();
+            // POTENTIAL ISSUE WITH ORDERING? Handle in future when filling out method
             return ram.ReadWord(progC);
         }
 

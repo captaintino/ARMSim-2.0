@@ -7,9 +7,9 @@ using System.Diagnostics;
 
 namespace ARMSim_2._0
 {
-    class TestRAM
+    class TestMemory
     {
-        // Runs Unit Tests for RAM Class
+        // Runs Unit Tests for Memory Class
         public void RunTests ()
         {
             Console.WriteLine("Loader: Tests: RAM: Testing RAM");

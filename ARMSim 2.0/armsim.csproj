@@ -79,9 +79,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RAM.cs" />
     <Compile Include="Registers.cs" />
+    <Compile Include="TestComputer.cs" />
+    <Compile Include="TestCPU.cs" />
     <Compile Include="TestLoader.cs" />
     <Compile Include="TestOptions.cs" />
     <Compile Include="TestRAM.cs" />
+    <Compile Include="TestRegisters.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -110,6 +113,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="elfformatprog.exe" />
+    <None Include="Resources\oie_h7czeZbvtq3t.png" />
     <None Include="Resources\folder_search.png" />
     <None Include="Resources\button_black_play.png" />
     <None Include="Resources\sub_black_rotate_cw.png" />

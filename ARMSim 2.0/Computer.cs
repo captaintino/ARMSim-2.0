@@ -16,7 +16,7 @@ namespace ARMSim_2._0
 
         public Computer(Options arguments, ref FileStream tr)
         {
-            cpu = new CPU(arguments);
+            cpu = Loader.PreloadCPU(arguments);
             trace = tr;
             stepNumber = 0;
         }
@@ -72,7 +72,7 @@ namespace ARMSim_2._0
 
         public void Reset(Options arguments)
         {
-            cpu = new CPU(arguments);
+            cpu = Loader.PreloadCPU(arguments);
             stepNumber = 0;
         }
 

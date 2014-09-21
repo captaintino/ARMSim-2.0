@@ -13,9 +13,9 @@ namespace ARMSim_2._0
     class Loader
     {
         // Extract pertinent data from file requested in <arguments>, load into <ram>, and return the program entrypoint.
-        public static uint PreloadRAM(Options arguments, ref Memory ram)
+        public static CPU PreloadCPU(Options arguments)
         {
-            ram = new Memory(arguments.memorySize);
+            Memory ram = new Memory(arguments.memorySize);
             if (arguments.fileName != "")
             {
                 try
@@ -43,18 +43,19 @@ namespace ARMSim_2._0
                         Console.WriteLine("Loader: Compute MD5: " + ram.ComputeMD5());
 
                     }
-                    return elfHeader.e_entry;
+                    Registers regs = new Registers(elfHeader.e_entry);
+                    return new CPU(ram, regs);
                 }
                 catch
                 {
                     Console.WriteLine("Loader: ERROR OCCURRED DURING RAM LOADING");
-                    Program.QuitProgram();
-                    return 0; // Not all code paths returned a value
+                    //Program.QuitProgram();
+                    return new CPU(new Memory(arguments.memorySize), new Registers(0));
                 }
             }
             else
             {
-                return 0;
+                return new CPU(new Memory(arguments.memorySize), new Registers(0));
             }
         }
 

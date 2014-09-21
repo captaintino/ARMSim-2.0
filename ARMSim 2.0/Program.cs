@@ -34,6 +34,7 @@ namespace ARMSim_2._0
                 else if(arguments.testMode)
                 {
                     TestApp();
+                    Environment.Exit(0); // All Tests Passed    
                 }
             }
             Application.EnableVisualStyles();
@@ -54,10 +55,16 @@ namespace ARMSim_2._0
         {
             TestOptions to = new TestOptions();
             to.RunTests();
-            TestRAM tr = new TestRAM();
+            TestMemory tm = new TestMemory();
+            tm.RunTests();
+            TestRegisters tr = new TestRegisters();
             tr.RunTests();
+            TestCPU tc = new TestCPU();
+            tc.RunTests();
             TestLoader tl = new TestLoader();
             tl.RunTests();
+            TestComputer tco = new TestComputer();
+            tco.RunTests();
         }
     }
 }

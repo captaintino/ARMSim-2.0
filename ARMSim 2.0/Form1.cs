@@ -37,7 +37,6 @@ namespace ARMSim_2._0
             {
                 DataGridViewRow newRow = new DataGridViewRow();
                 newRow.CreateCells(memorypanel);
-                newRow.Cells[0].Value = newRow.Cells[1].Value = newRow.Cells[2].Value = newRow.Cells[3].Value = newRow.Cells[4].Value = newRow.Cells[5].Value = "";
                 memorypanel.Rows.Add(newRow);
             }
             //Initialize stack panel
@@ -45,20 +44,18 @@ namespace ARMSim_2._0
             {
                 DataGridViewRow newRow = new DataGridViewRow();
                 newRow.CreateCells(stackpanel);
-                newRow.Cells[0].Value = newRow.Cells[1].Value = "";
                 stackpanel.Rows.Add(newRow);
             }
-            //Initialize computer
-            computer = new Computer(arguments, ref traceFile);
             //Initialize trace file
             traceFile = new FileStream("trace.log", FileMode.Create, FileAccess.Write);
+            //Initialize computer
+            computer = new Computer(arguments, ref traceFile);
             //Did they run from command line with file?
             if (arguments.fileName == "")
             {
                 runbtn.Enabled = false;
                 resetbtn.Enabled = false;
                 stepbtn.Enabled = false;
-                tracecheckbox.Enabled = false;
             }
         }
 
@@ -152,10 +149,12 @@ namespace ARMSim_2._0
                     {
                         DataGridViewRow row = memorypanel.Rows[(int)i];
                         row.Cells[0].Value = UintToHexExtended(address + (i * 16));
+                        // Set column values for basic memory
                         row.Cells[1].Value = UintToHexExtended(computer.GetWord(address + (i * 16)));
                         row.Cells[2].Value = UintToHexExtended(computer.GetWord(address + (i * 16) + 4));
                         row.Cells[3].Value = UintToHexExtended(computer.GetWord(address + (i * 16) + 8));
                         row.Cells[4].Value = UintToHexExtended(computer.GetWord(address + (i * 16) + 12));
+                        // Compute ascii version values of bytes
                         byte[] asciiCharacters = new byte[16];
                         for (uint increment = 0; increment < 4; increment++)
                         {
