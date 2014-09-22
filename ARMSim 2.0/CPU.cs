@@ -19,6 +19,12 @@ namespace ARMSim_2._0
             n = z = c = f = false;
         }
 
+        // Flag Getters
+        public bool GetNFlag() { return n; }
+        public bool GetZFlag() { return z; }
+        public bool GetCFlag() { return c; }
+        public bool GetFFlag() { return f; }
+
         // fetch command based on program counter and increment program counter
         public uint fetch()
         {
@@ -73,12 +79,5 @@ namespace ARMSim_2._0
         {
             return registers.ReadRegister(13);
         }
-
-        // Flag Getters
-        public bool GetNFlag() { return n; }
-        public bool GetZFlag() { return z; }
-        public bool GetCFlag() { return c; }
-        public bool GetFFlag() { return f; }
-
     }
 }

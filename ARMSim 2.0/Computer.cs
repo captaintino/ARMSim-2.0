@@ -22,13 +22,17 @@ namespace ARMSim_2._0
             stepNumber = 0;
         }
 
+        // Set <parentForm>
         public void ProvideParentForm(Form1 parent) { parentForm = parent; }
+
+        public bool Initialized() { return cpu.GetRegister(15) != 0; }
 
         public void stopRun()
         {
             stop = true;
         }
 
+        // Perform Fetch, Decode, Execute process in loop
         public void run()
         {
             stop = false;
@@ -38,11 +42,13 @@ namespace ARMSim_2._0
             } while (!stop);
         }
 
+        // Perform Fetch, Decode, Execute process once
         public void step()
         {
             FetchDecodeExecute();
         }
 
+        // Perform Fetch, Decode, and Execute commands. Also triggers Delegate on parentform on program end
         private void FetchDecodeExecute()
         {
             stepNumber++;
@@ -63,6 +69,7 @@ namespace ARMSim_2._0
                 WriteLog(progc);
         }
 
+        // Write to tracefile
         private void WriteLog(uint programcounter)
         {
             List<uint> registers = GetRegisters();
@@ -71,15 +78,21 @@ namespace ARMSim_2._0
             "\r\n" + String.Format("{0:X8} {0:X8} {0:X8} {0:X8}", registers[10], registers[11], registers[12], registers[13], registers[14], registers[15]) + "\r\n";
             byte[] bytes = new byte[write.Length * sizeof(char)];
             System.Buffer.BlockCopy(write.ToCharArray(), 0, bytes, 0, bytes.Length);
-            trace.Write(bytes, 0, bytes.Length);
+            try
+            {
+                trace.Write(bytes, 0, bytes.Length);
+            }
+            catch { }
         }
 
+        // Rebuild cpu with <arguments>
         public void Reset(Options arguments)
         {
             cpu = Loader.PreloadCPU(arguments);
             stepNumber = 0;
         }
 
+        // Get MD5 computation of RAM
         public string GetMD5()
         {
             return cpu.GetMD5();
@@ -108,6 +121,7 @@ namespace ARMSim_2._0
             return cpu.GetStackPointer();
         }
 
+        // return List of the flags in order of NZCF
         public List<bool> GetFlags()
         {
             List<bool> flags = new List<bool>();

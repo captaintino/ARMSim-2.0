@@ -18,6 +18,7 @@ namespace ARMSim_2._0
         Options arguments;
         FileStream traceFile;
 
+        // Event Handler variables
         public delegate void UpdateEverything();
         public UpdateEverything myDelegate;
 
@@ -55,7 +56,7 @@ namespace ARMSim_2._0
             computer = new Computer(arguments, ref traceFile);
             computer.ProvideParentForm(this);
             //Did they run from command line with file?
-            if (arguments.fileName == "")
+            if (!computer.Initialized())
             {
                 runbtn.Enabled = false;
                 resetbtn.Enabled = false;
@@ -117,7 +118,7 @@ namespace ARMSim_2._0
             }
         }
 
-
+        // Update GUI - to be triggered when program ends
         public void UpdateEverythingMethod()
         {
             breakbtn.PerformClick();
