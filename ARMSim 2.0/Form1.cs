@@ -17,11 +17,14 @@ namespace ARMSim_2._0
         Computer computer;
         Options arguments;
         FileStream traceFile;
-        
+
+        public delegate void UpdateEverything();
+        public UpdateEverything myDelegate;
 
         public Form1(Options args)
         {
             InitializeComponent();
+            myDelegate = new UpdateEverything(UpdateEverythingMethod);
             arguments = args;
             //Initialize registers
             for (int i = 0; i < 16; ++i)
@@ -50,6 +53,7 @@ namespace ARMSim_2._0
             traceFile = new FileStream("trace.log", FileMode.Create, FileAccess.Write);
             //Initialize computer
             computer = new Computer(arguments, ref traceFile);
+            computer.ProvideParentForm(this);
             //Did they run from command line with file?
             if (arguments.fileName == "")
             {
@@ -113,6 +117,12 @@ namespace ARMSim_2._0
             }
         }
 
+
+        public void UpdateEverythingMethod()
+        {
+            breakbtn.PerformClick();
+        }
+
         // Updates all GUI components
         private void UpdateGUI()
         {
@@ -142,7 +152,7 @@ namespace ARMSim_2._0
         {
             try
             {
-                uint address = Convert.ToUInt32(memoryaddressentry.Text);
+                uint address = Convert.ToUInt32(memoryaddressentry.Text, 16);
                 if (address % 4 == 0 && address < arguments.memorySize)
                 {
                     for (uint i = 0; i < 16; ++i)

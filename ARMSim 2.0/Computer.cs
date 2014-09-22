@@ -12,6 +12,7 @@ namespace ARMSim_2._0
         CPU cpu;
         bool stop = true;
         FileStream trace;
+        Form1 parentForm = null;
         uint stepNumber;
 
         public Computer(Options arguments, ref FileStream tr)
@@ -20,6 +21,8 @@ namespace ARMSim_2._0
             trace = tr;
             stepNumber = 0;
         }
+
+        public void ProvideParentForm(Form1 parent) { parentForm = parent; }
 
         public void stopRun()
         {
@@ -42,21 +45,22 @@ namespace ARMSim_2._0
 
         private void FetchDecodeExecute()
         {
+            stepNumber++;
             // rewrite
             uint progc = cpu.registers.ReadRegister(15);
             uint num = cpu.fetch();
-            num = 1;
             if (num == 0)
             {
                 stop = true;
-                return;
                 // trigger end of program
+                if (parentForm != null)
+                    parentForm.Invoke(parentForm.myDelegate);
+                return;
             }
             cpu.decode();
             cpu.execute();
             if (trace != null)
                 WriteLog(progc);
-            stepNumber++;
         }
 
         private void WriteLog(uint programcounter)
