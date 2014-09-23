@@ -159,7 +159,7 @@ namespace ARMSim_2._0
                     for (uint i = 0; i < 16; ++i)
                     {
                         DataGridViewRow row = memorypanel.Rows[(int)i];
-                        row.Cells[0].Value = UintToHexExtended(address + (i * 16));
+                        row.Cells[0].Value = "0x" + String.Format("{0:X8}", address + (i * 16));
                         // Set column values for basic memory
                         row.Cells[1].Value = UintToHexExtended(computer.GetWord(address + (i * 16)));
                         row.Cells[2].Value = UintToHexExtended(computer.GetWord(address + (i * 16) + 4));
