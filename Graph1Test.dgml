@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DirectedGraph xmlns="http://schemas.microsoft.com/vs/2009/dgml">
+  <Nodes>
+    <Node Id="(@1)" Category="CodeSchema_Solution" Bounds="-168.589789887856,-269.172180466002,58.9533333333333,25.96" Label="armsim" />
+    <Node Id="(@4 @2 @6 Member=(Name=GetRegister OverloadingParameters=[(@12 Namespace=System Type=UInt32)]))" Category="CodeSchema_Method" Bounds="-245.915786819719,123.763451080548,102.613333333333,26" CodeSchemaProperty_IsPublic="True" CommonLabel="GetRegister" FunctionTypeFlags="Method" Icon="Microsoft.VisualStudio.Method.Public" Label="GetRegister" Language="{B5E9BD34-6D3E-4B5D-925E-8A43B79820B4}" SourceLocation="(Assembly=&quot;file:///C:/Users/acarr929/Source/Repos/ARMSim-2.0/ARMSim 2.0/CPU.cs&quot; StartLineNumber=61 StartCharacterOffset=8 EndLineNumber=61 EndCharacterOffset=8)" />
+    <Node Id="(@4 @2 Type=Loader)" Category="CodeSchema_Class" Bounds="-263.455228150218,-100.236948919452,77.3033333333333,26" CodeSchemaProperty_IsInternal="True" CommonLabel="Loader" Icon="Microsoft.VisualStudio.Class.Internal" Label="Loader" Language="{B5E9BD34-6D3E-4B5D-925E-8A43B79820B4}" SourceLocation="(Assembly=&quot;file:///C:/Users/acarr929/Source/Repos/ARMSim-2.0/ARMSim 2.0/Loader.cs&quot; StartLineNumber=12 StartCharacterOffset=4 EndLineNumber=12 EndCharacterOffset=4)" />
+    <Node Id="@10" Category="CodeSchema_Class" Bounds="-116.741837088302,-45.2117804660019,82.9866666666667,26" CodeSchemaProperty_IsPublic="True" CommonLabel="Options" Icon="Microsoft.VisualStudio.Class.Public" Label="Options" Language="{B5E9BD34-6D3E-4B5D-925E-8A43B79820B4}" SourceLocation="(Assembly=&quot;file:///C:/Users/acarr929/Source/Repos/ARMSim-2.0/ARMSim 2.0/Options.cs&quot; StartLineNumber=9 StartCharacterOffset=4 EndLineNumber=9 EndCharacterOffset=4)" />
+    <Node Id="@11" Category="CodeSchema_Class" Bounds="-186.72232182348,179.763551080548,89.13,26" CodeSchemaProperty_IsInternal="True" CommonLabel="Registers" Icon="Microsoft.VisualStudio.Class.Internal" Label="Registers" Language="{B5E9BD34-6D3E-4B5D-925E-8A43B79820B4}" SourceLocation="(Assembly=&quot;file:///C:/Users/acarr929/Source/Repos/ARMSim-2.0/ARMSim 2.0/Registers.cs&quot; StartLineNumber=8 StartCharacterOffset=4 EndLineNumber=8 EndCharacterOffset=4)" />
+    <Node Id="@13" Category="CodeSchema_Field" Bounds="-33.8816948168843,-101.211980466002,97.7,26" CodeSchemaProperty_IsPrivate="True" Icon="Microsoft.VisualStudio.Field.Private" Label="arguments" Language="{B5E9BD34-6D3E-4B5D-925E-8A43B79820B4}" SourceLocation="(Assembly=&quot;file:///C:/Users/acarr929/Source/Repos/ARMSim-2.0/ARMSim 2.0/Form1.cs&quot; StartLineNumber=17 StartCharacterOffset=16 EndLineNumber=17 EndCharacterOffset=16)" />
+    <Node Id="@14" Category="CodeSchema_Field" Bounds="-156.151794816884,-101.211880466002,92.27,26" CodeSchemaProperty_IsPrivate="True" Icon="Microsoft.VisualStudio.Field.Private" Label="computer" Language="{B5E9BD34-6D3E-4B5D-925E-8A43B79820B4}" SourceLocation="(Assembly=&quot;file:///C:/Users/acarr929/Source/Repos/ARMSim-2.0/ARMSim 2.0/Form1.cs&quot; StartLineNumber=16 StartCharacterOffset=17 EndLineNumber=16 EndCharacterOffset=17)" />
+    <Node Id="@15" Category="CodeSchema_Field" Bounds="-138.39741310855,11.7632510805476,60.3866666666667,26" CodeSchemaProperty_IsPrivate="True" Icon="Microsoft.VisualStudio.Field.Private" Label="cpu" Language="{B5E9BD34-6D3E-4B5D-925E-8A43B79820B4}" SourceLocation="(Assembly=&quot;file:///C:/Users/acarr929/Source/Repos/ARMSim-2.0/ARMSim 2.0/Computer.cs&quot; StartLineNumber=11 StartCharacterOffset=12 EndLineNumber=11 EndCharacterOffset=12)" />
+    <Node Id="@16" Category="CodeSchema_Method" Bounds="-15.8689201530522,123.763451080548,80.26,26" CodeSchemaProperty_IsPublic="True" CommonLabel="decode" FunctionTypeFlags="Method" Icon="Microsoft.VisualStudio.Method.Public" Label="decode" Language="{B5E9BD34-6D3E-4B5D-925E-8A43B79820B4}" SourceLocation="(Assembly=&quot;file:///C:/Users/acarr929/Source/Repos/ARMSim-2.0/ARMSim 2.0/CPU.cs&quot; StartLineNumber=37 StartCharacterOffset=8 EndLineNumber=37 EndCharacterOffset=8)" />
+    <Node Id="@17" Category="CodeSchema_Method" Bounds="-449.269320153052,123.763351080548,81.7366666666667,26" CodeSchemaProperty_IsPublic="True" CommonLabel="execute" FunctionTypeFlags="Method" Icon="Microsoft.VisualStudio.Method.Public" Label="execute" Language="{B5E9BD34-6D3E-4B5D-925E-8A43B79820B4}" SourceLocation="(Assembly=&quot;file:///C:/Users/acarr929/Source/Repos/ARMSim-2.0/ARMSim 2.0/CPU.cs&quot; StartLineNumber=43 StartCharacterOffset=8 EndLineNumber=43 EndCharacterOffset=8)" />
+    <Node Id="@18" Category="CodeSchema_Method" Bounds="-113.302353486385,123.763451080547,67.4333333333333,26" CodeSchemaProperty_IsPublic="True" CommonLabel="fetch" FunctionTypeFlags="Method" Icon="Microsoft.VisualStudio.Method.Public" Label="fetch" Language="{B5E9BD34-6D3E-4B5D-925E-8A43B79820B4}" SourceLocation="(Assembly=&quot;file:///C:/Users/acarr929/Source/Repos/ARMSim-2.0/ARMSim 2.0/CPU.cs&quot; StartLineNumber=28 StartCharacterOffset=8 EndLineNumber=28 EndCharacterOffset=8)" />
+    <Node Id="@19" Category="CodeSchema_Method" Bounds="-284.806513736423,67.7633510805476,150.673333333333,26" CodeSchemaProperty_IsPrivate="True" CommonLabel="FetchDecodeExecute" FunctionTypeFlags="Method" Icon="Microsoft.VisualStudio.Method.Private" Label="FetchDecodeExecute" Language="{B5E9BD34-6D3E-4B5D-925E-8A43B79820B4}" SourceLocation="(Assembly=&quot;file:///C:/Users/acarr929/Source/Repos/ARMSim-2.0/ARMSim 2.0/Computer.cs&quot; StartLineNumber=51 StartCharacterOffset=8 EndLineNumber=51 EndCharacterOffset=8)" />
+    <Node Id="@20" Category="CodeSchema_Field" Bounds="-337.532553486385,123.763451080547,61.6166666666667,26" CodeSchemaProperty_IsPublic="True" Icon="Microsoft.VisualStudio.Field.Public" Label="ram" Language="{B5E9BD34-6D3E-4B5D-925E-8A43B79820B4}" SourceLocation="(Assembly=&quot;file:///C:/Users/acarr929/Source/Repos/ARMSim-2.0/ARMSim 2.0/CPU.cs&quot; StartLineNumber=10 StartCharacterOffset=22 EndLineNumber=10 EndCharacterOffset=22)" />
+    <Node Id="@21" Category="CodeSchema_Field" Bounds="94.3911798469481,123.763351080548,86.1266666666667,26" CodeSchemaProperty_IsPublic="True" Icon="Microsoft.VisualStudio.Field.Public" Label="registers" Language="{B5E9BD34-6D3E-4B5D-925E-8A43B79820B4}" SourceLocation="(Assembly=&quot;file:///C:/Users/acarr929/Source/Repos/ARMSim-2.0/ARMSim 2.0/CPU.cs&quot; StartLineNumber=11 StartCharacterOffset=25 EndLineNumber=11 EndCharacterOffset=25)" />
+    <Node Id="@3" Category="CodeSchema_Namespace" Bounds="-194.322761370632,-213.212080466002,111.81,26" Icon="Microsoft.VisualStudio.Namespace.Public" Label="ARMSim_2‎._0" />
+    <Node Id="@5" Category="CodeSchema_Class" Bounds="-240.898603754969,-44.2368489194524,94.1566666666667,26" CodeSchemaProperty_IsInternal="True" CommonLabel="Computer" Icon="Microsoft.VisualStudio.Class.Internal" Label="Computer" Language="{B5E9BD34-6D3E-4B5D-925E-8A43B79820B4}" SourceLocation="(Assembly=&quot;file:///C:/Users/acarr929/Source/Repos/ARMSim-2.0/ARMSim 2.0/Computer.cs&quot; StartLineNumber=9 StartCharacterOffset=4 EndLineNumber=9 EndCharacterOffset=4)" />
+    <Node Id="@7" Category="CodeSchema_Class" Bounds="-104.13318040309,67.7633510805476,63.3933333333333,26" CodeSchemaProperty_IsInternal="True" CommonLabel="CPU" Icon="Microsoft.VisualStudio.Class.Internal" Label="CPU" Language="{B5E9BD34-6D3E-4B5D-925E-8A43B79820B4}" SourceLocation="(Assembly=&quot;file:///C:/Users/acarr929/Source/Repos/ARMSim-2.0/ARMSim 2.0/CPU.cs&quot; StartLineNumber=8 StartCharacterOffset=4 EndLineNumber=8 EndCharacterOffset=4)" />
+    <Node Id="@8" Category="CodeSchema_Class" Bounds="-169.750013485449,-157.211980466002,74.87,26" CodeSchemaProperty_IsPublic="True" CommonLabel="Form1" Icon="Microsoft.VisualStudio.Class.Public" Label="Form1" Language="{B5E9BD34-6D3E-4B5D-925E-8A43B79820B4}" SourceLocation="(Assembly=&quot;file:///C:/Users/acarr929/Source/Repos/ARMSim-2.0/ARMSim 2.0/Form1.cs&quot; StartLineNumber=14 StartCharacterOffset=4 EndLineNumber=14 EndCharacterOffset=4)" />
+    <Node Id="@9" Category="CodeSchema_Class" Bounds="-180.928643386198,235.763651080548,85.4,26" CodeSchemaProperty_IsInternal="True" CommonLabel="Memory" Icon="Microsoft.VisualStudio.Class.Internal" Label="Memory" Language="{B5E9BD34-6D3E-4B5D-925E-8A43B79820B4}" SourceLocation="(Assembly=&quot;file:///C:/Users/acarr929/Source/Repos/ARMSim-2.0/ARMSim 2.0/RAM.cs&quot; StartLineNumber=11 StartCharacterOffset=4 EndLineNumber=11 EndCharacterOffset=4)" />
+  </Nodes>
+  <Links>
+    <Link Source="(@1)" Target="@3" Category="Contains" Bounds="-138.951890982943,-243.212180466002,0.260863255937039,21.0007942512029" />
+    <Link Source="@11" Target="@9" Category="InheritsFrom" Bounds="-141.245308814849,205.763551080548,1.47480685249397,21.0221662421097" />
+    <Link Source="@13" Target="@10" Category="References" Bounds="-46.6587644688519,-75.2119804660018,40.6839566596016,25.2537164254238" />
+    <Link Source="@14" Target="@5" Category="References" Bounds="-167.256014562548,-75.2118804660018,38.1177703442417,25.914929567959" />
+    <Link Source="@15" Target="@7" Category="References" Bounds="-99.9009096290149,37.7632510805476,14.3167106451172,22.4152022792959" />
+    <Link Source="@19" Target="@16" Category="CodeSchema_Calls" Bounds="-155.210978783501,93.7633510805476,130.589763552621,31.2882848427213" />
+    <Link Source="@19" Target="@17" Category="CodeSchema_Calls" Bounds="-359.219302756966,93.7633510805476,103.569012530968,29.1551373456368" />
+    <Link Source="@19" Target="@18" Category="CodeSchema_Calls" Bounds="-179.318220853902,93.7633510805476,61.3163507054187,26.4368015663211" />
+    <Link Source="@20" Target="@9" Category="References" Bounds="-287.166732773841,149.763451080547,121.885377339395,81.0180712219926" />
+    <Link Source="@21" Target="@11" Category="References" Bounds="-88.7675684556899,145.388004895007,183.158748302638,36.6827338927174" />
+    <Link Source="@3" Target="(@4 @2 Type=Loader)" Category="Contains" Bounds="-209.396410928628,-187.212080466002,61.0382725378974,79.8256989033991" />
+    <Link Source="@3" Target="@10" Category="Contains" Bounds="-123.643913269043,-187.21208190918,66.7316627502441,133.315170288086" />
+    <Link Source="@3" Target="@11" Category="Contains" Bounds="-176.639053344727,-187.21208190918,46.539306640625,358.055801391602" />
+    <Link Source="@3" Target="@5" Category="Contains" Bounds="-189.602310180664,-187.21208190918,34.7826080322266,134.136035919189" />
+    <Link Source="@3" Target="@7" Category="Contains" Bounds="-117.187980651855,-187.21208190918,93.5670261383057,246.713436126709" />
+    <Link Source="@3" Target="@8" Category="Contains" Bounds="-137.001054569977,-187.212080466002,2.29430991505691,21.0530710249594" />
+    <Link Source="@3" Target="@9" Category="Contains" Bounds="-117.934356689453,-187.21208190918,89.2583065032959,416.793502807617" />
+    <Link Source="@5" Target="@15" Category="Contains" Bounds="-173.94511879863,-18.2368489194524,38.3339782701731,25.0736058252472" />
+    <Link Source="@5" Target="@19" Category="Contains" Bounds="-206.407927888766,-18.2368489194524,10.7711919927333,77.0867918378696" />
+    <Link Source="@7" Target="(@4 @2 @6 Member=(Name=GetRegister OverloadingParameters=[(@12 Namespace=System Type=UInt32)]))" Category="Contains" Bounds="-158.066199105305,93.7633510805476,57.2682380961771,26.2499684198701" />
+    <Link Source="@7" Target="@16" Category="Contains" Bounds="-49.9888981681686,93.7633510805476,44.0141295249627,25.4897310622912" />
+    <Link Source="@7" Target="@17" Category="Contains" Bounds="-365.820404052734,93.7633514404297,269.877502441406,26.9062805175781" />
+    <Link Source="@7" Target="@18" Category="Contains" Bounds="-76.7863381762051,93.7633510805476,2.69019793763555,21.0725564722159" />
+    <Link Source="@7" Target="@20" Category="Contains" Bounds="-267.162463694317,88.3395766117478,163.029283291227,38.9677132738751" />
+    <Link Source="@7" Target="@21" Category="Contains" Bounds="-40.7398470697567,89.2201839399997,126.780533833312,33.8256951664874" />
+    <Link Source="@8" Target="@13" Category="Contains" Bounds="-98.1242430802465,-131.211980466002,70.4893391250579,26.8014261675227" />
+    <Link Source="@8" Target="@14" Category="Contains" Bounds="-127.138650538037,-131.211980466002,8.61608701431419,21.6385775734863" />
+  </Links>
+  <Categories>
+    <Category Id="CodeSchema_Calls" Label="Calls" CanBeDataDriven="True" CanLinkedNodesBeDataDriven="True" IncomingActionLabel="Called By" OutgoingActionLabel="Calls" />
+    <Category Id="CodeSchema_Class" Label="Class" BasedOn="CodeSchema_Type" CanBeDataDriven="True" DefaultAction="Node:Both:CodeSchema_Member" Icon="CodeSchema_Class" NavigationActionLabel="Classes" />
+    <Category Id="CodeSchema_Field" Label="Field" BasedOn="CodeSchema_Member" CanBeDataDriven="True" DefaultAction="Microsoft.Contains" Icon="CodeSchema_Field" NavigationActionLabel="Fields" />
+    <Category Id="CodeSchema_Member" Label="Member" CanBeDataDriven="True" DefaultAction="Microsoft.Contains" Icon="CodeSchema_Field" NavigationActionLabel="Members" />
+    <Category Id="CodeSchema_Method" Label="Method" BasedOn="CodeSchema_Member" CanBeDataDriven="True" DefaultAction="Link:Forward:CodeSchema_Calls" Icon="CodeSchema_Method" NavigationActionLabel="Methods" />
+    <Category Id="CodeSchema_Namespace" Label="Namespace" CanBeDataDriven="True" DefaultAction="Node:Both:CodeSchema_Type" Icon="CodeSchema_Namespace" NavigationActionLabel="Namespaces" />
+    <Category Id="CodeSchema_Solution" Label="Solution" CanBeDataDriven="True" DefaultAction="Microsoft.Contains" NavigationActionLabel="Solutions" />
+    <Category Id="CodeSchema_Type" Label="Type" CanBeDataDriven="True" DefaultAction="Node:Both:CodeSchema_Member" Icon="CodeSchema_Class" NavigationActionLabel="Types" />
+    <Category Id="Contains" Label="Contains" Description="Whether the source of the link contains the target object" CanBeDataDriven="False" CanLinkedNodesBeDataDriven="True" IncomingActionLabel="Contained By" IsContainment="True" OutgoingActionLabel="Contains" />
+    <Category Id="InheritsFrom" Label="Inherits From" CanBeDataDriven="True" CanLinkedNodesBeDataDriven="True" IncomingActionLabel="Inherited By" OutgoingActionLabel="Inherits From" />
+    <Category Id="References" Label="References" CanBeDataDriven="True" CanLinkedNodesBeDataDriven="True" IncomingActionLabel="Referenced By" OutgoingActionLabel="References" />
+  </Categories>
+  <Properties>
+    <Property Id="Bounds" DataType="System.Windows.Rect" />
+    <Property Id="CanBeDataDriven" Label="CanBeDataDriven" Description="CanBeDataDriven" DataType="System.Boolean" />
+    <Property Id="CanLinkedNodesBeDataDriven" Label="CanLinkedNodesBeDataDriven" Description="CanLinkedNodesBeDataDriven" DataType="System.Boolean" />
+    <Property Id="CodeSchemaProperty_IsInternal" Label="Is Internal" Description="Flag to indicate the method is 'Internal'" DataType="System.Boolean" />
+    <Property Id="CodeSchemaProperty_IsPrivate" Label="Is Private" Description="Flag to indicate the scope is Private" DataType="System.Boolean" />
+    <Property Id="CodeSchemaProperty_IsPublic" Label="Is Public" Description="Flag to indicate the scope is Public" DataType="System.Boolean" />
+    <Property Id="CommonLabel" DataType="System.String" />
+    <Property Id="DefaultAction" Label="DefaultAction" Description="DefaultAction" DataType="System.String" />
+    <Property Id="FunctionTypeFlags" Label="FunctionTypeFlags" Description="FunctionTypeFlags" DataType="System.String" />
+    <Property Id="Icon" Label="Icon" Description="Icon" DataType="System.String" />
+    <Property Id="IncomingActionLabel" Label="IncomingActionLabel" Description="IncomingActionLabel" DataType="System.String" />
+    <Property Id="IsContainment" DataType="System.Boolean" />
+    <Property Id="Label" Label="Label" Description="Displayable label of an Annotatable object" DataType="System.String" />
+    <Property Id="Language" Label="Language" Description="Language" DataType="System.String" />
+    <Property Id="NavigationActionLabel" Label="NavigationActionLabel" Description="NavigationActionLabel" DataType="System.String" />
+    <Property Id="OutgoingActionLabel" Label="OutgoingActionLabel" Description="OutgoingActionLabel" DataType="System.String" />
+    <Property Id="SourceLocation" Label="Start Line Number" DataType="Microsoft.VisualStudio.GraphModel.CodeSchema.SourceLocation" />
+  </Properties>
+  <QualifiedNames>
+    <Name Id="Assembly" Label="Assembly" ValueType="Uri" />
+    <Name Id="Member" Label="Member" ValueType="System.Object" />
+    <Name Id="Name" Label="Name" ValueType="System.String" />
+    <Name Id="Namespace" Label="Namespace" ValueType="System.String" />
+    <Name Id="OverloadingParameters" Label="Parameter" ValueType="Microsoft.VisualStudio.GraphModel.GraphNodeIdCollection" Formatter="NameValueNoEscape" />
+    <Name Id="Type" Label="Type" ValueType="System.Object" />
+  </QualifiedNames>
+  <IdentifierAliases>
+    <Alias n="1" Uri="Assembly=$(VsSolutionUri)/armsim.sln" />
+    <Alias n="2" Id="Namespace=ARMSim_2._0" />
+    <Alias n="3" Id="(@2)" />
+    <Alias n="4" Uri="Assembly=$(8bbdde01-85cc-4cf9-9b75-8dc4488dd695.OutputPathUri)" />
+    <Alias n="5" Id="(@4 @2 Type=Computer)" />
+    <Alias n="6" Id="Type=CPU" />
+    <Alias n="7" Id="(@4 @2 @6)" />
+    <Alias n="8" Id="(@4 @2 Type=Form1)" />
+    <Alias n="9" Id="(@4 @2 Type=Memory)" />
+    <Alias n="10" Id="(@4 @2 Type=Options)" />
+    <Alias n="11" Id="(@4 @2 Type=Registers)" />
+    <Alias n="12" Uri="Assembly=$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll" />
+    <Alias n="13" Id="(@4 @2 Type=Form1 Member=arguments)" />
+    <Alias n="14" Id="(@4 @2 Type=Form1 Member=computer)" />
+    <Alias n="15" Id="(@4 @2 Type=Computer Member=cpu)" />
+    <Alias n="16" Id="(@4 @2 @6 Member=decode)" />
+    <Alias n="17" Id="(@4 @2 @6 Member=execute)" />
+    <Alias n="18" Id="(@4 @2 @6 Member=fetch)" />
+    <Alias n="19" Id="(@4 @2 Type=Computer Member=FetchDecodeExecute)" />
+    <Alias n="20" Id="(@4 @2 @6 Member=ram)" />
+    <Alias n="21" Id="(@4 @2 @6 Member=registers)" />
+  </IdentifierAliases>
+  <Paths>
+    <Path Id="8bbdde01-85cc-4cf9-9b75-8dc4488dd695.OutputPathUri" Value="file:///C:/Users/acarr929/Source/Repos/ARMSim-2.0/ARMSim 2.0/bin/Debug/armsim.exe" />
+    <Path Id="FxReferenceAssembliesUri" Value="file:///C:/Program Files (x86)/Reference Assemblies/Microsoft/Framework" />
+    <Path Id="VsSolutionUri" Value="file:///C:/Users/acarr929/Source/Repos/ARMSim-2.0" />
+  </Paths>
+</DirectedGraph>
