@@ -67,13 +67,16 @@
   <ItemGroup>
     <Compile Include="Computer.cs" />
     <Compile Include="CPU.cs" />
+    <Compile Include="DPInstruction.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Instruction.cs" />
     <Compile Include="Loader.cs" />
+    <Compile Include="Operand2.cs" />
     <Compile Include="Options.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -81,6 +84,7 @@
     <Compile Include="Registers.cs" />
     <Compile Include="TestComputer.cs" />
     <Compile Include="TestCPU.cs" />
+    <Compile Include="TestInstruction.cs" />
     <Compile Include="TestLoader.cs" />
     <Compile Include="TestOptions.cs" />
     <Compile Include="TestRAM.cs" />

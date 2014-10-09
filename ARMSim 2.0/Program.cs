@@ -65,6 +65,8 @@ namespace ARMSim_2._0
             tl.RunTests();
             TestComputer tco = new TestComputer();
             tco.RunTests();
+            TestInstruction ti = new TestInstruction();
+            ti.RunTests();
         }
     }
 }

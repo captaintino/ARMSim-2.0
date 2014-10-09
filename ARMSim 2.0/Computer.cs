@@ -63,8 +63,8 @@ namespace ARMSim_2._0
                     parentForm.Invoke(parentForm.myDelegate);
                 return;
             }
-            cpu.decode();
-            cpu.execute();
+            Instruction ins = cpu.decode(num);
+            cpu.execute(ins);
             if (trace != null)
                 WriteLog(progc);
         }
