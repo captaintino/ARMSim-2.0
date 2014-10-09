@@ -29,21 +29,24 @@ namespace ARMSim_2._0
         public uint fetch()
         {
             uint progC = registers.ReadRegister(15);
+            uint data = ram.ReadWord(progC);
             registers.IncrementProgramCounter();
-            // POTENTIAL ISSUE WITH ORDERING? Handle in future when filling out method
-            return ram.ReadWord(progC);
+            return data;
         }
 
         // Decode command
-        public uint /*???*/ decode()
+        public Instruction /*???*/ decode(uint data)
         {
-            return 0;
+            Instruction newInstruction = Instruction.InstructionFactory(data);
+            newInstruction.decode();
+            return newInstruction;
         }
 
         // Execute command
-        public void execute()
+        public void execute(Instruction instruction)
         {
-            System.Threading.Thread.Sleep(250);
+            // check cond flags
+            instruction.execute();
         }
 
         // Convert flags to a string of 1s and 0s in the order of "nzcf"

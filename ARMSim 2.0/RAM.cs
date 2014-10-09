@@ -9,7 +9,7 @@ using System.Security.Cryptography;
 
 namespace ARMSim_2._0
 {
-    class Memory
+    public class Memory
     {
         private Byte[] memory;
         public uint memorySize;

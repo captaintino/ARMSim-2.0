@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ARMSim_2._0
 {
-    class Registers : Memory
+    public class Registers : Memory
     {
         public Registers(uint EntryPoint) : base(64)
         {
