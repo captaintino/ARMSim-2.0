@@ -16,14 +16,35 @@ namespace ARMSim_2._0
             Registers regs = new Registers(0);
             Memory ram = new Memory();
             regs.WriteRegister(3, 100);
+            regs.WriteRegister(4, 1);
             Console.WriteLine("Simulator: Tests: Instruction: Testing Data Processing Instructions");
+
             Console.WriteLine("Simulator: Tests: Instruction: Testing MOV Instruction");
             DPInstruction dp = new DPInstruction(0xE1A05003u);
             dp.decode();
             Debug.Assert(dp.ToString() == "MOV R5, R3");
             dp.execute(regs, ram);
             Debug.Assert(regs.ReadRegister(5) == 100);
-            Console.WriteLine("Prototype: Tests: CPU: Memory Access tests Passed");
+
+            dp = new DPInstruction(0xE1A05083u);
+            dp.decode();
+            Debug.Assert(dp.ToString() == "MOV R5, R3, lsl #1");
+            dp.execute(regs, ram);
+            Debug.Assert(regs.ReadRegister(5) == 200);
+
+            dp = new DPInstruction(0xE3A05180u);
+            dp.decode();
+            Debug.Assert(dp.ToString() == "MOV R5, #32");
+            dp.execute(regs, ram);
+            Debug.Assert(regs.ReadRegister(5) == 32);
+
+            dp = new DPInstruction(0xE1A05413u);
+            dp.decode();
+            Debug.Assert(dp.ToString() == "MOV R5, R3, lsl R4");
+            dp.execute(regs, ram);
+            Debug.Assert(regs.ReadRegister(5) == 200);
+            Console.WriteLine("Simulator: Tests: Instruction: MOV Instruction Test Passed");
+
             Console.WriteLine("Simulator: Tests: Instruction: All tests Passed");
         }
     }

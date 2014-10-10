@@ -48,9 +48,9 @@ namespace ARMSim_2._0
                 case 0:
                     return PerformShift(shiftAmount, shift, regs.ReadRegister(Rm));
                 case 1:
-                    return PerformShift(Rs, shift, regs.ReadRegister(Rm));
+                    return PerformShift((int)regs.ReadRegister(Rs), shift, regs.ReadRegister(Rm));
                 case 2:
-                    return (immediate >> RoR) | (immediate << (32 - RoR));
+                    return (immediate >> (RoR * 2)) | (immediate << (32 - (RoR * 2)));
             }
             return 0;
         }
@@ -80,7 +80,7 @@ namespace ARMSim_2._0
                 case 1:
                     return "R" + Rm + ", " + shiftString[shift] + " R" + Rs; 
                 case 2:
-                    return "#" + ((immediate >> RoR) | (immediate << (32 - RoR))).ToString();
+                    return "#" + ((immediate >> (RoR * 2)) | (immediate << (32 - (RoR * 2)))).ToString();
             }
             return "";
         }
