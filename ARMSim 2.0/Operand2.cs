@@ -15,7 +15,6 @@ namespace ARMSim_2._0
         static string[] shiftString = { "lsl", "asr", "lsr", "ror" };
 
 
-
         public Operand2(uint data, bool immediateRotate)
         {
             if (immediateRotate)
@@ -41,6 +40,7 @@ namespace ARMSim_2._0
             }
         }
 
+        // get value for the operand2 portion of the command
         public uint execute(Registers regs)
         {
             switch (type)
@@ -55,7 +55,8 @@ namespace ARMSim_2._0
             return 0;
         }
 
-        public uint PerformShift(int shift, uint shiftType, uint Rm)
+        // perform correct shift on values passed
+        protected uint PerformShift(int shift, uint shiftType, uint Rm)
         {
             switch (shiftType)
             {
@@ -71,6 +72,7 @@ namespace ARMSim_2._0
             return 0;
         }
 
+        // convert operand2 to assembly string
         public override string ToString()
         {
             switch (type)

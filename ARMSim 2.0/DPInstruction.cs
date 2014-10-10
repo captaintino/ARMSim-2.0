@@ -17,6 +17,7 @@ namespace ARMSim_2._0
             this.data = data;
         }
 
+        // parse command into the proper variables
         public override void decode()
         {
             Cond = bitsb(data, 31, 28);
@@ -26,9 +27,9 @@ namespace ARMSim_2._0
             s = bitsb(data, 20, 20) == 1;
             i = bitsb(data, 25, 25) == 1;
             op2 = new Operand2(data, i);
-            // opcode 2?
         }
 
+        // perform command on <regs> and <ram>
         public override void execute(Registers regs, Memory ram)
         {
             RAMReference = ram;
@@ -71,6 +72,7 @@ namespace ARMSim_2._0
             }
         }
 
+        // Convert command to assembly string 
         public override string ToString()
         {
             switch (opcode)

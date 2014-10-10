@@ -76,6 +76,7 @@
     </Compile>
     <Compile Include="Instruction.cs" />
     <Compile Include="Loader.cs" />
+    <Compile Include="LSInstruction.cs" />
     <Compile Include="Operand2.cs" />
     <Compile Include="Options.cs" />
     <Compile Include="Program.cs" />

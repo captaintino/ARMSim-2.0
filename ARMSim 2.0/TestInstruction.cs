@@ -45,6 +45,34 @@ namespace ARMSim_2._0
             Debug.Assert(regs.ReadRegister(5) == 200);
             Console.WriteLine("Simulator: Tests: Instruction: MOV Instruction Test Passed");
 
+            ram.WriteWord(224u, 100);
+            ram.WriteWord(200u, 10);
+            ram.WriteWord(228u, 110);
+
+            Console.WriteLine("Simulator: Tests: Instruction: Testing LOAD Instruction");
+            LSInstruction lp = new LSInstruction(0xe5954018);
+            lp.decode();
+            Debug.Assert(lp.ToString() == "ldr r4, [r5, #24]");
+            lp.execute(regs, ram);
+            Debug.Assert(regs.ReadRegister(4) == 100);
+
+            lp = new LSInstruction(0xe4954018);
+            lp.decode();
+            Debug.Assert(lp.ToString() == "ldr r4, [r5], #24");
+            lp.execute(regs, ram);
+            Debug.Assert(regs.ReadRegister(4) == 10);
+            Debug.Assert(regs.ReadRegister(5) == 224);
+
+            regs.WriteRegister(5, 200);
+
+            lp = new LSInstruction(0xe5b5401c);
+            lp.decode();
+            Debug.Assert(lp.ToString() == "ldr r4, [r5, #28] !");
+            lp.execute(regs, ram);
+            Debug.Assert(regs.ReadRegister(4) == 110);
+            Debug.Assert(regs.ReadRegister(5) == 228);
+            Console.WriteLine("Simulator: Tests: Instruction: LOAD Instruction Test Passed");
+
             Console.WriteLine("Simulator: Tests: Instruction: All tests Passed");
         }
     }

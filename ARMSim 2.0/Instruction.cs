@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ARMSim_2._0
 {
-    public class Instruction
+    abstract public class Instruction
     {
         public ushort Rn, Rd, Cond;
         public uint data;
