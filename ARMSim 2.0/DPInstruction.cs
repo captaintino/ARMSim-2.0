@@ -102,7 +102,7 @@ namespace ARMSim_2._0
                 case 12: // ORR
                     break;
                 case 13: // MOV
-                    return "MOV R" + Rd + ", " + op2.ToString();
+                    return "mov r" + Rd + ", " + op2.ToString();
                 case 14: // BIC
                     break;
                 case 15: // MVN

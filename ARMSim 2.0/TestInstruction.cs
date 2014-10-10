@@ -22,25 +22,25 @@ namespace ARMSim_2._0
             Console.WriteLine("Simulator: Tests: Instruction: Testing MOV Instruction");
             DPInstruction dp = new DPInstruction(0xE1A05003u);
             dp.decode();
-            Debug.Assert(dp.ToString() == "MOV R5, R3");
+            Debug.Assert(dp.ToString() == "mov r5, r3");
             dp.execute(regs, ram);
             Debug.Assert(regs.ReadRegister(5) == 100);
 
             dp = new DPInstruction(0xE1A05083u);
             dp.decode();
-            Debug.Assert(dp.ToString() == "MOV R5, R3, lsl #1");
+            Debug.Assert(dp.ToString() == "mov r5, r3, lsl #1");
             dp.execute(regs, ram);
             Debug.Assert(regs.ReadRegister(5) == 200);
 
             dp = new DPInstruction(0xE3A05180u);
             dp.decode();
-            Debug.Assert(dp.ToString() == "MOV R5, #32");
+            Debug.Assert(dp.ToString() == "mov r5, #32");
             dp.execute(regs, ram);
             Debug.Assert(regs.ReadRegister(5) == 32);
 
             dp = new DPInstruction(0xE1A05413u);
             dp.decode();
-            Debug.Assert(dp.ToString() == "MOV R5, R3, lsl R4");
+            Debug.Assert(dp.ToString() == "mov r5, r3, lsl r4");
             dp.execute(regs, ram);
             Debug.Assert(regs.ReadRegister(5) == 200);
             Console.WriteLine("Simulator: Tests: Instruction: MOV Instruction Test Passed");

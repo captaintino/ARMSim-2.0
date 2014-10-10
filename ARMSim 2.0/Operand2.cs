@@ -76,9 +76,9 @@ namespace ARMSim_2._0
             switch (type)
             {
                 case 0:
-                    return "R" + Rm + (shiftAmount == 0 ? "" : ", " + shiftString[shift] + " #" + shiftAmount); 
+                    return "r" + Rm + (shiftAmount == 0 ? "" : ", " + shiftString[shift] + " #" + shiftAmount); 
                 case 1:
-                    return "R" + Rm + ", " + shiftString[shift] + " R" + Rs; 
+                    return "r" + Rm + ", " + shiftString[shift] + " r" + Rs; 
                 case 2:
                     return "#" + ((immediate >> (RoR * 2)) | (immediate << (32 - (RoR * 2)))).ToString();
             }
