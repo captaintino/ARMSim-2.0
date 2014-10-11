@@ -33,19 +33,23 @@ namespace ARMSim_2._0
         // perform command on <regs> and <ram>
         public override void execute(Registers regs, Memory ram)
         {
-            RAMReference = ram;
             registersReference = regs;
             switch (opcode)
             {
                 case 0: // AND
+                    registersReference.WriteRegister(Rd, registersReference.ReadRegister(Rn) & op2.execute(registersReference));
                     break;
                 case 1: // EOR
+                    registersReference.WriteRegister(Rd, registersReference.ReadRegister(Rn) ^ op2.execute(registersReference));
                     break;
                 case 2: // SUB
+                    registersReference.WriteRegister(Rd, registersReference.ReadRegister(Rn) - op2.execute(registersReference));
                     break;
                 case 3: // RSB
+                    registersReference.WriteRegister(Rd, op2.execute(registersReference) - registersReference.ReadRegister(Rn));
                     break;
                 case 4: // ADD
+                    registersReference.WriteRegister(Rd, registersReference.ReadRegister(Rn) + op2.execute(registersReference));
                     break;
                 case 5: // ADC
                     break;
@@ -62,13 +66,16 @@ namespace ARMSim_2._0
                 case 11: // CMN
                     break;
                 case 12: // ORR
+                    registersReference.WriteRegister(Rd, registersReference.ReadRegister(Rn) | op2.execute(registersReference));
                     break;
                 case 13: // MOV
-                    registersReference.WriteRegister(Rd, op2.execute(registersReference));
+                    registersReference.WriteRegister(Rd, op2.execute(registersReference)); // TESTED 1
                     break;
                 case 14: // BIC
+                    registersReference.WriteRegister(Rd, registersReference.ReadRegister(Rn) & (~op2.execute(registersReference)));
                     break;
                 case 15: // MVN
+                    registersReference.WriteRegister(Rd, ~op2.execute(registersReference));
                     break;
             }
         }

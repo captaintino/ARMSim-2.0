@@ -6,12 +6,14 @@ using System.Threading.Tasks;
 
 namespace ARMSim_2._0
 {
-    class LSInstruction : Instruction
+    public class LSInstruction : Instruction
     {
-        bool p, u, b, w, l;
+        protected bool p, u, w, l;
+        bool b;
         ushort immediate;
         Operand2 op2;
 
+        protected LSInstruction() { }
         public LSInstruction(uint data)
         {
             this.data = data;

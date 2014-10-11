@@ -44,6 +44,7 @@ namespace ARMSim_2._0
 
                     }
                     Registers regs = new Registers(elfHeader.e_entry);
+                    regs.WriteRegister(13, 0x7000);
                     return new CPU(ram, regs);
                 }
                 catch

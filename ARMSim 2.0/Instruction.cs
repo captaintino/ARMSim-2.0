@@ -23,6 +23,7 @@ namespace ARMSim_2._0
 
         public static Instruction InstructionFactory(uint data){
             if (bitsb(data, 27, 24) == 15) return null;
+            if (bitsb(data, 27, 24) == 0 && bitsb(data, 7, 4) == 9) return new MulInstruction(data);
             uint itype = bits(data, 27, 26);
             switch (itype)
             {
@@ -33,8 +34,10 @@ namespace ARMSim_2._0
                     // Load/Store
                     return new LSInstruction(data);
                 case 2:
-                    // Branch?
-                    break;
+                    // Load/Store Multiple
+                    if (bitsb(data, 25, 25) == 0) return new LSMulInstruction(data);
+                    // Branch
+                    return new BrInstruction(data);
                 default:
                     //Should never happen, special cases checked BEFORE
                     break;
