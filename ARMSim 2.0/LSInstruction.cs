@@ -15,6 +15,7 @@ namespace ARMSim_2._0
         public LSInstruction(uint data)
         {
             this.data = data;
+            this.decode();
         }
 
         // parse command into the proper variables
@@ -51,15 +52,8 @@ namespace ARMSim_2._0
             if (p) // Pre
             {
                 address = (uint)(address + offset);
-                if (w) // writeback
-                {
-                    registersReference.WriteRegister(Rn, address);
-                }
             }
-            else // post
-            {
-                registersReference.WriteRegister(Rn, (uint)(address + offset)); // post indexed writeback
-            }
+            else{} // post
             if (l) // LOAD
             {
                 if (b) // byte
@@ -82,12 +76,21 @@ namespace ARMSim_2._0
                     RAMReference.WriteWord(address, registersReference.ReadRegister(Rd));
                 }
             }
+
+            if (p && w) // writeback
+            {
+                registersReference.WriteRegister(Rn, address);
+            }
+            else if (!p)
+            {
+                registersReference.WriteRegister(Rn, (uint)(address + offset)); // post indexed writeback
+            }
         }
 
         // Convert command to assembly string 
         public override string ToString()
         {
-            string str = l ? "ldr" : "str";
+            string str = (l ? "ldr" : "str");
             if (b) str += "b";
             str += " r" + Rd;
             str += ", [r" + Rn;
@@ -115,7 +118,7 @@ namespace ARMSim_2._0
             {
                 str += "]";
             }
-            if (w) str += " !";
+            if (w && p) str += " !";
             return str;
         }
     }

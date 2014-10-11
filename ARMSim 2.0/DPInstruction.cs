@@ -15,6 +15,7 @@ namespace ARMSim_2._0
         public DPInstruction(uint data)
         {
             this.data = data;
+            this.decode();
         }
 
         // parse command into the proper variables

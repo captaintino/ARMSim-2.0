@@ -64,6 +64,14 @@ namespace ARMSim_2._0
                 return;
             }
             Instruction ins = cpu.decode(num);
+            if (ins == null)
+            {
+                stop = true;
+                // trigger end of program
+                if (parentForm != null)
+                    parentForm.Invoke(parentForm.myDelegate);
+                return;
+            }
             cpu.execute(ins);
             if (trace != null)
                 WriteLog(progc);

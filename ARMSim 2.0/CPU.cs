@@ -37,9 +37,7 @@ namespace ARMSim_2._0
         // Decode command
         public Instruction /*???*/ decode(uint data)
         {
-            Instruction newInstruction = Instruction.InstructionFactory(data);
-            newInstruction.decode();
-            return newInstruction;
+            return Instruction.InstructionFactory(data);
         }
 
         // Execute command

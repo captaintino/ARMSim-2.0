@@ -22,7 +22,7 @@ namespace ARMSim_2._0
 
 
         public static Instruction InstructionFactory(uint data){
-            // check special cases
+            if (bitsb(data, 27, 24) == 15) return null;
             uint itype = bits(data, 27, 26);
             switch (itype)
             {
@@ -31,7 +31,7 @@ namespace ARMSim_2._0
                     return new DPInstruction(data);
                 case 1:
                     // Load/Store
-                    break;
+                    return new LSInstruction(data);
                 case 2:
                     // Branch?
                     break;
