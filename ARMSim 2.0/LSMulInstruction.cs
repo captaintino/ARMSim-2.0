@@ -34,35 +34,55 @@ namespace ARMSim_2._0
         {
             RAMReference = ram;
             registersReference = regs;
-            int address = (int)registersReference.ReadRegister(Rn);
+            int startAddress;
+            int regsCount = registerCount();
+            uint origRn = registersReference.ReadRegister(Rn);
+            if (u)
+            {
+                startAddress = (int)origRn + (p ? 0 : 4);
+            }
+            else
+            {
+                startAddress = (int)origRn - (regsCount * 4) - (p ? 0 : 4);
+            }
+            int address = startAddress;
             if (l) // LOAD
             {
-                for (int i = 15; i >= 0; --i)
+                for (int i = 0; i <= 15; ++i)
                 {
                     if (bitsb(data, i, i) == 1)
                     {
-                        if(p) address = (address + (u ? 4 : -4));
                         registersReference.WriteRegister((uint)i, RAMReference.ReadWord((uint)address));
-                        if (!p) address = (address + (u ? 4 : -4));
+                        address += 4;
                     }
                 }
             }
             else // STORE
             {
-                for (int i = 15; i >= 0; --i)
+                for (int i = 0; i <= 15; ++i)
                 {
                     if (bitsb(data, i, i) == 1)
                     {
-                        if (p) address = (address + (u ? 4 : -4));
                         RAMReference.WriteWord((uint)address, registersReference.ReadRegister((uint)i));
-                        if (!p) address = (address + (u ? 4 : -4));
+                        address += 4;
                     }
                 }
             }
             if (w)
             {
-                registersReference.WriteRegister(Rn, (uint)(address - 4));
+                registersReference.WriteRegister(Rn, (uint)(origRn + ((regsCount * 4) * (u ? 1 : -1))));
             }
+        }
+
+        private int registerCount()
+        {
+            uint bits = (data << 16) >> 15;
+            int count = 0;
+            for (int i = 0; i < 15; ++i)
+            {
+                count += (int)((bits >>= 1) & 1);
+            }
+            return count;
         }
 
         // Convert command to assembly string 
@@ -78,7 +98,7 @@ namespace ARMSim_2._0
                 str += (p ? "f" : "e") + (u ? "a" : "d");
             }
             str += " r" + Rn + (w ? "!" : "") + ", {r";
-            for (int i = 15; i >= 0; --i)
+            for (int i = 0; i <= 15; ++i)
             {
                 if (bitsb(data, i, i) == 1)
                 {
