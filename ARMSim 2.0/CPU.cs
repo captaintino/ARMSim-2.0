@@ -26,13 +26,9 @@ namespace ARMSim_2._0
         public bool GetFFlag() { return f; }
 
         // fetch command based on program counter and increment program counter
-        public uint fetch()
-        {
-            uint progC = registers.ReadRegister(15);
-            uint data = ram.ReadWord(progC);
-            registers.IncrementProgramCounter();
-            return data;
-        }
+        public uint fetch() { return ram.ReadWord(registers.ReadRegister(15) - 8); }
+
+        public uint fetchParticular(uint addr) { return ram.ReadWord(addr); }
 
         // Decode command
         public Instruction /*???*/ decode(uint data)
@@ -44,7 +40,7 @@ namespace ARMSim_2._0
         public void execute(Instruction instruction)
         {
             // check cond flags
-            instruction.execute();
+            instruction.execute(registers, ram);
         }
 
         // Convert flags to a string of 1s and 0s in the order of "nzcf"
@@ -76,9 +72,7 @@ namespace ARMSim_2._0
         }
 
         // Get stack pointer at register 13
-        public uint GetStackPointer()
-        {
-            return registers.ReadRegister(13);
-        }
+        public uint GetStackPointer() { return registers.ReadRegister(13); }
+        public uint getProgramCounter() { return registers.ReadRegister(15); }
     }
 }
