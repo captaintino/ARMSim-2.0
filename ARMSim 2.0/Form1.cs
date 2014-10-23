@@ -136,6 +136,8 @@ namespace ARMSim_2._0
             UpdateStackPanel();
             //Update Flags
             UpdateFlags();
+            //Update Disassembly
+            resetDisassembly();
         }
         
         //Update Register panel values
@@ -144,7 +146,7 @@ namespace ARMSim_2._0
             List<uint> registers = computer.GetRegisters();
             for (int i = 0; i < 16; ++i)
             {
-                registergrid.Rows[i].Cells[1].Value = "0x" + String.Format("{0:X8}", registers[i]);
+                registergrid.Rows[i].Cells[1].Value = "0x" + String.Format("{0:X8}", registers[i] - (i == 15 ? 8 : 0));
             }
         }
 
@@ -205,6 +207,23 @@ namespace ARMSim_2._0
             zflagcheckbox.Checked = flags[1];
             cflagcheckbox.Checked = flags[2];
             fflagcheckbox.Checked = flags[3];
+        }
+
+        private void resetDisassembly()
+        {
+            string disassembly = "";
+            uint progc = computer.getProgramCounter() - 8;
+            uint begin = progc - (7*4);
+            uint end = progc + (8*4);
+            while ((begin += 4) <= end)
+            {
+                Instruction nop = computer.getInstruction(begin);
+                if (nop != null)
+                {
+                    disassembly += (begin == progc ? ">>" : "") + String.Format("{0:X8}\t{1:X8}\t", begin, nop.data) + (nop.data == 0 ? "nop" : nop.ToString()) + "\r\n";
+                }
+            }
+            disassembledfile.Text = disassembly;
         }
 
         // Hot key catcher
@@ -289,6 +308,11 @@ namespace ARMSim_2._0
         private string UintToHexExtended(uint num)
         {
             return "0x" + UintToHex(num);
+        }
+
+        private void disassembledfile_TextChanged(object sender, EventArgs e)
+        {
+
         }
 
     }

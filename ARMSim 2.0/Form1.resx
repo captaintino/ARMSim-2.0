@@ -135,10 +135,50 @@
   <metadata name="ASCII.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <metadata name="Address.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="Column1.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="Column2.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="Column3.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="Column4.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="ASCII.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <metadata name="StackAddress.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
   <metadata name="StackValue.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="StackAddress.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="StackValue.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="disassembledfile.Text" xml:space="preserve">
+    <value>08048514 &lt;main&gt;:
+8048514:       8d 4c 24 04             lea    0x4(%esp),%ecx
+8048518:       83 e4 f0                and    $0xfffffff0,%esp
+804851b:       ff 71 fc                pushl  -0x4(%ecx)
+804851e:       55                      push   %ebp
+804851f:       89 e5                   mov    %esp,%ebp
+8048521:       51                      push   %ecx
+</value>
+  </data>
+  <metadata name="Register.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="Value.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
@@ -159,16 +199,6 @@
         fmJTIAhnBAIBd4jwY8xRgWAzT602v37zBn37/uNPK+OAkeV1lP/Eg2QP3yFpVaNReOqMjaaFXoxPKIzz
         CcWJ3vi0HFtMgtQol8uRwWBAo6OjfAvwjfR1aw9/xk9kW1hDfXNfKOugi8btrcLUELqHRrJ63XO0dcBO
         4Q7k5yA0TPvjzPE3CcEEyN8hI0xG+QgudNj+/v/jzKHfM9cfBbWft00AAAAASUVORK5CYII=
-</value>
-  </data>
-  <data name="disassembledfile.Text" xml:space="preserve">
-    <value>08048514 &lt;main&gt;:
-8048514:       8d 4c 24 04             lea    0x4(%esp),%ecx
-8048518:       83 e4 f0                and    $0xfffffff0,%esp
-804851b:       ff 71 fc                pushl  -0x4(%ecx)
-804851e:       55                      push   %ebp
-804851f:       89 e5                   mov    %esp,%ebp
-8048521:       51                      push   %ecx
 </value>
   </data>
   <metadata name="Register.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">

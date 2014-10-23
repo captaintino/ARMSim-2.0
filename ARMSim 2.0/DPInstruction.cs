@@ -86,15 +86,15 @@ namespace ARMSim_2._0
             switch (opcode)
             {
                 case 0: // AND
-                    break;
+                    return "and r" + Rd + ", r" + Rn + ", " + op2.ToString();
                 case 1: // EOR
-                    break;
+                    return "eor r" + Rd + ", r" + Rn + ", " + op2.ToString();
                 case 2: // SUB
-                    break;
+                    return "sub r" + Rd + ", r" + Rn + ", " + op2.ToString();
                 case 3: // RSB
-                    break;
+                    return "rsb r" + Rd + ", r" + Rn + ", " + op2.ToString();
                 case 4: // ADD
-                    break;
+                    return "add r" + Rd + ", r" + Rn + ", " + op2.ToString();
                 case 5: // ADC
                     break;
                 case 6: // SBC
@@ -110,13 +110,13 @@ namespace ARMSim_2._0
                 case 11: // CMN
                     break;
                 case 12: // ORR
-                    break;
+                    return "orr r" + Rd + ", r" + Rn + ", " + op2.ToString();
                 case 13: // MOV
                     return "mov r" + Rd + ", " + op2.ToString();
                 case 14: // BIC
-                    break;
+                    return "bic r" + Rd + ", r" + Rn + ", " + op2.ToString();
                 case 15: // MVN
-                    break;
+                    return "mvn r" + Rd + ", " + op2.ToString();
             }
             return "nop";
         }

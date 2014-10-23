@@ -43,7 +43,7 @@ namespace ARMSim_2._0
                         Console.WriteLine("Loader: Compute MD5: " + ram.ComputeMD5());
 
                     }
-                    Registers regs = new Registers(elfHeader.e_entry);
+                    Registers regs = new Registers(elfHeader.e_entry + 8);
                     regs.WriteRegister(13, 0x7000);
                     return new CPU(ram, regs);
                 }

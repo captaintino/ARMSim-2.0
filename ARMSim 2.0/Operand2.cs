@@ -63,9 +63,9 @@ namespace ARMSim_2._0
                 case 0:// LSL
                     return Rm << shift;
                 case 1:// ASR
-                    return (uint)((int)(Rm) >> shift);
-                case 2:// LSR
                     return Rm >> shift;
+                case 2:// LSR
+                    return (uint)((int)(Rm) >> shift);
                 case 4:// ROR
                     return (Rm >> shift % 32) | (Rm << (32 - shift % 32));
             }

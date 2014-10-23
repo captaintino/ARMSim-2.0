@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ARMSim_2._0
 {
-    abstract public class Instruction
+    public abstract class Instruction
     {
         public ushort Rn, Rd, Cond;
         public uint data;
@@ -14,15 +14,14 @@ namespace ARMSim_2._0
         public Registers registersReference;
         public Memory RAMReference;
 
-        public virtual void decode() { }
-        public virtual void execute() { }
-        public virtual void execute(Registers regs, Memory ram) { }
+        public abstract void decode();
+        public abstract void execute(Registers regs, Memory ram);
         public virtual String ToString() { return ""; }
 
 
 
         public static Instruction InstructionFactory(uint data){
-            if (bitsb(data, 27, 24) == 15) return null;
+            if (bitsb(data, 27, 24) == 15) return new SWIInstruction(data);
             if (bitsb(data, 27, 24) == 0 && bitsb(data, 7, 4) == 9) return new MulInstruction(data);
             uint itype = bits(data, 27, 26);
             switch (itype)
