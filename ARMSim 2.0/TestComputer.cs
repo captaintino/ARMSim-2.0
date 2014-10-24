@@ -26,7 +26,7 @@ namespace ARMSim_2._0
             List<uint> test3 = new List<uint>(new[] { 0u, 0u, 0u, 0u, 0u, 0u, 0u, 0u, 0u, 0u, 0u, 0u, 0u, 0x7000u, 0u, 0x138u });
             List<uint> test4 = computer.GetRegisters();
             for (int i = 0; i < 16; ++i){
-                Debug.Assert(test3[i] == test4[i]);
+                Debug.Assert(test3[i] == test4[i] - (i == 15 ? 8 : 0));
             }
             Console.WriteLine("Prototype: Tests: CPU: Register Access tests Passed");
 
