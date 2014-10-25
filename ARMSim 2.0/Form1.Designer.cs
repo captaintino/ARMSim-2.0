@@ -473,7 +473,7 @@
             this.filetab.Padding = new System.Windows.Forms.Padding(3);
             this.filetab.Size = new System.Drawing.Size(562, 165);
             this.filetab.TabIndex = 0;
-            this.filetab.Text = "File";
+            this.filetab.Text = "Disassembly";
             this.filetab.UseVisualStyleBackColor = true;
             // 
             // disassembledfile
@@ -486,8 +486,6 @@
             this.disassembledfile.ReadOnly = true;
             this.disassembledfile.Size = new System.Drawing.Size(556, 159);
             this.disassembledfile.TabIndex = 0;
-            this.disassembledfile.Text = resources.GetString("disassembledfile.Text");
-            this.disassembledfile.TextChanged += new System.EventHandler(this.disassembledfile_TextChanged);
             // 
             // splitContainer5
             // 

@@ -62,6 +62,10 @@ namespace ARMSim_2._0
                 resetbtn.Enabled = false;
                 stepbtn.Enabled = false;
             }
+            else
+            {
+                UpdateGUI();
+            }
         }
 
         // Create thread to run computer
@@ -191,11 +195,11 @@ namespace ARMSim_2._0
         private void UpdateStackPanel()
         {
             uint ebp = computer.GetStackPointer();
-            for (int i = 11; i >= 0; --i)
+            for (int i = -5; i <= 6; ++i)
             {
-                DataGridViewRow row = stackpanel.Rows[11 - i];
-                row.Cells[0].Value = UintToHexExtended(ebp + (uint)(i * 4)) + (i == 0 ? " (sp) " : "");
-                row.Cells[1].Value = UintToHexExtended(computer.GetWord(ebp + ((uint)i * 4)));
+                DataGridViewRow row = stackpanel.Rows[6 - i];
+                row.Cells[0].Value = (i == 0 ? " (SP) " : "") + "0x" + String.Format("{0:X8}", ebp + (uint)(i * 4));
+                row.Cells[1].Value = UintToHexExtended(computer.GetWord(ebp + ((uint)(i-5) * 4)));
             }
         }
 
@@ -220,7 +224,7 @@ namespace ARMSim_2._0
                 Instruction nop = computer.getInstruction(begin);
                 if (nop != null)
                 {
-                    disassembly += (begin == progc ? ">>" : "") + String.Format("{0:X8}\t{1:X8}\t", begin, nop.data) + (nop.data == 0 ? "nop" : nop.ToString()) + "\r\n";
+                    disassembly += (begin == progc ? ">>>\t" : "") + String.Format("{0:X8}\t{1:X8}\t", begin, nop.data) + (nop.data == 0 ? "nop" : nop.ToString()) + "\r\n";
                 }
             }
             disassembledfile.Text = disassembly;
@@ -310,9 +314,10 @@ namespace ARMSim_2._0
             return "0x" + UintToHex(num);
         }
 
-        private void disassembledfile_TextChanged(object sender, EventArgs e)
+        public void runOnce()
         {
-
+            computer.ProvideParentForm(null);
+            computer.run();
         }
 
     }

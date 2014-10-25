@@ -26,8 +26,9 @@ namespace ARMSim_2._0
                 Debug.WriteLine("Loader: Options: filename: " + arguments.fileName);
                 Debug.WriteLine("Loader: Options: memSize: " + arguments.memorySize.ToString());
                 Debug.WriteLine("Loader: Options: testMode: " + (arguments.testMode ? "True" : "False"));
+                Debug.WriteLine("Loader: Options: execMode: " + (arguments.testMode && arguments.fileName != "" ? "True" : "False"));
 
-                if (arguments.fileName == "" && !arguments.testMode)
+                if (arguments.fileName == "" && !arguments.testMode && !arguments.exec)
                 {
                     QuitProgram();
                 }
@@ -35,6 +36,12 @@ namespace ARMSim_2._0
                 {
                     TestApp();
                     Environment.Exit(0); // All Tests Passed    
+                }
+                else if (arguments.fileName != "" && arguments.exec)
+                {
+                    Form1 simulator = new Form1(arguments);
+                    simulator.runOnce();
+                    Environment.Exit(1);
                 }
             }
             Application.EnableVisualStyles();

@@ -55,7 +55,6 @@ namespace ARMSim_2._0
             {
                 address = (uint)(address + offset);
             }
-            else{} // post
             if (l) // LOAD
             {
                 if (b) // byte

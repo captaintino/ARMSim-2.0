@@ -165,16 +165,6 @@
   <metadata name="StackValue.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <data name="disassembledfile.Text" xml:space="preserve">
-    <value>08048514 &lt;main&gt;:
-8048514:       8d 4c 24 04             lea    0x4(%esp),%ecx
-8048518:       83 e4 f0                and    $0xfffffff0,%esp
-804851b:       ff 71 fc                pushl  -0x4(%ecx)
-804851e:       55                      push   %ebp
-804851f:       89 e5                   mov    %esp,%ebp
-8048521:       51                      push   %ecx
-</value>
-  </data>
   <metadata name="Register.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>

@@ -39,7 +39,7 @@ namespace ARMSim_2._0
             uint origRn = registersReference.ReadRegister(Rn);
             if (u)
             {
-                startAddress = (int)origRn + (p ? 0 : 4);
+                startAddress = (int)origRn + (p ? 4 : 0);
             }
             else
             {
