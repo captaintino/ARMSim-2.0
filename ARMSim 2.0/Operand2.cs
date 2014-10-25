@@ -12,7 +12,7 @@ namespace ARMSim_2._0
         ushort RoR; uint immediate; // Immediate variables
         ushort type;
         // 2 => immediate rotate : 1 => register shift : 0 => immediate shift
-        static string[] shiftString = { "lsl", "asr", "lsr", "ror" };
+        static string[] shiftString = { "lsl", "lsr", "asr", "ror" };
 
 
         public Operand2(uint data, bool immediateRotate)
