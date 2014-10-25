@@ -108,11 +108,11 @@ namespace ARMSim_2._0
             {                                   // SUPPORT FOR POSITIVE/NEGATIVE UNKNOWN
                 if (p)
                 {
-                    str += ", " + (i ? op2.ToString() : "#" + immediate.ToString()) + "]";
+                    str += ", " + (i ? op2.ToString() : "#" + (u ? "" : "-") + immediate.ToString()) + "]";
                 }
                 else
                 {
-                    str += "], " + (i ? op2.ToString() : "#" + immediate);
+                    str += "], " + (i ? op2.ToString() : "#" + (u ? "" : "-") + immediate);
                 }
             }
             else

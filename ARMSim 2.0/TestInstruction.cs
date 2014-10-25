@@ -15,6 +15,7 @@ namespace ARMSim_2._0
             Console.WriteLine("Simulator: Tests: Instruction: Testing Instructions");
             Registers regs = new Registers(0);
             Memory ram = new Memory();
+            CPU cpu = new CPU(ram, regs);
             regs.WriteRegister(3, 100);
             regs.WriteRegister(4, 1);
             Console.WriteLine("Simulator: Tests: Instruction: Testing Data Processing Instructions");
@@ -41,9 +42,53 @@ namespace ARMSim_2._0
                 Debug.Assert(regs.ReadRegister(5) == 200);
                 Console.WriteLine("Simulator: Tests: Instruction: MOV Instruction Test Passed");
 
+                Console.WriteLine("Simulator: Tests: Instruction: Testing Various Data Processing Instructions");
+                Instruction ins = cpu.decode(0xE3E00002);
+                Debug.Assert(ins.ToString() == "mvn r0, #2");
+                cpu.execute(ins);
+                Debug.Assert(regs.ReadRegister(0) == ~2u);
+
+                ins = cpu.decode(0xE2440001);
+                Debug.Assert(ins.ToString() == "sub r0, r4, #1");
+                cpu.execute(ins);
+                Debug.Assert(regs.ReadRegister(0) == 0);
+
+                ins = cpu.decode(0xE2640002);
+                Debug.Assert(ins.ToString() == "rsb r0, r4, #2");
+                cpu.execute(ins);
+                Debug.Assert(regs.ReadRegister(0) == 1);
+
+                ins = cpu.decode(0xE20400FF);
+                Debug.Assert(ins.ToString() == "and r0, r4, #255");
+                cpu.execute(ins);
+                Debug.Assert(regs.ReadRegister(0) == 1);
+
+                ins = cpu.decode(0xE3800012);
+                Debug.Assert(ins.ToString() == "orr r0, r0, #18");
+                cpu.execute(ins);
+                Debug.Assert(regs.ReadRegister(0) == 19);
+
+                ins = cpu.decode(0xE2200020);
+                Debug.Assert(ins.ToString() == "eor r0, r0, #32");
+                cpu.execute(ins);
+                Debug.Assert(regs.ReadRegister(0) == 51);
+                Console.WriteLine("Simulator: Tests: Instruction: Various Data Processing Instructions Test Passed");
+
+            regs.WriteRegister(4, 2);
+
+                Console.WriteLine("Simulator: Tests: Instruction: Testing MUL Instruction");
+                ins = cpu.decode(0xE0000493);
+                Debug.Assert(ins.ToString() == "mul r0, r3, r4");
+                cpu.execute(ins);
+                Debug.Assert(regs.ReadRegister(0) == 200);
+                Console.WriteLine("Simulator: Tests: Instruction: MUL Instruction Test Passed");
+
+
             ram.WriteWord(224u, 100);
             ram.WriteWord(200u, 10);
             ram.WriteWord(228u, 110);
+            ram.WriteByte(3u, 3);
+            regs.WriteRegister(0, 0);
 
                 Console.WriteLine("Simulator: Tests: Instruction: Testing LOAD Instruction");
                 LSInstruction lp = new LSInstruction(0xe5954018);
@@ -64,6 +109,11 @@ namespace ARMSim_2._0
                 lp.execute(regs, ram);
                 Debug.Assert(regs.ReadRegister(4) == 110);
                 Debug.Assert(regs.ReadRegister(5) == 228);
+
+                ins = cpu.decode(0xE5D04003);
+                Debug.Assert(ins.ToString() == "ldrb r4, [r0, #3]");
+                cpu.execute(ins);
+                Debug.Assert(regs.ReadRegister(4) == 3);
                 Console.WriteLine("Simulator: Tests: Instruction: LOAD Instruction Test Passed");
 
             regs.WriteRegister(0, 12);
@@ -86,6 +136,11 @@ namespace ARMSim_2._0
                 sp.execute(regs, ram);
                 Debug.Assert(ram.ReadWord(36) == 12);
                 Debug.Assert(regs.ReadRegister(0) == 36);
+
+                ins = cpu.decode(0xE5C00003);
+                Debug.Assert(ins.ToString() == "strb r0, [r0, #3]");
+                cpu.execute(ins);
+                Debug.Assert(ram.ReadByte(39) == 36);
                 Console.WriteLine("Simulator: Tests: Instruction: STORE Instruction Test Passed");
 
 
@@ -122,19 +177,19 @@ namespace ARMSim_2._0
 
                 Console.WriteLine("Simulator: Tests: Instruction: Testing LOAD/STORE MULTIPLE Instruction");
                 LSMulInstruction lsmp = new LSMulInstruction(0xe8a1f008);
-                Debug.Assert(lsmp.ToString() == "stmea r1!, {r15, r14, r13, r12, r3}");
+                Debug.Assert(lsmp.ToString() == "stmea r1!, {r3, r12, r13, r14, r15}");
                 lsmp.execute(regs, ram);
+                Debug.Assert(ram.ReadWord(416) == 2);
                 Debug.Assert(ram.ReadWord(400) == 11);
                 Debug.Assert(ram.ReadWord(404) == 10);
                 Debug.Assert(ram.ReadWord(408) == 9);
                 Debug.Assert(ram.ReadWord(412) == 8);
-                Debug.Assert(ram.ReadWord(416) == 2);
                 Debug.Assert(regs.ReadRegister(1) == 416);
 
                 regs.WriteRegister(1, 416);
 
                 lsmp = new LSMulInstruction(0xe811f008);
-                Debug.Assert(lsmp.ToString() == "ldmfa r1, {r15, r14, r13, r12, r3}");
+                Debug.Assert(lsmp.ToString() == "ldmfa r1, {r3, r12, r13, r14, r15}");
                 lsmp.execute(regs, ram);
                 Debug.Assert(regs.ReadRegister(15) == 2);
                 Debug.Assert(regs.ReadRegister(14) == 8);

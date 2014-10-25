@@ -91,7 +91,7 @@ namespace ARMSim_2._0
         {
             List<uint> registers = GetRegisters();
             string write = String.Format("{0:d6} {1:X8} ", stepNumber, programcounter - 8) + GetMD5() + " " + cpu.FlagsToString() + " " + String.Format("0={0:X8} 1={1:X8} 2={2:X8} 3={3:X8}\r\n        ", registers[0], registers[1], registers[2], registers[3]) +
-            String.Format("4={0:X8} 5={1:X8} 6={2:X8} 7={3:X8} 8={4:X8} 9={5:X8}\r\n       ", registers[4], registers[5], registers[6], registers[7], registers[8], registers[9]) +
+            String.Format("4={0:X8}  5={1:X8}  6={2:X8}  7={3:X8}  8={4:X8}  9={5:X8}\r\n       ", registers[4], registers[5], registers[6], registers[7], registers[8], registers[9]) +
             String.Format("10={0:X8} 11={1:X8} 12={2:X8} 13={3:X8} 14={4:X8}\r\n", registers[10], registers[11], registers[12], registers[13], registers[14]);
             byte[] bytes = new byte[write.Length * sizeof(char)];
             System.Buffer.BlockCopy(write.ToCharArray(), 0, bytes, 0, bytes.Length);

@@ -198,8 +198,8 @@ namespace ARMSim_2._0
             for (int i = -5; i <= 6; ++i)
             {
                 DataGridViewRow row = stackpanel.Rows[6 - i];
-                row.Cells[0].Value = (i == 0 ? " (SP) " : "") + "0x" + String.Format("{0:X8}", ebp + (uint)(i * 4));
-                row.Cells[1].Value = UintToHexExtended(computer.GetWord(ebp + ((uint)(i-5) * 4)));
+                row.Cells[0].Value = (i == 0 ? " (SP) " : "") + "0x" + String.Format("{0:X8}", ebp + (i * 4));
+                row.Cells[1].Value = UintToHexExtended(computer.GetWord((uint)(ebp + ((i) * 4))));
             }
         }
 
