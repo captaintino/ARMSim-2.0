@@ -39,7 +39,51 @@ namespace ARMSim_2._0
         // Execute command
         public void execute(Instruction instruction)
         {
-            // check cond flags
+            switch (instruction.Cond)
+            {
+                case 0:
+                    if (false) return; // Z
+                    else break;
+                case 1:
+                    if (false) return; // !Z
+                    else break;
+                case 2:
+                    if (false) return; // C
+                    else break;
+                case 3:
+                    if (false) return; // !C
+                    else break;
+                case 4:
+                    if (false) return; // N
+                    else break;
+                case 5:
+                    if (false) return; // !N
+                    else break;
+                case 6:
+                    if (false) return; // V
+                    else break;
+                case 7:
+                    if (false) return; // !V
+                    else break;
+                case 8:
+                    if (false) return; // C && !Z
+                    else break;
+                case 9:
+                    if (false) return; // !C || Z
+                    else break;
+                case 10:
+                    if (false) return; // N == V
+                    else break;
+                case 11:
+                    if (false) return; // N != V
+                    else break;
+                case 12:
+                    if (false) return; // Z == 0 && N == V
+                    else break;
+                case 13:
+                    if (false) return; // Z == 1 || N != V
+                    else break;
+            }
             instruction.execute(registers, ram);
         }
 
