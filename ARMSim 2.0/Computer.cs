@@ -69,7 +69,7 @@ namespace ARMSim_2._0
                 endProgram(progc);
                 return;
             }
-            Instruction ins = cpu.decode(num);
+            Instruction ins = cpu.decode(num, progc - 8);
             if (ins == null)
             {
                 endProgram(progc);
@@ -159,7 +159,7 @@ namespace ARMSim_2._0
         // Gets a particular instruction from memory at <addr>
         public Instruction getInstruction(uint addr)
         {
-            return cpu.decode(cpu.fetchParticular(addr));
+            return cpu.decode(cpu.fetchParticular(addr), addr);
         }
 
     }

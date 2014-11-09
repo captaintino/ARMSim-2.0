@@ -35,9 +35,9 @@ namespace ARMSim_2._0
         public uint fetchParticular(uint addr) { return ram.ReadWord(addr); }
 
         // Decode command
-        public Instruction /*???*/ decode(uint data)
+        public Instruction /*???*/ decode(uint data, uint progc = 0)
         {
-            return Instruction.InstructionFactory(data);
+            return Instruction.InstructionFactory(data, progc);
         }
 
         // Execute command
@@ -73,7 +73,7 @@ namespace ARMSim_2._0
                     if (GetCFlag() && !GetZFlag()) break; // C && !Z
                     else return;
                 case 9:
-                    if (!GetCFlag() && GetZFlag()) break; // !C || Z
+                    if (!GetCFlag() || GetZFlag()) break; // !C || Z
                     else return;
                 case 10:
                     if (GetNFlag() == GetFFlag()) break; // N == V
@@ -85,7 +85,7 @@ namespace ARMSim_2._0
                     if (GetZFlag() == false && GetNFlag() == GetFFlag()) break; // Z == 0 && N == V
                     else return;
                 case 13:
-                    if (GetZFlag() == true && GetNFlag() != GetFFlag()) break; // Z == 1 || N != V
+                    if (GetZFlag() == true || GetNFlag() != GetFFlag()) break; // Z == 1 || N != V
                     else return;
             }
             instruction.execute(this);

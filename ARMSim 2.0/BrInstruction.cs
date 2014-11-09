@@ -23,7 +23,7 @@ namespace ARMSim_2._0
         {
             Cond = bitsb(data, 31, 28);
             l = bitsb(data, 24, 24) == 1;
-            immediate = bits(data, 23, 0);
+            immediate = bits(data, 23, 0) + 1;
             if (bitsb(data, 23, 23) == 1) immediate |= 0xff000000;
             immediate <<= 2;
         }
@@ -35,7 +35,7 @@ namespace ARMSim_2._0
             registersReference = cpu.registers;
             if (l)
             {
-                registersReference.WriteRegister(14, registersReference.ReadRegister(15)); // UNSURE! Current PC???
+                registersReference.WriteRegister(14, registersReference.ReadRegister(15) - 4); // UNSURE! -4 added to match correct trace log???
             }
             registersReference.WriteRegister(15, (uint)(registersReference.ReadRegister(15) + (int)immediate));
         }
@@ -43,7 +43,7 @@ namespace ARMSim_2._0
         // Convert command to assembly string 
         public override string ToString()
         {
-            return "b" + (l ? "l" : "") + conditional() + " #" + (int)immediate;
+            return "b" + (l ? "l" : "") + conditional() + String.Format(" #{0:X8}", (uint)((int)(immediate) + progc + 4));
         }
     }
 }
