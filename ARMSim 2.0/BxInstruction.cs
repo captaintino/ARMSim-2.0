@@ -29,7 +29,7 @@ namespace ARMSim_2._0
         public override void execute(CPU cpu)
         {
             registersReference = cpu.registers;
-            registersReference.WriteRegister(15, (uint)((registersReference.ReadRegister(Rm) & 0xFFFFFFFE)));
+            registersReference.WriteRegister(15, (uint)((registersReference.ReadRegister(Rm) & 0xFFFFFFFE) + 4)); // + 4 added to deal with PC + 8 issue
         }
 
         // Convert command to assembly string 

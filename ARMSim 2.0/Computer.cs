@@ -42,6 +42,12 @@ namespace ARMSim_2._0
         // Perform Fetch, Decode, Execute process in loop
         public void run()
         {
+            if (cpu.fetch() == 0 || cpu.fetch() == 0xEF000000 /* SWI #0 */)
+            {
+                if (parentForm != null)
+                    parentForm.Invoke(parentForm.myDelegate);
+                return;
+            }
             stop = false;
             do
             {
@@ -54,7 +60,7 @@ namespace ARMSim_2._0
         // Perform Fetch, Decode, Execute process once
         public void step()
         {
-            if(cpu.fetch() != 0)
+            if (cpu.fetch() != 0 && cpu.fetch() != 0xEF000000 /* SWI #0 */)
                 FetchDecodeExecute();
         }
 
@@ -79,7 +85,8 @@ namespace ARMSim_2._0
             stepNumber++;
             if (trace != null)
                 WriteLog(progc);
-            cpu.registers.IncrementProgramCounter();
+            if(!stop)
+                cpu.registers.IncrementProgramCounter();
         }
 
         // trigger end of program and que GUI update if possible
@@ -144,6 +151,7 @@ namespace ARMSim_2._0
         // Get specific register values
         public uint GetStackPointer() { return cpu.GetStackPointer(); }
         public uint getProgramCounter() { return cpu.getProgramCounter(); }
+        public uint GetProcMode() { return cpu.GetModeBits(); }
 
         // return List of the flags in order of NZCF
         public List<bool> GetFlags()
@@ -152,7 +160,7 @@ namespace ARMSim_2._0
             flags.Add(cpu.GetNFlag());
             flags.Add(cpu.GetZFlag());
             flags.Add(cpu.GetCFlag());
-            flags.Add(cpu.GetFFlag());
+            flags.Add(cpu.GetVFlag());
             return flags;
         }
 

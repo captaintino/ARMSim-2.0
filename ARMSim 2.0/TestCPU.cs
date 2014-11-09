@@ -15,7 +15,7 @@ namespace ARMSim_2._0
             Registers regs = new Registers(150);
             Memory ram = new Memory();
             CPU cpu = new CPU(ram, regs, null);
-            Debug.Assert(cpu.GetNFlag() == false && cpu.GetZFlag() == false && cpu.GetCFlag() == false && cpu.GetFFlag() == false);
+            Debug.Assert(cpu.GetNFlag() == false && cpu.GetZFlag() == false && cpu.GetCFlag() == false && cpu.GetVFlag() == false);
             Debug.Assert(cpu.FlagsToString() == "0000");
             Console.WriteLine("Prototype: Tests: CPU: Flag tests Passed");
             Debug.Assert(cpu.GetStackPointer() == 0);

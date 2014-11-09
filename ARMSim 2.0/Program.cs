@@ -10,6 +10,17 @@ using System.Text;
 
 namespace ARMSim_2._0
 {
+    public static class Global
+    {
+        public const uint USERMODE = 16;
+        public const uint FIQMODE = 17;
+        public const uint IRQMODE = 18;
+        public const uint SUPERVISORMODE = 19;
+        public const uint ABORTMODE = 23;
+        public const uint UNDEFINEDMODE = 27;
+        public const uint SYSTEMMODE = 31;
+    }
+
     static class Program
     {
         /// <summary>

@@ -26,13 +26,18 @@ namespace ARMSim_2._0
         // perform command on <regs> and <ram>
         public override void execute(CPU cpu)
         {
+            registersReference = cpu.registers;
             switch (number)
             {
                 case 0:
                     cpu.StopComputer();
                     break;
+                case 17:
+                    registersReference.SwitchModes(Global.SUPERVISORMODE);
+                    cpu.SetModeBits(Global.SUPERVISORMODE);
+                    break;
             }
-            cpu.StopComputer();
+            cpu.StopComputer(); // To avoid infinite loops REMOVE LATER
         }
 
         // Convert command to assembly string 

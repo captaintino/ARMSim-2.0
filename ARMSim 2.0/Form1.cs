@@ -152,7 +152,9 @@ namespace ARMSim_2._0
             //Update Flags
             UpdateFlags();
             //Update Disassembly
-            resetDisassembly();
+            ResetDisassembly();
+            //Update Processor Mode
+            UpdateProcessorMode();
         }
         
         //Update Register panel values
@@ -224,8 +226,36 @@ namespace ARMSim_2._0
             fflagcheckbox.Checked = flags[3];
         }
 
+        private void UpdateProcessorMode()
+        {
+            switch (computer.GetProcMode())
+            {
+                case 16:
+                    procMode.Text = "Processor Mode: User";
+                    return;
+                case 17:
+                    procMode.Text = "Processor Mode: FIQ";
+                    return;
+                case 18:
+                    procMode.Text = "Processor Mode: IRQ";
+                    return;
+                case 19:
+                    procMode.Text = "Processor Mode: Supervisor";
+                    return;
+                case 23:
+                    procMode.Text = "Processor Mode: Abort";
+                    return;
+                case 27:
+                    procMode.Text = "Processor Mode: Undefined";
+                    return;
+                case 31:
+                    procMode.Text = "Processor Mode: System";
+                    return;
+            }
+        }
+
         // Update disassembly panel
-        private void resetDisassembly()
+        private void ResetDisassembly()
         {
             string disassembly = "";
             uint progc = computer.getProgramCounter() - 8;
@@ -376,6 +406,5 @@ namespace ARMSim_2._0
             computer.ProvideParentForm(null);
             computer.run();
         }
-
     }
 }

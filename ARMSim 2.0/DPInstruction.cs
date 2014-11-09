@@ -134,11 +134,11 @@ namespace ARMSim_2._0
             int sSecondVal = (int)secondVal;
             if (sFirstVal >= 0)
             {
-                cpu.SetFFlag(sSecondVal < 0 ? sFirstVal - sSecondVal < 0 : false);
+                cpu.SetVFlag(sSecondVal < 0 ? sFirstVal - sSecondVal < 0 : false);
             }
             else
             {
-                cpu.SetFFlag(sSecondVal >= 0 ? sFirstVal - sSecondVal > 0 : false);
+                cpu.SetVFlag(sSecondVal >= 0 ? sFirstVal - sSecondVal > 0 : false);
             }
         }
     }

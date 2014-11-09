@@ -81,6 +81,8 @@
             this.md5label = new System.Windows.Forms.Label();
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.activitylabel = new System.Windows.Forms.Label();
+            this.splitter2 = new System.Windows.Forms.Splitter();
+            this.procMode = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -652,6 +654,8 @@
             this.flowLayoutPanel2.Controls.Add(this.md5label);
             this.flowLayoutPanel2.Controls.Add(this.splitter1);
             this.flowLayoutPanel2.Controls.Add(this.activitylabel);
+            this.flowLayoutPanel2.Controls.Add(this.splitter2);
+            this.flowLayoutPanel2.Controls.Add(this.procMode);
             this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.flowLayoutPanel2.Location = new System.Drawing.Point(0, 5);
             this.flowLayoutPanel2.MaximumSize = new System.Drawing.Size(0, 20);
@@ -684,6 +688,23 @@
             this.activitylabel.Size = new System.Drawing.Size(67, 13);
             this.activitylabel.TabIndex = 3;
             this.activitylabel.Text = "Not Running";
+            // 
+            // splitter2
+            // 
+            this.splitter2.Location = new System.Drawing.Point(368, 3);
+            this.splitter2.Name = "splitter2";
+            this.splitter2.Size = new System.Drawing.Size(68, 7);
+            this.splitter2.TabIndex = 5;
+            this.splitter2.TabStop = false;
+            // 
+            // procMode
+            // 
+            this.procMode.AutoSize = true;
+            this.procMode.Location = new System.Drawing.Point(442, 0);
+            this.procMode.Name = "procMode";
+            this.procMode.Size = new System.Drawing.Size(116, 13);
+            this.procMode.TabIndex = 4;
+            this.procMode.Text = "Processor Mode: None";
             // 
             // Form1
             // 
@@ -790,6 +811,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ASCII;
         private System.Windows.Forms.DataGridViewTextBoxColumn Register;
         private System.Windows.Forms.DataGridViewTextBoxColumn Value;
+        private System.Windows.Forms.Splitter splitter2;
+        private System.Windows.Forms.Label procMode;
 
     }
 }
