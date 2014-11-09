@@ -14,15 +14,18 @@ namespace ARMSim_2._0
         public Registers registersReference;
         public Memory RAMReference;
 
+        static private string[] conditionMnemonic = { "EQ", "NE", "CS", "CC", "MI", "PL", "VS", "VC", "HI", "LS", "GE", "LT", "GT", "LE", "", ""};
+
         public abstract void decode();
-        public abstract void execute(Registers regs, Memory ram);
+        public abstract void execute(CPU cpu);
         public virtual String ToString() { return ""; }
 
 
-
-        public static Instruction InstructionFactory(uint data){
+        // Identify type of instruction and create/return instance of it
+        public static Instruction InstructionFactory(uint data, uint progc = 0){
             if (bitsb(data, 27, 24) == 15) return new SWIInstruction(data);
             if (bitsb(data, 27, 24) == 0 && bitsb(data, 7, 4) == 9) return new MulInstruction(data);
+            if (bitsb(data, 27, 20) == 18 && bitsb(data, 7, 4) == 1) return new BxInstruction(data, progc);
             uint itype = bits(data, 27, 26);
             switch (itype)
             {
@@ -36,24 +39,32 @@ namespace ARMSim_2._0
                     // Load/Store Multiple
                     if (bitsb(data, 25, 25) == 0) return new LSMulInstruction(data);
                     // Branch
-                    return new BrInstruction(data);
+                    return new BrInstruction(data, progc);
                 default:
                     //Should never happen, special cases checked BEFORE
                     break;
             }
             return null;
         }
+        // return bits <start> through <end> in <data>
         static public uint bits(uint data, int start, int end)
         {
             return (data << (31 - start)) >> (31 + end - start);
         }
+        // return bits <start> through <end> in <data>
         static public ushort bitss(uint data, int start, int end)
         {
             return (ushort)((data << (31 - start)) >> (31 + end - start));
         }
+        // return bits <start> through <end> in <data>
         static public byte bitsb(uint data, int start, int end)
         {
             return (byte)((data << (31 - start)) >> (31 + end - start));
+        }
+
+        public string conditional()
+        {
+            return conditionMnemonic[Cond];
         }
     }
 }

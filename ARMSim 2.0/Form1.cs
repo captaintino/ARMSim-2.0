@@ -20,12 +20,15 @@ namespace ARMSim_2._0
 
         // Event Handler variables
         public delegate void UpdateEverything();
+        public delegate void WriteCharacter();
         public UpdateEverything myDelegate;
+        public WriteCharacter myDelegate2;
 
         public Form1(Options args)
         {
             InitializeComponent();
             myDelegate = new UpdateEverything(UpdateEverythingMethod);
+            myDelegate2 = new WriteCharacter(writeCharacter);
             arguments = args;
             //Initialize registers
             for (int i = 0; i < 16; ++i)
@@ -128,6 +131,14 @@ namespace ARMSim_2._0
             breakbtn.PerformClick();
         }
 
+        public void writeCharacter()
+        {
+            if (computer.outputBuffer.Count > 0)
+            {
+                console.Text += computer.outputBuffer.Dequeue();
+            }
+        }
+
         // Updates all GUI components
         private void UpdateGUI()
         {
@@ -213,6 +224,7 @@ namespace ARMSim_2._0
             fflagcheckbox.Checked = flags[3];
         }
 
+        // Update disassembly panel
         private void resetDisassembly()
         {
             string disassembly = "";
@@ -230,6 +242,20 @@ namespace ARMSim_2._0
             disassembledfile.Text = disassembly;
         }
 
+        char[] convertNumbers = { ')', '!', '@', '#', '$', '%', '^', '&', '*', '(' };
+        Dictionary<int, Tuple<char, char>> convertPunctuation = new Dictionary<int, Tuple<char, char>>() {
+        { 0xba, new Tuple<char,char>(';',':')},
+        { 0xbb, new Tuple<char,char>('=','+')},
+        { 0xbc, new Tuple<char,char>(',','<')},
+        { 0xbd, new Tuple<char,char>('-','_')},
+        { 0xbe, new Tuple<char,char>('.','>')},
+        { 0xbf, new Tuple<char,char>('/','?')},
+        { 0xc0, new Tuple<char,char>('`','~')},
+        { 0xdb, new Tuple<char,char>('[','{')},
+        { 0xdc, new Tuple<char,char>('\\','|')},
+        { 0xdd, new Tuple<char,char>(']','}')},
+        { 0xde, new Tuple<char,char>('\'','"')}
+        };
         // Hot key catcher
         private void KeyEvent(object sender, KeyEventArgs e) //Keyup Event 
         {
@@ -239,11 +265,11 @@ namespace ARMSim_2._0
                 case Keys.F5:
                     if (runbtn.Enabled)
                         runbtn.PerformClick();
-                    break;
+                    return;
                 case Keys.F10:
                     if (stepbtn.Enabled)
                         stepbtn.PerformClick();
-                    break;
+                    return;
             }
 
             // Ctrl + Keys
@@ -268,6 +294,35 @@ namespace ARMSim_2._0
                         break;
                 }
             }
+            else if(e.KeyCode == Keys.Back){
+                if (computer.inputBuffer.Count > 0)
+                {
+                    computer.inputBuffer.Dequeue();
+                    console.Text = console.Text.Remove(console.Text.Length - 1);
+                }
+            }
+            else if (e.KeyValue < 128)
+            {
+                char newChar = (char)e.KeyValue;
+                if (Char.IsLetterOrDigit(newChar))
+                {
+                    console.Text += (char)((Char.IsLetter(newChar) ? (Convert.ToInt32(newChar) | (e.Shift ? 0 : 32)) : 0));
+                    if (Char.IsDigit(newChar))
+                    {
+                        console.Text += e.Shift ? convertNumbers[Convert.ToInt32(newChar.ToString())] : newChar;
+                    }
+                    computer.inputBuffer.Enqueue(console.Text[console.Text.Length - 1]);
+                }
+            }
+            else
+            {
+                if (convertPunctuation.ContainsKey(e.KeyValue))
+                {
+                    console.Text += e.Shift ? convertPunctuation[e.KeyValue].Item2 : convertPunctuation[e.KeyValue].Item1;
+                    computer.inputBuffer.Enqueue(console.Text[console.Text.Length - 1]);
+                }
+            }
+
         }
 
         // Reload computer and update GUI
@@ -277,6 +332,7 @@ namespace ARMSim_2._0
             UpdateGUI();
         }
 
+        // Update memory panel with new memory address input by user
         private void memoryaddressentry_TextChanged(object sender, EventArgs e)
         {
             UpdateMemoryPanel();
@@ -314,6 +370,7 @@ namespace ARMSim_2._0
             return "0x" + UintToHex(num);
         }
 
+        // Run loaded program and return
         public void runOnce()
         {
             computer.ProvideParentForm(null);

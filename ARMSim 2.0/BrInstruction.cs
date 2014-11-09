@@ -9,11 +9,12 @@ namespace ARMSim_2._0
     class BrInstruction : Instruction
     {
         bool l;
-        uint immediate;
+        uint immediate, progc;
 
-        public BrInstruction(uint data)
+        public BrInstruction(uint data, uint progc)
         {
             this.data = data;
+            this.progc = progc;
             this.decode();
         }
 
@@ -28,21 +29,21 @@ namespace ARMSim_2._0
         }
 
         // perform command on <regs> and <ram>
-        public override void execute(Registers regs, Memory ram)
+        public override void execute(CPU cpu)
         {
-            RAMReference = ram;
-            registersReference = regs;
+            RAMReference = cpu.ram;
+            registersReference = cpu.registers;
             if (l)
             {
-                regs.WriteRegister(14, regs.ReadRegister(15)); // UNSURE! Current PC???
+                registersReference.WriteRegister(14, registersReference.ReadRegister(15)); // UNSURE! Current PC???
             }
-            regs.WriteRegister(15, (uint)(regs.ReadRegister(15) + (int)immediate));
+            registersReference.WriteRegister(15, (uint)(registersReference.ReadRegister(15) + (int)immediate));
         }
 
         // Convert command to assembly string 
         public override string ToString()
         {
-            return "b" + (l ? "l" : "") + " #" + (int)immediate;
+            return "b" + (l ? "l" : "") + conditional() + " #" + (int)immediate;
         }
     }
 }

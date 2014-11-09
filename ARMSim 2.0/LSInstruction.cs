@@ -43,10 +43,10 @@ namespace ARMSim_2._0
         }
 
         // perform command on <regs> and <ram>
-        public override void execute(Registers regs, Memory ram)
+        public override void execute(CPU cpu)
         {
-            RAMReference = ram;
-            registersReference = regs;
+            RAMReference = cpu.ram;
+            registersReference = cpu.registers;
             // SAFETY?
             int offset = (int)((i ? op2.execute(registersReference) : immediate) * (u ? 1 : -1)); // positive/negative
             // SAFETY?
@@ -57,6 +57,10 @@ namespace ARMSim_2._0
             }
             if (l) // LOAD
             {
+                if (address == 0x00100001) // read character from console
+                {
+                    registersReference.WriteRegister(Rd, cpu.readChar());
+                }
                 if (b) // byte
                 {
                     registersReference.WriteRegister(Rd, RAMReference.ReadByte(address));
@@ -68,6 +72,10 @@ namespace ARMSim_2._0
             }
             else // STORE
             {
+                if (address == 0x00100000) // write character to console
+                {
+                    cpu.writeChar(registersReference.ReadRegister(Rd));
+                }
                 if (b) // byte
                 {
                     RAMReference.WriteByte(address, (byte)(registersReference.ReadRegister(Rd) % 256));
@@ -91,7 +99,7 @@ namespace ARMSim_2._0
         // Convert command to assembly string 
         public override string ToString()
         {
-            string str = (l ? "ldr" : "str");
+            string str = (l ? "ldr" : "str") + conditional();
             if (b) str += "b";
             str += " r" + Rd;
             str += ", [r" + Rn;

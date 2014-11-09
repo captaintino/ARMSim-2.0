@@ -13,7 +13,7 @@ namespace ARMSim_2._0
     class Loader
     {
         // Extract pertinent data from file requested in <arguments>, load into <ram>, and return the program entrypoint.
-        public static CPU PreloadCPU(Options arguments)
+        public static CPU PreloadCPU(Options arguments, Computer comp)
         {
             Memory ram = new Memory(arguments.memorySize);
             if (arguments.fileName != "")
@@ -45,18 +45,18 @@ namespace ARMSim_2._0
                     }
                     Registers regs = new Registers(elfHeader.e_entry + 8);
                     regs.WriteRegister(13, 0x7000);
-                    return new CPU(ram, regs);
+                    return new CPU(ram, regs, comp);
                 }
                 catch
                 {
                     Console.WriteLine("Loader: ERROR OCCURRED DURING RAM LOADING");
                     //Program.QuitProgram();
-                    return new CPU(new Memory(arguments.memorySize), new Registers(0));
+                    return new CPU(new Memory(arguments.memorySize), new Registers(0), comp);
                 }
             }
             else
             {
-                return new CPU(new Memory(arguments.memorySize), new Registers(0));
+                return new CPU(new Memory(arguments.memorySize), new Registers(0), comp);
             }
         }
 

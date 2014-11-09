@@ -7,29 +7,36 @@ using System.IO;
 
 namespace ARMSim_2._0
 {
-    class Computer
+    public class Computer
     {
         CPU cpu;
         bool stop = true;
         FileStream trace;
-        Form1 parentForm = null;
+        public Form1 parentForm = null;
         uint stepNumber;
+        public Queue<char> inputBuffer;
+        public Queue<char> outputBuffer;
 
         public Computer(Options arguments, ref FileStream tr)
         {
-            cpu = Loader.PreloadCPU(arguments);
+            cpu = Loader.PreloadCPU(arguments, this);
             trace = tr;
             stepNumber = 0;
+            inputBuffer = new Queue<char>();
+            outputBuffer = new Queue<char>();
         }
 
         // Set <parentForm>
         public void ProvideParentForm(Form1 parent) { parentForm = parent; }
 
+        // Determine if executable has been loaded
         public bool Initialized() { return cpu.GetRegister(15) != 0; }
 
+        // End the looping of run()
         public void stopRun()
         {
             stop = true;
+            // trigger end of program
         }
 
         // Perform Fetch, Decode, Execute process in loop
@@ -40,6 +47,8 @@ namespace ARMSim_2._0
             {
                 FetchDecodeExecute();
             } while (!stop);
+            if (parentForm != null)
+                parentForm.Invoke(parentForm.myDelegate);
         }
 
         // Perform Fetch, Decode, Execute process once
@@ -61,7 +70,7 @@ namespace ARMSim_2._0
                 return;
             }
             Instruction ins = cpu.decode(num);
-            if (ins == null || ins.ToString() == "swi")
+            if (ins == null)
             {
                 endProgram(progc);
                 return;
@@ -90,7 +99,7 @@ namespace ARMSim_2._0
         private void WriteLog(uint programcounter)
         {
             List<uint> registers = GetRegisters();
-            string write = String.Format("{0:d6} {1:X8} ", stepNumber, programcounter - 8) + GetMD5() + " " + cpu.FlagsToString() + " " + String.Format("0={0:X8} 1={1:X8} 2={2:X8} 3={3:X8}\r\n        ", registers[0], registers[1], registers[2], registers[3]) +
+            string write = String.Format("{0:d6} {1:X8} ", stepNumber, programcounter - 8) + GetMD5() + " " + cpu.FlagsToString() + "   " + String.Format("0={0:X8}  1={1:X8}  2={2:X8}  3={3:X8}\r\n        ", registers[0], registers[1], registers[2], registers[3]) +
             String.Format("4={0:X8}  5={1:X8}  6={2:X8}  7={3:X8}  8={4:X8}  9={5:X8}\r\n       ", registers[4], registers[5], registers[6], registers[7], registers[8], registers[9]) +
             String.Format("10={0:X8} 11={1:X8} 12={2:X8} 13={3:X8} 14={4:X8}\r\n", registers[10], registers[11], registers[12], registers[13], registers[14]);
             byte[] bytes = new byte[write.Length * sizeof(char)];
@@ -105,7 +114,7 @@ namespace ARMSim_2._0
         // Rebuild cpu with <arguments>
         public void Reset(Options arguments)
         {
-            cpu = Loader.PreloadCPU(arguments);
+            cpu = Loader.PreloadCPU(arguments, this);
             stepNumber = 0;
         }
 
@@ -147,6 +156,7 @@ namespace ARMSim_2._0
             return flags;
         }
 
+        // Gets a particular instruction from memory at <addr>
         public Instruction getInstruction(uint addr)
         {
             return cpu.decode(cpu.fetchParticular(addr));

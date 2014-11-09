@@ -31,9 +31,9 @@ namespace ARMSim_2._0
         }
 
         // perform command on <regs> and <ram>
-        public override void execute(Registers regs, Memory ram)
+        public override void execute(CPU cpu)
         {
-            registersReference = regs;
+            registersReference = cpu.registers;
             if (bitsb(data, 23, 23) == 1) // Multiply (acc) long
             {
 
@@ -63,7 +63,7 @@ namespace ARMSim_2._0
             else // Multiply (acc)
             {
                 // IF S?
-                return "mul r" + Rd + ", r" + Rm + ", r" + Rs;
+                return "mul" + conditional() + " r" + Rd + ", r" + Rm + ", r" + Rs;
             }
             return "nop";
         }

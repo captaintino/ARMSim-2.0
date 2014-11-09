@@ -31,9 +31,9 @@ namespace ARMSim_2._0
         }
 
         // perform command on <regs> and <ram>
-        public override void execute(Registers regs, Memory ram)
+        public override void execute(CPU cpu)
         {
-            registersReference = regs;
+            registersReference = cpu.registers;
             switch (opcode)
             {
                 case 0: // AND
@@ -62,6 +62,7 @@ namespace ARMSim_2._0
                 case 9: // TEQ
                     break;
                 case 10: // CMP
+                    DoCompare(cpu);
                     break;
                 case 11: // CMN
                     break;
@@ -86,15 +87,15 @@ namespace ARMSim_2._0
             switch (opcode)
             {
                 case 0: // AND
-                    return "and r" + Rd + ", r" + Rn + ", " + op2.ToString();
+                    return "and" + conditional() + "  r" + Rd + ", r" + Rn + ", " + op2.ToString();
                 case 1: // EOR
-                    return "eor r" + Rd + ", r" + Rn + ", " + op2.ToString();
+                    return "eor" + conditional() + "  r" + Rd + ", r" + Rn + ", " + op2.ToString();
                 case 2: // SUB
-                    return "sub r" + Rd + ", r" + Rn + ", " + op2.ToString();
+                    return "sub" + conditional() + "  r" + Rd + ", r" + Rn + ", " + op2.ToString();
                 case 3: // RSB
-                    return "rsb r" + Rd + ", r" + Rn + ", " + op2.ToString();
+                    return "rsb" + conditional() + "  r" + Rd + ", r" + Rn + ", " + op2.ToString();
                 case 4: // ADD
-                    return "add r" + Rd + ", r" + Rn + ", " + op2.ToString();
+                    return "add" + conditional() + "  r" + Rd + ", r" + Rn + ", " + op2.ToString();
                 case 5: // ADC
                     break;
                 case 6: // SBC
@@ -106,19 +107,39 @@ namespace ARMSim_2._0
                 case 9: // TEQ
                     break;
                 case 10: // CMP
-                    break;
+                    return "cmp" + conditional() + " r" + Rn + ", " + op2.ToString();
                 case 11: // CMN
                     break;
                 case 12: // ORR
-                    return "orr r" + Rd + ", r" + Rn + ", " + op2.ToString();
+                    return "orr" + conditional() + "  r" + Rd + ", r" + Rn + ", " + op2.ToString();
                 case 13: // MOV
-                    return "mov r" + Rd + ", " + op2.ToString();
+                    return "mov" + conditional() + "  r" + Rd + ", " + op2.ToString();
                 case 14: // BIC
-                    return "bic r" + Rd + ", r" + Rn + ", " + op2.ToString();
+                    return "bic" + conditional() + "  r" + Rd + ", r" + Rn + ", " + op2.ToString();
                 case 15: // MVN
-                    return "mvn r" + Rd + ", " + op2.ToString();
+                    return "mvn" + conditional() + "  r" + Rd + ", " + op2.ToString();
             }
             return "nop";
+        }
+
+        private void DoCompare(CPU cpu)
+        {
+            uint firstVal = registersReference.ReadRegister(Rn);
+            uint secondVal = op2.execute(registersReference);
+            uint subtracted = firstVal - secondVal;
+            cpu.SetNFlag((subtracted & 0x80000000) != 0);
+            cpu.SetZFlag(subtracted == 0);
+            cpu.SetCFlag(secondVal <= firstVal);
+            int sFirstVal = (int)firstVal;
+            int sSecondVal = (int)secondVal;
+            if (sFirstVal >= 0)
+            {
+                cpu.SetFFlag(sSecondVal < 0 ? sFirstVal - sSecondVal < 0 : false);
+            }
+            else
+            {
+                cpu.SetFFlag(sSecondVal >= 0 ? sFirstVal - sSecondVal > 0 : false);
+            }
         }
     }
 }

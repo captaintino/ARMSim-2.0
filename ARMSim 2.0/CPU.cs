@@ -6,24 +6,28 @@ using System.Threading.Tasks;
 
 namespace ARMSim_2._0
 {
-    class CPU
+    public class CPU
     {
         public Memory ram;
         public Registers registers;
-        bool n, z, c, f;
+        private Computer computer;
 
-        public CPU(Memory newRam, Registers newRegisters)
+        public CPU(Memory newRam, Registers newRegisters, Computer comp)
         {
             ram = newRam;
             registers = newRegisters;
-            n = z = c = f = false;
+            computer = comp;
         }
 
         // Flag Getters
-        public bool GetNFlag() { return n; }
-        public bool GetZFlag() { return z; }
-        public bool GetCFlag() { return c; }
-        public bool GetFFlag() { return f; }
+        public bool GetNFlag() { return registers.TestFlag(0); }
+        public bool GetZFlag() { return registers.TestFlag(1); }
+        public bool GetCFlag() { return registers.TestFlag(2); }
+        public bool GetFFlag() { return registers.TestFlag(3); }
+        public void SetNFlag(bool setVal) { registers.SetFlag(0, setVal); }
+        public void SetZFlag(bool setVal) { registers.SetFlag(1, setVal); }
+        public void SetCFlag(bool setVal) { registers.SetFlag(2, setVal); }
+        public void SetFFlag(bool setVal) { registers.SetFlag(3, setVal); }
 
         // fetch command based on program counter and increment program counter
         public uint fetch() { return ram.ReadWord(registers.ReadRegister(15) - 8); }
@@ -42,55 +46,55 @@ namespace ARMSim_2._0
             switch (instruction.Cond)
             {
                 case 0:
-                    if (false) return; // Z
-                    else break;
+                    if (GetZFlag()) break; // Z
+                    else return;
                 case 1:
-                    if (false) return; // !Z
-                    else break;
+                    if (!GetZFlag()) break; // !Z
+                    else return;
                 case 2:
-                    if (false) return; // C
-                    else break;
+                    if (GetCFlag()) break; // C
+                    else return;
                 case 3:
-                    if (false) return; // !C
-                    else break;
+                    if (!GetCFlag()) break; // !C
+                    else return;
                 case 4:
-                    if (false) return; // N
-                    else break;
+                    if (GetNFlag()) break; // N
+                    else return;
                 case 5:
-                    if (false) return; // !N
-                    else break;
+                    if (!GetNFlag()) break; // !N
+                    else return;
                 case 6:
-                    if (false) return; // V
-                    else break;
+                    if (GetFFlag()) break; // V
+                    else return;
                 case 7:
-                    if (false) return; // !V
-                    else break;
+                    if (!GetFFlag()) break; // !V
+                    else return;
                 case 8:
-                    if (false) return; // C && !Z
-                    else break;
+                    if (GetCFlag() && !GetZFlag()) break; // C && !Z
+                    else return;
                 case 9:
-                    if (false) return; // !C || Z
-                    else break;
+                    if (!GetCFlag() && GetZFlag()) break; // !C || Z
+                    else return;
                 case 10:
-                    if (false) return; // N == V
-                    else break;
+                    if (GetNFlag() == GetFFlag()) break; // N == V
+                    else return;
                 case 11:
-                    if (false) return; // N != V
-                    else break;
+                    if (GetNFlag() != GetFFlag()) break; // N != V
+                    else return;
                 case 12:
-                    if (false) return; // Z == 0 && N == V
-                    else break;
+                    if (GetZFlag() == false && GetNFlag() == GetFFlag()) break; // Z == 0 && N == V
+                    else return;
                 case 13:
-                    if (false) return; // Z == 1 || N != V
-                    else break;
+                    if (GetZFlag() == true && GetNFlag() != GetFFlag()) break; // Z == 1 || N != V
+                    else return;
             }
-            instruction.execute(registers, ram);
+            instruction.execute(this);
         }
 
         // Convert flags to a string of 1s and 0s in the order of "nzcf"
         public string FlagsToString()
         {
-            return (n ? "1" : "0") + (z ? "1" : "0") + (c ? "1" : "0") + (f ? "1" : "0"); 
+            return (GetNFlag() ? "1" : "0") + (GetZFlag() ? "1" : "0") + (GetCFlag() ? "1" : "0") + (GetFFlag() ? "1" : "0"); 
         }
 
         // Get MD5 computation of ram
@@ -115,8 +119,27 @@ namespace ARMSim_2._0
             return 0;
         }
 
+        // Read/Write characters from the console
+        public uint readChar()
+        {
+            if (computer.inputBuffer.Count > 0)
+            {
+                return computer.inputBuffer.Dequeue();
+            }
+            return 0;
+        }
+        public void writeChar(uint character)
+        {
+            if (character % 256 < 128)
+            {
+                computer.outputBuffer.Enqueue((char)character);
+                computer.parentForm.Invoke(computer.parentForm.myDelegate2);
+            }
+        }
         // Get stack pointer at register 13
         public uint GetStackPointer() { return registers.ReadRegister(13); }
         public uint getProgramCounter() { return registers.ReadRegister(15); }
+
+        public void StopComputer() { computer.stopRun(); }
     }
 }

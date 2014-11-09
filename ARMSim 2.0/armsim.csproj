@@ -66,6 +66,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BrInstruction.cs" />
+    <Compile Include="BxInstruction.cs" />
     <Compile Include="Computer.cs" />
     <Compile Include="CPU.cs" />
     <Compile Include="DPInstruction.cs" />

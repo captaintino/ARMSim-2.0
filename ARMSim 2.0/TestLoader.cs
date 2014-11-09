@@ -15,7 +15,7 @@ namespace ARMSim_2._0
             Console.WriteLine("Loader: Testing: Preloading RAM");
             Console.WriteLine("Loader: Testing: Using file = test1.exe");
             Options arguments = new Options(new[] { "--load", "test1.exe" });
-            CPU cpu = Loader.PreloadCPU(arguments);
+            CPU cpu = Loader.PreloadCPU(arguments, null);
             Debug.Assert(cpu.ram.ComputeMD5() == "3500a8bef72dfed358b25b61b7602cf1");
             Console.WriteLine("Loader: Testing: All Loader Tests Passed!");
         }

@@ -6,13 +6,15 @@ using System.Threading.Tasks;
 
 namespace ARMSim_2._0
 {
-    class SWIInstruction : Instruction
+    class BxInstruction : Instruction
     {
-        uint number;
+        uint progc;
+        ushort Rm;
 
-        public SWIInstruction(uint data)
+        public BxInstruction(uint data, uint progc)
         {
             this.data = data;
+            this.progc = progc;
             this.decode();
         }
 
@@ -20,25 +22,20 @@ namespace ARMSim_2._0
         public override void decode()
         {
             Cond = bitsb(data, 31, 28);
-            number = bits(data, 23, 0);
+            Rm = bitsb(data, 3, 0);
         }
 
         // perform command on <regs> and <ram>
         public override void execute(CPU cpu)
         {
-            switch (number)
-            {
-                case 0:
-                    cpu.StopComputer();
-                    break;
-            }
-            cpu.StopComputer();
+            registersReference = cpu.registers;
+            registersReference.WriteRegister(15, (uint)((registersReference.ReadRegister(Rm) & 0xFFFFFFFE)));
         }
 
         // Convert command to assembly string 
         public override string ToString()
         {
-            return "swi" +  conditional() + " #" + number;
+            return "bx" + conditional() + " r" + Rm;
         }
     }
 }

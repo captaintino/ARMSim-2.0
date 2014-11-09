@@ -30,10 +30,10 @@ namespace ARMSim_2._0
         }
 
         // perform command on <regs> and <ram>
-        public override void execute(Registers regs, Memory ram)
+        public override void execute(CPU cpu)
         {
-            RAMReference = ram;
-            registersReference = regs;
+            RAMReference = cpu.ram;
+            registersReference = cpu.registers;
             int startAddress;
             int regsCount = registerCount();
             uint origRn = registersReference.ReadRegister(Rn);
@@ -74,6 +74,7 @@ namespace ARMSim_2._0
             }
         }
 
+        // count number of bits set between 0 and 15
         private int registerCount()
         {
             uint bits = (data << 16) >> 15;
@@ -88,7 +89,7 @@ namespace ARMSim_2._0
         // Convert command to assembly string 
         public override string ToString()
         {
-            string str = l ? "ldm" : "stm";
+            string str = (l ? "ldm" : "stm") + conditional();
             if (l)
             {
                 str += (p ? "e" : "f") + (u ? "d" : "a");
