@@ -11,7 +11,7 @@ namespace ARMSim_2._0
     {
         CPU cpu;
         bool stop = true;
-        bool IRQ = false;
+        public bool IRQ { get; set; }
         FileStream trace;
         public Form1 parentForm = null;
         uint stepNumber;
@@ -23,15 +23,13 @@ namespace ARMSim_2._0
             cpu = Loader.PreloadCPU(arguments, this);
             trace = tr;
             stepNumber = 0;
+            IRQ = false;
             inputBuffer = new Queue<char>();
             outputBuffer = new Queue<char>();
         }
 
         // Set <parentForm>
         public void ProvideParentForm(Form1 parent) { parentForm = parent; }
-
-        //Set IRQ flag
-        public void TriggerIRQ() { IRQ = true; }
 
         // Determine if executable has been loaded
         public bool Initialized() { return cpu.GetRegister(15) != 0; }

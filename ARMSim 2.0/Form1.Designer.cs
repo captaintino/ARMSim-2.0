@@ -68,6 +68,7 @@
             this.disassembledfile = new System.Windows.Forms.TextBox();
             this.splitContainer5 = new System.Windows.Forms.SplitContainer();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.irqflagcheckbox = new System.Windows.Forms.CheckBox();
             this.tracecheckbox = new System.Windows.Forms.CheckBox();
             this.fflagcheckbox = new System.Windows.Forms.CheckBox();
             this.cflagcheckbox = new System.Windows.Forms.CheckBox();
@@ -512,6 +513,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.irqflagcheckbox);
             this.groupBox1.Controls.Add(this.tracecheckbox);
             this.groupBox1.Controls.Add(this.fflagcheckbox);
             this.groupBox1.Controls.Add(this.cflagcheckbox);
@@ -525,6 +527,20 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Flags";
+            // 
+            // irqflagcheckbox
+            // 
+            this.irqflagcheckbox.AutoSize = true;
+            this.irqflagcheckbox.Dock = System.Windows.Forms.DockStyle.Left;
+            this.irqflagcheckbox.Enabled = false;
+            this.irqflagcheckbox.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.irqflagcheckbox.Location = new System.Drawing.Point(136, 16);
+            this.irqflagcheckbox.Margin = new System.Windows.Forms.Padding(3, 3, 1, 3);
+            this.irqflagcheckbox.Name = "irqflagcheckbox";
+            this.irqflagcheckbox.Size = new System.Drawing.Size(45, 15);
+            this.irqflagcheckbox.TabIndex = 5;
+            this.irqflagcheckbox.Text = "IRQ";
+            this.irqflagcheckbox.UseVisualStyleBackColor = true;
             // 
             // tracecheckbox
             // 
@@ -547,6 +563,7 @@
             this.fflagcheckbox.Enabled = false;
             this.fflagcheckbox.ForeColor = System.Drawing.SystemColors.ControlText;
             this.fflagcheckbox.Location = new System.Drawing.Point(103, 16);
+            this.fflagcheckbox.Margin = new System.Windows.Forms.Padding(3, 3, 1, 3);
             this.fflagcheckbox.Name = "fflagcheckbox";
             this.fflagcheckbox.Size = new System.Drawing.Size(33, 15);
             this.fflagcheckbox.TabIndex = 3;
@@ -559,6 +576,7 @@
             this.cflagcheckbox.Dock = System.Windows.Forms.DockStyle.Left;
             this.cflagcheckbox.Enabled = false;
             this.cflagcheckbox.Location = new System.Drawing.Point(70, 16);
+            this.cflagcheckbox.Margin = new System.Windows.Forms.Padding(3, 3, 1, 3);
             this.cflagcheckbox.Name = "cflagcheckbox";
             this.cflagcheckbox.Size = new System.Drawing.Size(33, 15);
             this.cflagcheckbox.TabIndex = 2;
@@ -571,6 +589,7 @@
             this.zflagcheckbox.Dock = System.Windows.Forms.DockStyle.Left;
             this.zflagcheckbox.Enabled = false;
             this.zflagcheckbox.Location = new System.Drawing.Point(37, 16);
+            this.zflagcheckbox.Margin = new System.Windows.Forms.Padding(3, 3, 1, 3);
             this.zflagcheckbox.Name = "zflagcheckbox";
             this.zflagcheckbox.Size = new System.Drawing.Size(33, 15);
             this.zflagcheckbox.TabIndex = 1;
@@ -581,11 +600,11 @@
             // 
             this.nflagcheckbox.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.nflagcheckbox.AutoSize = true;
-            this.nflagcheckbox.Checked = true;
-            this.nflagcheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.nflagcheckbox.CheckAlign = System.Drawing.ContentAlignment.TopLeft;
             this.nflagcheckbox.Dock = System.Windows.Forms.DockStyle.Left;
             this.nflagcheckbox.Enabled = false;
             this.nflagcheckbox.Location = new System.Drawing.Point(3, 16);
+            this.nflagcheckbox.Margin = new System.Windows.Forms.Padding(3, 3, 1, 3);
             this.nflagcheckbox.Name = "nflagcheckbox";
             this.nflagcheckbox.Size = new System.Drawing.Size(34, 15);
             this.nflagcheckbox.TabIndex = 0;
@@ -813,6 +832,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Value;
         private System.Windows.Forms.Splitter splitter2;
         private System.Windows.Forms.Label procMode;
+        private System.Windows.Forms.CheckBox irqflagcheckbox;
 
     }
 }

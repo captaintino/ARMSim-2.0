@@ -12,6 +12,7 @@ namespace ARMSim_2._0
 {
     public static class Global
     {
+        //Modes
         public const uint USERMODE = 16;
         public const uint FIQMODE = 17;
         public const uint IRQMODE = 18;
@@ -19,6 +20,26 @@ namespace ARMSim_2._0
         public const uint ABORTMODE = 23;
         public const uint UNDEFINEDMODE = 27;
         public const uint SYSTEMMODE = 31;
+        //Masks
+        public const uint UNALLOCMASK = 0x0FFFFF00u;
+        public const uint USERMASK = 0xF0000000u;
+        public const uint PRIVMASK = 0x0000000Fu;
+        public const uint STATEMASK = 0x00000020u;
+        // Keyboard conversions
+        public const char[] convertNumbers = { ')', '!', '@', '#', '$', '%', '^', '&', '*', '(' };
+        public const Dictionary<int, Tuple<char, char>> convertPunctuation = new Dictionary<int, Tuple<char, char>>() {
+        { 0xba, new Tuple<char,char>(';',':')},
+        { 0xbb, new Tuple<char,char>('=','+')},
+        { 0xbc, new Tuple<char,char>(',','<')},
+        { 0xbd, new Tuple<char,char>('-','_')},
+        { 0xbe, new Tuple<char,char>('.','>')},
+        { 0xbf, new Tuple<char,char>('/','?')},
+        { 0xc0, new Tuple<char,char>('`','~')},
+        { 0xdb, new Tuple<char,char>('[','{')},
+        { 0xdc, new Tuple<char,char>('\\','|')},
+        { 0xdd, new Tuple<char,char>(']','}')},
+        { 0xde, new Tuple<char,char>('\'','"')}
+        };    
     }
 
     static class Program

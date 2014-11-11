@@ -224,6 +224,7 @@ namespace ARMSim_2._0
             zflagcheckbox.Checked = flags[1];
             cflagcheckbox.Checked = flags[2];
             fflagcheckbox.Checked = flags[3];
+            irqflagcheckbox.Checked = computer.IRQ;
         }
 
         private void UpdateProcessorMode()
@@ -272,20 +273,6 @@ namespace ARMSim_2._0
             disassembledfile.Text = disassembly;
         }
 
-        char[] convertNumbers = { ')', '!', '@', '#', '$', '%', '^', '&', '*', '(' };
-        Dictionary<int, Tuple<char, char>> convertPunctuation = new Dictionary<int, Tuple<char, char>>() {
-        { 0xba, new Tuple<char,char>(';',':')},
-        { 0xbb, new Tuple<char,char>('=','+')},
-        { 0xbc, new Tuple<char,char>(',','<')},
-        { 0xbd, new Tuple<char,char>('-','_')},
-        { 0xbe, new Tuple<char,char>('.','>')},
-        { 0xbf, new Tuple<char,char>('/','?')},
-        { 0xc0, new Tuple<char,char>('`','~')},
-        { 0xdb, new Tuple<char,char>('[','{')},
-        { 0xdc, new Tuple<char,char>('\\','|')},
-        { 0xdd, new Tuple<char,char>(']','}')},
-        { 0xde, new Tuple<char,char>('\'','"')}
-        };
         // Hot key catcher
         private void KeyEvent(object sender, KeyEventArgs e) //Keyup Event 
         {
@@ -329,6 +316,10 @@ namespace ARMSim_2._0
                 {
                     computer.inputBuffer.Dequeue();
                     console.Text = console.Text.Remove(console.Text.Length - 1);
+                    if (computer.inputBuffer.Count == 0)
+                    {
+                        computer.IRQ = false;
+                    }
                 }
             }
             else if (e.KeyValue < 128)
@@ -339,17 +330,19 @@ namespace ARMSim_2._0
                     console.Text += (char)((Char.IsLetter(newChar) ? (Convert.ToInt32(newChar) | (e.Shift ? 0 : 32)) : 0));
                     if (Char.IsDigit(newChar))
                     {
-                        console.Text += e.Shift ? convertNumbers[Convert.ToInt32(newChar.ToString())] : newChar;
+                        console.Text += e.Shift ? Global.convertNumbers[Convert.ToInt32(newChar.ToString())] : newChar;
                     }
                     computer.inputBuffer.Enqueue(console.Text[console.Text.Length - 1]);
+                    computer.IRQ = true;
                 }
             }
             else
             {
-                if (convertPunctuation.ContainsKey(e.KeyValue))
+                if (Global.convertPunctuation.ContainsKey(e.KeyValue))
                 {
-                    console.Text += e.Shift ? convertPunctuation[e.KeyValue].Item2 : convertPunctuation[e.KeyValue].Item1;
+                    console.Text += e.Shift ? Global.convertPunctuation[e.KeyValue].Item2 : Global.convertPunctuation[e.KeyValue].Item1;
                     computer.inputBuffer.Enqueue(console.Text[console.Text.Length - 1]);
+                    computer.IRQ = true;
                 }
             }
 

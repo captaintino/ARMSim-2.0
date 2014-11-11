@@ -8,7 +8,7 @@ namespace ARMSim_2._0
 {
     class MSInstruction : Instruction
     {
-        byte Rd, Rm;
+        byte Rm;
         Operand2 op2;
         bool immediateMode, statusToReg, R, c, x, s, f;
 
@@ -45,6 +45,25 @@ namespace ARMSim_2._0
             else
             {
                 uint byteMask = (f ? 0xFF000000u : 0) | (s ? 0xFF0000u : 0) | (x ? 0xFF00u : 0) | (c ? 0xFFu : 0);
+                uint operand = immediateMode ? op2.execute(registersReference) : registersReference.ReadRegister(Rm);
+                uint mask;
+                if (R)
+                {
+                    mask = byteMask & (Global.USERMASK | Global.PRIVMASK | Global.STATEMASK);
+                    registersReference.UpdateCurrentSPSR((registersReference.GetCurrentSPSR() & (~mask)) | (operand & mask));
+                }
+                else
+                {
+                    if (registersReference.GetModeBits() != Global.SYSTEMMODE) // In a priviledged mode
+                    {
+                        mask = byteMask & (Global.USERMASK | Global.PRIVMASK);
+                    }
+                    else
+                    {
+                        mask = byteMask & Global.USERMASK;
+                    }
+                    registersReference.SetCPSR((registersReference.GetCPSR() & (~mask)) | (operand & mask));
+                }
             }
         }
 
