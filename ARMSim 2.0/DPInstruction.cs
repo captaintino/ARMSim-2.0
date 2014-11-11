@@ -62,7 +62,7 @@ namespace ARMSim_2._0
                 case 9: // TEQ
                     break;
                 case 10: // CMP
-                    DoCompare(cpu);
+                    DoCompare(cpu); // Tested/debugged on cmp.exe
                     break;
                 case 11: // CMN
                     break;
@@ -70,7 +70,15 @@ namespace ARMSim_2._0
                     registersReference.WriteRegister(Rd, registersReference.ReadRegister(Rn) | op2.execute(registersReference));
                     break;
                 case 13: // MOV
-                    registersReference.WriteRegister(Rd, op2.execute(registersReference)); // TESTED 1
+                    if (s)
+                    {
+                        registersReference.SwitchModes(Global.SYSTEMMODE);
+                        // performs mov inside of registers
+                    }
+                    else 
+                    {
+                        registersReference.WriteRegister(Rd, op2.execute(registersReference)); // TESTED 1
+                    }
                     break;
                 case 14: // BIC
                     registersReference.WriteRegister(Rd, registersReference.ReadRegister(Rn) & (~op2.execute(registersReference)));
@@ -113,7 +121,7 @@ namespace ARMSim_2._0
                 case 12: // ORR
                     return "orr" + conditional() + "  r" + Rd + ", r" + Rn + ", " + op2.ToString();
                 case 13: // MOV
-                    return "mov" + conditional() + "  r" + Rd + ", " + op2.ToString();
+                    return "mov" + conditional() + (s ? "s" : "") + "  r" + Rd + ", " + op2.ToString();
                 case 14: // BIC
                     return "bic" + conditional() + "  r" + Rd + ", r" + Rn + ", " + op2.ToString();
                 case 15: // MVN

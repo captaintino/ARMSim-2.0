@@ -11,6 +11,7 @@ namespace ARMSim_2._0
     {
         CPU cpu;
         bool stop = true;
+        bool IRQ = false;
         FileStream trace;
         public Form1 parentForm = null;
         uint stepNumber;
@@ -28,6 +29,9 @@ namespace ARMSim_2._0
 
         // Set <parentForm>
         public void ProvideParentForm(Form1 parent) { parentForm = parent; }
+
+        //Set IRQ flag
+        public void TriggerIRQ() { IRQ = true; }
 
         // Determine if executable has been loaded
         public bool Initialized() { return cpu.GetRegister(15) != 0; }
@@ -61,7 +65,11 @@ namespace ARMSim_2._0
         public void step()
         {
             if (cpu.fetch() != 0 && cpu.fetch() != 0xEF000000 /* SWI #0 */)
+            {
+                stop = false;
                 FetchDecodeExecute();
+            }
+            stop = true;
         }
 
         // Perform Fetch, Decode, and Execute commands. Also triggers Delegate on parentform on program end
@@ -87,6 +95,13 @@ namespace ARMSim_2._0
                 WriteLog(progc);
             if(!stop)
                 cpu.registers.IncrementProgramCounter();
+            if (IRQ && !cpu.GetIFlag())
+            {
+                IRQ = false;
+                cpu.registers.SwitchModes(Global.IRQMODE);
+                cpu.SetIFlag(true);
+                cpu.registers.WriteRegister(15, 0x18 + 8); // no increment
+            }
         }
 
         // trigger end of program and que GUI update if possible

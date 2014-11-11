@@ -26,7 +26,7 @@ namespace ARMSim_2._0
         public bool GetVFlag() { return registers.TestFlag(28); }
         public bool GetIFlag() { return registers.TestFlag(7); }
         public bool GetFFlag() { return registers.TestFlag(6); }
-        public uint GetModeBits() { return Instruction.bits(registers.CPSR, 4, 0); }
+        public uint GetModeBits() { return registers.GetModeBits(); }
         public void SetNFlag(bool setVal) { registers.SetFlag(31, setVal); }
         public void SetZFlag(bool setVal) { registers.SetFlag(30, setVal); }
         public void SetCFlag(bool setVal) { registers.SetFlag(29, setVal); }
@@ -35,11 +35,7 @@ namespace ARMSim_2._0
         public void SetFFlag(bool setVal) { registers.SetFlag(6, setVal); }
         public void SetModeBits(uint mode)
         {
-            registers.SetFlag(0, ((mode >> 0) & 1) == 1);
-            registers.SetFlag(1, ((mode >> 1) & 1) == 1);
-            registers.SetFlag(2, ((mode >> 2) & 1) == 1);
-            registers.SetFlag(3, ((mode >> 3) & 1) == 1);
-            registers.SetFlag(4, ((mode >> 4) & 1) == 1);
+            registers.SetModeBits(mode);
         }
 
         // fetch command based on program counter and increment program counter
