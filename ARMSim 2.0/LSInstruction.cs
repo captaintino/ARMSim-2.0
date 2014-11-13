@@ -61,7 +61,7 @@ namespace ARMSim_2._0
                 {
                     registersReference.WriteRegister(Rd, cpu.readChar());
                 }
-                if (b) // byte
+                else if (b) // byte
                 {
                     registersReference.WriteRegister(Rd, RAMReference.ReadByte(address));
                 }
@@ -76,7 +76,7 @@ namespace ARMSim_2._0
                 {
                     cpu.writeChar(registersReference.ReadRegister(Rd));
                 }
-                if (b) // byte
+                else if (b) // byte
                 {
                     RAMReference.WriteByte(address, (byte)(registersReference.ReadRegister(Rd) % 256));
                 }

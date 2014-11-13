@@ -74,6 +74,10 @@ namespace ARMSim_2._0
         private void FetchDecodeExecute()
         {
             // rewrite
+            if (stepNumber == 1000050 )
+            {
+                cpu.fetch();
+            }
             uint progc = cpu.registers.ReadRegister(15);
             uint num = cpu.fetch();
             if (num == 0)

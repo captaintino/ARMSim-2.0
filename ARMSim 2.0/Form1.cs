@@ -135,7 +135,8 @@ namespace ARMSim_2._0
         {
             if (computer.outputBuffer.Count > 0)
             {
-                console.Text += computer.outputBuffer.Dequeue();
+                char c = computer.outputBuffer.Dequeue();
+                console.Text += (c == '\n' ? "\r\n" : c.ToString());
             }
         }
 
@@ -259,15 +260,18 @@ namespace ARMSim_2._0
         private void ResetDisassembly()
         {
             string disassembly = "";
-            uint progc = computer.getProgramCounter() - 8;
-            uint begin = progc - (7*4);
-            uint end = progc + (8*4);
+            int progc = (int)computer.getProgramCounter() - 8;
+            int begin = progc - (7*4);
+            int end = progc + (8*4);
             while ((begin += 4) <= end)
             {
-                Instruction nop = computer.getInstruction(begin);
-                if (nop != null)
+                if (begin >= 0)
                 {
-                    disassembly += (begin == progc ? ">>>\t" : "") + String.Format("{0:X8}\t{1:X8}\t", begin, nop.data) + (nop.data == 0 ? "nop" : nop.ToString()) + "\r\n";
+                    Instruction nop = computer.getInstruction((uint)begin);
+                    if (nop != null)
+                    {
+                        disassembly += (begin == progc ? ">>>\t" : "") + String.Format("{0:X8}\t{1:X8}\t", begin, nop.data) + (nop.data == 0 ? "nop" : nop.ToString()) + "\r\n";
+                    }
                 }
             }
             disassembledfile.Text = disassembly;
@@ -314,34 +318,47 @@ namespace ARMSim_2._0
             else if(e.KeyCode == Keys.Back){
                 if (computer.inputBuffer.Count > 0)
                 {
-                    computer.inputBuffer.Dequeue();
-                    console.Text = console.Text.Remove(console.Text.Length - 1);
-                    if (computer.inputBuffer.Count == 0)
-                    {
-                        computer.IRQ = false;
-                    }
+                    //computer.inputBuffer.Dequeue();
+                    //console.Text = console.Text.Remove(console.Text.Length - 1);
+                    //if (computer.inputBuffer.Count == 0)
+                    //{
+                    //    computer.IRQ = false;
+                    //}
                 }
+            }
+            else if (e.KeyCode == Keys.Space)
+            {
+                computer.inputBuffer.Enqueue(' ');
+                computer.IRQ = true;
+            }
+            else if (e.KeyCode == Keys.Enter)
+            {
+                computer.inputBuffer.Enqueue('\r');
+                computer.inputBuffer.Enqueue('\n');
+                computer.IRQ = true;
             }
             else if (e.KeyValue < 128)
             {
                 char newChar = (char)e.KeyValue;
                 if (Char.IsLetterOrDigit(newChar))
                 {
-                    console.Text += (char)((Char.IsLetter(newChar) ? (Convert.ToInt32(newChar) | (e.Shift ? 0 : 32)) : 0));
                     if (Char.IsDigit(newChar))
                     {
-                        console.Text += e.Shift ? Global.convertNumbers[Convert.ToInt32(newChar.ToString())] : newChar;
+                        computer.inputBuffer.Enqueue(e.Shift ? Global.convertNumbers[Convert.ToInt32(newChar.ToString())] : newChar);
+                        computer.IRQ = true;
                     }
-                    computer.inputBuffer.Enqueue(console.Text[console.Text.Length - 1]);
-                    computer.IRQ = true;
+                    else
+                    {
+                        computer.inputBuffer.Enqueue((char)((Char.IsLetter(newChar) ? (Convert.ToInt32(newChar) | (e.Shift ? 0 : 32)) : 0)));
+                        computer.IRQ = true;
+                    }
                 }
             }
             else
             {
                 if (Global.convertPunctuation.ContainsKey(e.KeyValue))
                 {
-                    console.Text += e.Shift ? Global.convertPunctuation[e.KeyValue].Item2 : Global.convertPunctuation[e.KeyValue].Item1;
-                    computer.inputBuffer.Enqueue(console.Text[console.Text.Length - 1]);
+                    computer.inputBuffer.Enqueue(e.Shift ? Global.convertPunctuation[e.KeyValue].Item2 : Global.convertPunctuation[e.KeyValue].Item1);
                     computer.IRQ = true;
                 }
             }
@@ -353,6 +370,7 @@ namespace ARMSim_2._0
         {
             computer.Reset(arguments);
             UpdateGUI();
+            console.Text += "\r\nRESET\r\n";
         }
 
         // Update memory panel with new memory address input by user

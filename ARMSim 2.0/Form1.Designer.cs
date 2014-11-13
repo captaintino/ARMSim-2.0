@@ -157,6 +157,7 @@
             this.console.Multiline = true;
             this.console.Name = "console";
             this.console.ReadOnly = true;
+            this.console.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.console.Size = new System.Drawing.Size(804, 155);
             this.console.TabIndex = 0;
             // 

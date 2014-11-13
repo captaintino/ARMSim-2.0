@@ -26,8 +26,8 @@ namespace ARMSim_2._0
             if (bitsb(data, 27, 24) == 15) return new SWIInstruction(data);
             if (bitsb(data, 27, 24) == 0 && bitsb(data, 7, 4) == 9) return new MulInstruction(data);
             if (bitsb(data, 27, 20) == 18 && bitsb(data, 7, 4) == 1) return new BxInstruction(data, progc);
-            if(bitsb(data, 27, 23) == 2 && bitsb(data,7,4) == 0) return new MSInstruction(data);
-            if(bitsb(data, 27, 23) == 6 && bitsb(data,21,20) == 2) return new MSInstruction(data);
+            if(bitsb(data, 27, 23) == 2 && bitsb(data,7,4) == 0 && bitsb(data,20,20) == 0) return new MSInstruction(data);
+            if (bitsb(data, 27, 23) == 6 && bitsb(data, 21, 20) == 2 && bitsb(data, 20, 20) == 0) return new MSInstruction(data);
             uint itype = bits(data, 27, 26);
             switch (itype)
             {

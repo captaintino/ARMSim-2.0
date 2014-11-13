@@ -105,7 +105,7 @@ namespace ARMSim_2._0
             }
         }
         public uint GetCPSR() { return CPSR; }
-        public uint SetCPSR(uint nCPSR) { CPSR = nCPSR; }
+        public void SetCPSR(uint nCPSR) { CPSR = nCPSR; }
 
         public void SwitchModes(uint newMode)
         {
@@ -117,7 +117,7 @@ namespace ARMSim_2._0
                     // LR -> LR usr
                     LR_usr = ReadRegister(14);
                     // LR -> LR_svc
-                    LR_svc = ReadRegister(15) + 4; // pointing EXACTLY at the right instruction
+                    LR_svc = ReadRegister(15) - 4; // pointing EXACTLY at the right instruction
                     WriteRegister(14, LR_svc);
                     SetModeBits(Global.SUPERVISORMODE);
                     break;
@@ -135,12 +135,12 @@ namespace ARMSim_2._0
                     {
                         case Global.SUPERVISORMODE:
                             CPSR = SPSR_svc;
-                            WriteRegister(15, LR_svc + 8); // 8 > to handle fetch - 8
+                            WriteRegister(15, LR_svc + 4); // 4 > to handle fetch - 8
                             WriteRegister(14, LR_usr);
                             break;
                         case Global.IRQMODE:
                             CPSR = SPSR_svc;
-                            WriteRegister(15, LR_svc);
+                            WriteRegister(15, LR_svc + 4);
                             WriteRegister(14, LR_usr);
                             break;
                     }

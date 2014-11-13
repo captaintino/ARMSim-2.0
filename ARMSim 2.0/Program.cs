@@ -26,8 +26,8 @@ namespace ARMSim_2._0
         public const uint PRIVMASK = 0x0000000Fu;
         public const uint STATEMASK = 0x00000020u;
         // Keyboard conversions
-        public const char[] convertNumbers = { ')', '!', '@', '#', '$', '%', '^', '&', '*', '(' };
-        public const Dictionary<int, Tuple<char, char>> convertPunctuation = new Dictionary<int, Tuple<char, char>>() {
+        public static readonly char[] convertNumbers = { ')', '!', '@', '#', '$', '%', '^', '&', '*', '(' };
+        public static readonly Dictionary<int, Tuple<char, char>> convertPunctuation = new Dictionary<int, Tuple<char, char>>() {
         { 0xba, new Tuple<char,char>(';',':')},
         { 0xbb, new Tuple<char,char>('=','+')},
         { 0xbc, new Tuple<char,char>(',','<')},

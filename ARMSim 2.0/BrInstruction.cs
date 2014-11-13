@@ -23,9 +23,11 @@ namespace ARMSim_2._0
         {
             Cond = bitsb(data, 31, 28);
             l = bitsb(data, 24, 24) == 1;
-            immediate = bits(data, 23, 0) + 1;
-            if (bitsb(data, 23, 23) == 1) immediate |= 0xff000000;
+            immediate = bits(data, 23, 0); // + 1?
+            if (bitsb(data, 23, 23) == 1) 
+                immediate = immediate | 0xff000000u;
             immediate <<= 2;
+            immediate += 4;
         }
 
         // perform command on <regs> and <ram>
