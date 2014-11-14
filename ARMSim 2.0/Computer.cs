@@ -74,7 +74,7 @@ namespace ARMSim_2._0
         private void FetchDecodeExecute()
         {
             // rewrite
-            if (stepNumber == 5800 )
+            if (stepNumber == 0x1a0 )
             {
                 cpu.fetch();
             }

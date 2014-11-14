@@ -9,12 +9,14 @@ namespace ARMSim_2._0
     public class Registers : Memory
     {
         public uint CPSR, SPSR_svc, SPSR_irq; // flags
-        public uint LR_usr, LR_svc, LR_irq, SP_svc;
+        public uint LR_usr, LR_svc, LR_irq;
+        public uint SP_usr, SP_svc, SP_irq;
         public Registers(uint EntryPoint)
             : base(64)
         {
             WriteRegister(15, EntryPoint);
-            CPSR = 31; // SYSTEM mode
+            CPSR = Global.SUPERVISORMODE + 0xc0; // SYSTEM mode
+            SP_usr = SP_svc = SP_irq = 0;
         }
 
         // Reads register number <registerNumber> (zero-based)
@@ -224,6 +226,31 @@ namespace ARMSim_2._0
                             break;
                     }
                     SetModeBits(Global.SYSTEMMODE);
+                    break;
+            }
+            // bank stack pointers:
+            switch (oldMode)
+            {
+                case Global.SYSTEMMODE:
+                    SP_usr = ReadRegister(13);
+                    break;
+                case Global.SUPERVISORMODE:
+                    SP_svc = ReadRegister(13);
+                    break;
+                case Global.IRQMODE:
+                    SP_irq = ReadRegister(13);
+                    break;
+            }
+            switch (newMode)
+            {
+                case Global.SYSTEMMODE:
+                    WriteRegister(13, SP_usr);
+                    break;
+                case Global.SUPERVISORMODE:
+                    WriteRegister(13, SP_svc);
+                    break;
+                case Global.IRQMODE:
+                    WriteRegister(13, SP_irq);
                     break;
             }
         }
