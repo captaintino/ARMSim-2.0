@@ -72,8 +72,12 @@ namespace ARMSim_2._0
                 case 13: // MOV
                     if (s)
                     {
-                        registersReference.SwitchModes(Global.SYSTEMMODE);
-                        // performs mov inside of registers
+                        uint oldmode = registersReference.GetCurrentSPSR() & 0x1F;
+                        uint newMode = registersReference.GetCPSR() & 0x1F;
+                        uint r15 = registersReference.getCorrectr15();
+                        registersReference.UpdateCPSR(oldmode);
+                        registersReference.SwitchModes(oldmode, newMode);
+                        registersReference.WriteRegister(15, r15);
                     }
                     else 
                     {

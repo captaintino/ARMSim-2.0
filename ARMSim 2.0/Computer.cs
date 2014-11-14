@@ -74,7 +74,7 @@ namespace ARMSim_2._0
         private void FetchDecodeExecute()
         {
             // rewrite
-            if (stepNumber == 1000050 )
+            if (stepNumber == 5800 )
             {
                 cpu.fetch();
             }
@@ -100,7 +100,8 @@ namespace ARMSim_2._0
             if (IRQ && !cpu.GetIFlag())
             {
                 IRQ = false;
-                cpu.registers.SwitchModes(Global.IRQMODE);
+                cpu.registers.SaveCPSR(Global.IRQMODE);
+                cpu.registers.SwitchModes(Global.IRQMODE, cpu.registers.GetCPSR() & 0x1F);
                 cpu.SetIFlag(true);
                 cpu.registers.WriteRegister(15, 0x18 + 8); // no increment
             }

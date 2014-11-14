@@ -34,7 +34,8 @@ namespace ARMSim_2._0
                     break;
                 case 1:
                 case 2:
-                    registersReference.SwitchModes(Global.SUPERVISORMODE);
+                    registersReference.SaveCPSR(Global.SUPERVISORMODE);
+                    registersReference.SwitchModes(Global.SUPERVISORMODE, Global.SYSTEMMODE);
                     cpu.SetIFlag(true);
                     registersReference.WriteRegister(15, 12); // auto increment will move it to 16
                     return;

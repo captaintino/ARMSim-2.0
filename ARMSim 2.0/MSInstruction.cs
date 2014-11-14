@@ -54,9 +54,9 @@ namespace ARMSim_2._0
                 }
                 else
                 {
-                    if (registersReference.GetModeBits() != Global.SYSTEMMODE) // In a priviledged mode
+                    if (registersReference.GetModeBits() != Global.USERMODE) // In a priviledged mode
                     {
-                        mask = byteMask & (Global.USERMASK | Global.PRIVMASK);
+                        mask = byteMask & (Global.USERMASK | 0x1DF/*Global.PRIVMASK*/);
                     }
                     else
                     {

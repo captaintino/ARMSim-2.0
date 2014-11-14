@@ -10,7 +10,8 @@ namespace ARMSim_2._0
     {
         public uint CPSR, SPSR_svc, SPSR_irq; // flags
         public uint LR_usr, LR_svc, LR_irq, SP_svc;
-        public Registers(uint EntryPoint) : base(64)
+        public Registers(uint EntryPoint)
+            : base(64)
         {
             WriteRegister(15, EntryPoint);
             CPSR = 31; // SYSTEM mode
@@ -105,28 +106,106 @@ namespace ARMSim_2._0
             }
         }
         public uint GetCPSR() { return CPSR; }
-        public void SetCPSR(uint nCPSR) { CPSR = nCPSR; }
+        public void SetCPSR(uint nCPSR) {
+            if (GetModeBits() != Instruction.bits(nCPSR, 4, 0))
+            {
+                SwitchModes(Instruction.bits(nCPSR, 4, 0), CPSR & 0x1F);
+            }
+            else
+            {
+                CPSR = nCPSR;
+            }
+        }
 
-        public void SwitchModes(uint newMode)
+        // Triggered by SWI/IRQ entry
+        public void SaveCPSR(uint newMode)
         {
-            uint oldMode = Instruction.bits(CPSR, 4, 0);
             switch (newMode)
             {
                 case Global.SUPERVISORMODE:
                     SPSR_svc = CPSR;
-                    // LR -> LR usr
-                    LR_usr = ReadRegister(14);
-                    // LR -> LR_svc
-                    LR_svc = ReadRegister(15) - 4; // pointing EXACTLY at the right instruction
-                    WriteRegister(14, LR_svc);
-                    SetModeBits(Global.SUPERVISORMODE);
                     break;
                 case Global.IRQMODE:
                     SPSR_irq = CPSR;
-                    // LR -> LR usr
-                    LR_usr = ReadRegister(14); 
+                    break;
+            }
+        }
+
+        //
+        public void UpdateCPSR(uint newMode)
+        {
+            uint oldmode = CPSR;
+            switch (Instruction.bits(CPSR, 4, 0))
+            {
+                case Global.SYSTEMMODE:
+                    //oldmode = CPSR;
+                    break;
+                case Global.SUPERVISORMODE:
+                    oldmode = SPSR_svc;
+                    break;
+                case Global.IRQMODE:
+                    oldmode = SPSR_irq;
+                    break;
+            }
+            switch (newMode)
+            {
+                case Global.SYSTEMMODE:
+                    CPSR = oldmode;
+                    break;
+                case Global.SUPERVISORMODE:
+                    //SPSR_irq = oldmode;
+                    CPSR = oldmode; // ???
+                    break;
+            }
+        }
+
+        public uint getCorrectr15(){
+            switch (GetCPSR() & 0x1F)
+            {
+                case Global.IRQMODE:
+                    return LR_irq;
+                case Global.SUPERVISORMODE:
+                    return LR_svc + 4;
+            }
+            return 0;
+        }
+
+        public void SwitchModes(uint newMode, uint oldMode)
+        {
+            switch (newMode)
+            {
+                case Global.SUPERVISORMODE:
+                    //SPSR_svc = CPSR;
+                    switch (oldMode)
+                    {
+                        case Global.SYSTEMMODE:
+                            // LR -> LR usr
+                            LR_usr = ReadRegister(14);
+                            // LR -> LR_svc
+                            LR_svc = ReadRegister(15) - 4; // pointing EXACTLY at the right instruction
+                            WriteRegister(14, LR_svc);
+                            break;
+                        case Global.IRQMODE:
+                            //LR_irq = ReadRegister(14); // ????
+                            WriteRegister(14, LR_svc); // ????
+                            break;
+                    }
+                    SetModeBits(Global.SUPERVISORMODE);
+                    break;
+                case Global.IRQMODE:
+                    //SPSR_irq = CPSR;
                     // LR -> LR_irq
                     LR_irq = ReadRegister(15); // pointing EXACTLY at the right instruction
+                    switch (oldMode)
+                    {
+                        case Global.SYSTEMMODE:
+                            // LR -> LR usr
+                            LR_usr = ReadRegister(14);
+                            break;
+                        case Global.SUPERVISORMODE:
+                            //LR_irq = ReadRegister(14);
+                            break;
+                    }
                     WriteRegister(14, LR_irq);
                     SetModeBits(Global.IRQMODE);
                     break;
@@ -134,16 +213,17 @@ namespace ARMSim_2._0
                     switch (oldMode)
                     {
                         case Global.SUPERVISORMODE:
-                            CPSR = SPSR_svc;
-                            WriteRegister(15, LR_svc + 4); // 4 > to handle fetch - 8
+                            //CPSR = SPSR_svc;
+                            WriteRegister(15, ReadRegister(14) + 4); // 4 > to handle fetch - 8
                             WriteRegister(14, LR_usr);
                             break;
                         case Global.IRQMODE:
-                            CPSR = SPSR_svc;
-                            WriteRegister(15, LR_svc + 4);
+                            //CPSR = SPSR_svc;
+                            WriteRegister(15, LR_irq);
                             WriteRegister(14, LR_usr);
                             break;
                     }
+                    SetModeBits(Global.SYSTEMMODE);
                     break;
             }
         }

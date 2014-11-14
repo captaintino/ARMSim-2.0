@@ -136,7 +136,7 @@ namespace ARMSim_2._0
             if (computer.outputBuffer.Count > 0)
             {
                 char c = computer.outputBuffer.Dequeue();
-                console.Text += (c == '\n' ? "\r\n" : c.ToString());
+                console.Text += (c == '\n' || c == '\r' ? "\r\n" : c.ToString());
             }
         }
 
