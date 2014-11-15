@@ -147,14 +147,14 @@ namespace ARMSim_2._0
 
                 Console.WriteLine("Simulator: Tests: Instruction: Testing BRANCH Instruction");
                 BrInstruction bp = new BrInstruction(0xea000001, 0);
-                Debug.Assert(bp.ToString() == "b #4");
+                Debug.Assert(bp.ToString() == "b #0000000C");
                 bp.execute(cpu);
-                Debug.Assert(regs.ReadRegister(15) == 4);
+                Debug.Assert(regs.ReadRegister(15) == 8);
 
                 bp = new BrInstruction(0xebffffff, 0);
-                Debug.Assert(bp.ToString() == "bl #" + (Convert.ToUInt32((-4)).ToString()));
+                Debug.Assert(bp.ToString() == "bl #00000004");
                 bp.execute(cpu);
-                Debug.Assert((int)regs.ReadRegister(15) == 0);
+                Debug.Assert((int)regs.ReadRegister(15) == 8);
                 Debug.Assert(regs.ReadRegister(14) == 4);
                 Console.WriteLine("Simulator: Tests: Instruction: BRANCH Instruction Test Passed");
 

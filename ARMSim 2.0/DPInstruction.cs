@@ -99,15 +99,15 @@ namespace ARMSim_2._0
             switch (opcode)
             {
                 case 0: // AND
-                    return "and" + conditional() + "  r" + Rd + ", r" + Rn + ", " + op2.ToString();
+                    return "and" + conditional() + " r" + Rd + ", r" + Rn + ", " + op2.ToString();
                 case 1: // EOR
-                    return "eor" + conditional() + "  r" + Rd + ", r" + Rn + ", " + op2.ToString();
+                    return "eor" + conditional() + " r" + Rd + ", r" + Rn + ", " + op2.ToString();
                 case 2: // SUB
-                    return "sub" + conditional() + "  r" + Rd + ", r" + Rn + ", " + op2.ToString();
+                    return "sub" + conditional() + " r" + Rd + ", r" + Rn + ", " + op2.ToString();
                 case 3: // RSB
-                    return "rsb" + conditional() + "  r" + Rd + ", r" + Rn + ", " + op2.ToString();
+                    return "rsb" + conditional() + " r" + Rd + ", r" + Rn + ", " + op2.ToString();
                 case 4: // ADD
-                    return "add" + conditional() + "  r" + Rd + ", r" + Rn + ", " + op2.ToString();
+                    return "add" + conditional() + " r" + Rd + ", r" + Rn + ", " + op2.ToString();
                 case 5: // ADC
                     break;
                 case 6: // SBC
@@ -123,13 +123,13 @@ namespace ARMSim_2._0
                 case 11: // CMN
                     break;
                 case 12: // ORR
-                    return "orr" + conditional() + "  r" + Rd + ", r" + Rn + ", " + op2.ToString();
+                    return "orr" + conditional() + " r" + Rd + ", r" + Rn + ", " + op2.ToString();
                 case 13: // MOV
-                    return "mov" + conditional() + (s ? "s" : "") + "  r" + Rd + ", " + op2.ToString();
+                    return "mov" + conditional() + (s ? "s" : "") + " r" + Rd + ", " + op2.ToString();
                 case 14: // BIC
-                    return "bic" + conditional() + "  r" + Rd + ", r" + Rn + ", " + op2.ToString();
+                    return "bic" + conditional() + " r" + Rd + ", r" + Rn + ", " + op2.ToString();
                 case 15: // MVN
-                    return "mvn" + conditional() + "  r" + Rd + ", " + op2.ToString();
+                    return "mvn" + conditional() + " r" + Rd + ", " + op2.ToString();
             }
             return "nop";
         }
