@@ -131,6 +131,7 @@ namespace ARMSim_2._0
             breakbtn.PerformClick();
         }
 
+        // Update Console - to be triggered when computer performs a writechar
         public void writeCharacter()
         {
             if (computer.outputBuffer.Count > 0)
@@ -228,6 +229,7 @@ namespace ARMSim_2._0
             irqflagcheckbox.Checked = computer.IRQ;
         }
 
+        // Set processor mode label to correct value
         private void UpdateProcessorMode()
         {
             switch (computer.GetProcMode())
@@ -385,11 +387,13 @@ namespace ARMSim_2._0
             if (tracecheckbox.Checked)
             {
                 traceFile = new FileStream("trace.log", FileMode.Create, FileAccess.Write);
+                computer.activateTrace(traceFile);
             }
             else
             {
                 traceFile.Close();
                 traceFile = null;
+                computer.deactivateTrace();
             }
         }
 

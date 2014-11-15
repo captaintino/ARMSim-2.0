@@ -34,6 +34,10 @@ namespace ARMSim_2._0
         // Determine if executable has been loaded
         public bool Initialized() { return cpu.GetRegister(15) != 0; }
 
+        // Set trace file value
+        public void deactivateTrace() { trace = null; }
+        public void activateTrace(FileStream nTrace) { trace = nTrace; }
+
         // End the looping of run()
         public void stopRun()
         {
@@ -73,11 +77,6 @@ namespace ARMSim_2._0
         // Perform Fetch, Decode, and Execute commands. Also triggers Delegate on parentform on program end
         private void FetchDecodeExecute()
         {
-            // rewrite
-            if (stepNumber == 0x1a0 )
-            {
-                cpu.fetch();
-            }
             uint progc = cpu.registers.ReadRegister(15);
             uint num = cpu.fetch();
             if (num == 0)
@@ -124,7 +123,7 @@ namespace ARMSim_2._0
         private void WriteLog(uint programcounter)
         {
             List<uint> registers = GetRegisters();
-            string write = String.Format("{0:d6} {1:X8} ", stepNumber, programcounter - 8) + GetMD5() + " " + cpu.FlagsToString() + "   " + String.Format("0={0:X8}  1={1:X8}  2={2:X8}  3={3:X8}\r\n        ", registers[0], registers[1], registers[2], registers[3]) +
+            string write = String.Format("{0:d6} {1:X8} ", stepNumber, programcounter - 8) + GetMode() + " " + cpu.FlagsToString() + "   " + String.Format("0={0:X8}  1={1:X8}  2={2:X8}  3={3:X8}\r\n        ", registers[0], registers[1], registers[2], registers[3]) +
             String.Format("4={0:X8}  5={1:X8}  6={2:X8}  7={3:X8}  8={4:X8}  9={5:X8}\r\n       ", registers[4], registers[5], registers[6], registers[7], registers[8], registers[9]) +
             String.Format("10={0:X8} 11={1:X8} 12={2:X8} 13={3:X8} 14={4:X8}\r\n", registers[10], registers[11], registers[12], registers[13], registers[14]);
             byte[] bytes = new byte[write.Length * sizeof(char)];
@@ -147,6 +146,22 @@ namespace ARMSim_2._0
         public string GetMD5()
         {
             return cpu.GetMD5();
+        }
+
+        public string GetMode()
+        {
+            switch (cpu.GetModeBits())
+            {
+                case Global.SYSTEMMODE:
+                    return "[sys]";
+                case Global.SUPERVISORMODE:
+                    return "[svc]";
+                case Global.IRQMODE:
+                    return "[irq]";
+                case Global.FIQMODE:
+                    return "[fiq]";
+            }
+            return "";
         }
 
         // return register values as uint list

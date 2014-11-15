@@ -83,6 +83,7 @@ namespace ARMSim_2._0
             SetFlag(4, ((mode >> 4) & 1) == 1);
         }
 
+        // Get current SPSR based on current mode
         public uint GetCurrentSPSR()
         {
             switch (GetModeBits())
@@ -95,6 +96,7 @@ namespace ARMSim_2._0
                     return 0;
             }
         }
+        // update current spsr to <SPSR> based on current mode
         public void UpdateCurrentSPSR(uint SPSR)
         {
             switch (GetModeBits())
@@ -133,7 +135,7 @@ namespace ARMSim_2._0
             }
         }
 
-        //
+        // set CPSR to correct SPSR for <newMode>
         public void UpdateCPSR(uint newMode)
         {
             uint oldmode = CPSR;
@@ -161,6 +163,7 @@ namespace ARMSim_2._0
             }
         }
 
+        // Get correct value for the new r15 when switching modes
         public uint getCorrectr15(){
             switch (GetCPSR() & 0x1F)
             {
@@ -172,6 +175,7 @@ namespace ARMSim_2._0
             return 0;
         }
 
+        // Switch modes from <oldMode> to <newMode> and switch out banked registers
         public void SwitchModes(uint newMode, uint oldMode)
         {
             switch (newMode)
@@ -216,12 +220,12 @@ namespace ARMSim_2._0
                     {
                         case Global.SUPERVISORMODE:
                             //CPSR = SPSR_svc;
-                            WriteRegister(15, ReadRegister(14) + 4); // 4 > to handle fetch - 8
+                            //WriteRegister(15, ReadRegister(14) + 4); // 4 > to handle fetch - 8
                             WriteRegister(14, LR_usr);
                             break;
                         case Global.IRQMODE:
                             //CPSR = SPSR_svc;
-                            WriteRegister(15, LR_irq);
+                            //WriteRegister(15, LR_irq);
                             WriteRegister(14, LR_usr);
                             break;
                     }

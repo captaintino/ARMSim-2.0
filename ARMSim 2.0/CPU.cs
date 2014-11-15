@@ -128,7 +128,7 @@ namespace ARMSim_2._0
             return 0;
         }
 
-        // Read/Write characters from the console
+        // Read/Write characters from/to the console
         public uint readChar()
         {
             if (computer.inputBuffer.Count > 0)
