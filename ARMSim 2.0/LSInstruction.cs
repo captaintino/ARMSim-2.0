@@ -57,7 +57,8 @@ namespace ARMSim_2._0
             }
             if (l) // LOAD
             {
-                if (address == 0x00100001) // read character from console
+                //if (address == 0x00100001) // read character from console (old version) 
+                if (address == 0b10000000000000000000000000000100) // read character from console (Jueckstock apparently updated the address for some reason...)
                 {
                     registersReference.WriteRegister(Rd, cpu.readChar());
                 }
@@ -72,7 +73,8 @@ namespace ARMSim_2._0
             }
             else // STORE
             {
-                if (address == 0x00100000) // write character to console
+                //if (address == 0x00100000) // write character to console (old version) 
+                if (address == 0b10000000000000000000000000000000) // write character to console (Jueckstock apparently updated the address for some reason...)
                 {
                     cpu.writeChar(registersReference.ReadRegister(Rd));
                 }
